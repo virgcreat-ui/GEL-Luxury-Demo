@@ -1,0 +1,8 @@
+
+{
+  "name": "Social Hub Guest Guide AI",
+  "description": "A luxury concierge and creative companion for The Social Hub guests, featuring AI-powered concierge services and high-quality image generation.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
