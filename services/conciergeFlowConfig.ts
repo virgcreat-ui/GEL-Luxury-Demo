@@ -224,10 +224,13 @@ export const DEFAULT_CONCIERGE_FLOW_CONFIG: ConciergeFlowConfig = {
         topics: [
             { id: "room", label: { en: "Your Room", fr: "Votre Chambre", de: "Ihr Zimmer", es: "Tu Habitación", it: "La Camera", pt: "Quarto" }, order: 1 },
             { id: "breakfast", label: { en: "Breakfast", fr: "Petit-déjeuner", de: "Frühstück", es: "Desayuno", it: "Colazione", pt: "Pequeno-almoço" }, order: 2 },
-            { id: "facilities", label: { en: "Facilities", fr: "Installations", de: "Einrichtungen", es: "Instalaciones", it: "Strutture", pt: "Instalações" }, order: 3 },
-            { id: "shop", label: { en: "Shop", fr: "Boutique", de: "Shop", es: "Tienda", it: "Negozio", pt: "Loja" }, order: 4 },
-            { id: "events", label: { en: "Events", fr: "Événements", de: "Events", es: "Eventos", it: "Eventi", pt: "Eventos" }, order: 5 },
-            { id: "area", label: { en: "Area", fr: "Quartier", de: "Umgebung", es: "Barrio", it: "Quartiere", pt: "Bairro" }, order: 6 }
+            { id: "spa", label: { en: "Spa & Wellness", fr: "Spa & Bien-être", de: "Spa & Wellness", es: "Spa y Bienestar", it: "Spa & Benessere", pt: "Spa & Bem-estar" }, order: 3 },
+            { id: "gym", label: { en: "Gym", fr: "Salle de Sport", de: "Fitnessstudio", es: "Gimnasio", it: "Palestra", pt: "Ginásio" }, order: 4 },
+            { id: "dining", label: { en: "Fine Dining", fr: "Gastronomie", de: "Feine Küche", es: "Alta Gastronomía", it: "Alta Cucina", pt: "Alta Gastronomia" }, order: 5 },
+            { id: "facilities", label: { en: "Facilities", fr: "Installations", de: "Einrichtungen", es: "Instalaciones", it: "Strutture", pt: "Instalações" }, order: 6 },
+            { id: "shop", label: { en: "Shop", fr: "Boutique", de: "Shop", es: "Tienda", it: "Negozio", pt: "Loja" }, order: 7 },
+            { id: "events", label: { en: "Events", fr: "Événements", de: "Events", es: "Eventos", it: "Eventi", pt: "Eventos" }, order: 8 },
+            { id: "area", label: { en: "Area", fr: "Quartier", de: "Umgebung", es: "Barrio", it: "Quartiere", pt: "Bairro" }, order: 9 }
         ],
         topicIntros: {
             room: {
@@ -277,6 +280,30 @@ export const DEFAULT_CONCIERGE_FLOW_CONFIG: ConciergeFlowConfig = {
                 es: ["Esto es lo que hay en el barrio."],
                 it: ["Ecco cosa c'è nel quartiere."],
                 pt: ["Aqui está o que há no bairro."]
+            },
+            spa: {
+                en: ["Indulge in our signature spa treatments. Pure relaxation awaits."],
+                fr: ["Offrez-vous nos soins spa signature. La détente absolue vous attend."],
+                de: ["Gönnen Sie sich unsere Signature-Spa-Behandlungen. Pure Entspannung erwartet Sie."],
+                es: ["Disfruta de nuestros tratamientos spa exclusivos. La relajación pura te espera."],
+                it: ["Concedetevi i nostri trattamenti spa signature. Vi attende puro relax."],
+                pt: ["Delicie-se com os nossos tratamentos de spa exclusivos. Puro relaxamento espera-o."]
+            },
+            gym: {
+                en: ["Our 24/7 fitness center has everything you need. Let me show you."],
+                fr: ["Notre centre fitness 24h/24 a tout ce qu'il vous faut. Laissez-moi vous montrer."],
+                de: ["Unser 24/7-Fitnesscenter hat alles, was Sie brauchen. Lassen Sie mich zeigen."],
+                es: ["Nuestro centro fitness 24/7 tiene todo lo que necesitas. Déjame mostrarte."],
+                it: ["Il nostro centro fitness 24/7 ha tutto ciò di cui hai bisogno. Lascia che ti mostri."],
+                pt: ["O nosso centro de fitness 24/7 tem tudo o que precisa. Deixe-me mostrar-lhe."]
+            },
+            dining: {
+                en: ["Experience culinary excellence at L'Éclipse Restaurant. Seasonal French cuisine awaits."],
+                fr: ["Découvrez l'excellence culinaire au Restaurant L'Éclipse. Une cuisine française de saison vous attend."],
+                de: ["Erleben Sie kulinarische Exzellenz im L'Éclipse Restaurant. Saisonale französische Küche erwartet Sie."],
+                es: ["Experimenta la excelencia culinaria en L'Éclipse Restaurant. La cocina francesa de temporada te espera."],
+                it: ["Vivi l'eccellenza culinaria al Ristorante L'Éclipse. La cucina francese stagionale ti aspetta."],
+                pt: ["Experimente a excelência culinária no Restaurante L'Éclipse. A cozinha francesa sazonal espera-o."]
             }
         }
     }

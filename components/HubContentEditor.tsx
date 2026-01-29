@@ -226,6 +226,111 @@ export default function HubContentEditor({ onSave }: HubContentEditorProps) {
                 </div>
             </div>
 
+            {/* Spa & Wellness Section */}
+            <div className="bg-white rounded-xl border-2 border-neutral-200 p-6 space-y-4">
+                <h4 className="text-sm font-bold text-black uppercase tracking-wider border-b pb-2">🧖 Spa & Wellness</h4>
+
+                <div>
+                    <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Title</label>
+                    <input
+                        type="text"
+                        value={getValue('spa', 'title')}
+                        onChange={(e) => handleChange('spa', 'title', e.target.value)}
+                        className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none"
+                    />
+                </div>
+
+                <div>
+                    <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Caption</label>
+                    <textarea
+                        value={getValue('spa', 'caption')}
+                        onChange={(e) => handleChange('spa', 'caption', e.target.value)}
+                        rows={2}
+                        className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none resize-none"
+                    />
+                </div>
+
+                <div>
+                    <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Hours</label>
+                    <input
+                        type="text"
+                        value={getValue('spa', 'hours')}
+                        onChange={(e) => handleChange('spa', 'hours', e.target.value)}
+                        className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none"
+                    />
+                </div>
+            </div>
+
+            {/* Gym Section */}
+            <div className="bg-white rounded-xl border-2 border-neutral-200 p-6 space-y-4">
+                <h4 className="text-sm font-bold text-black uppercase tracking-wider border-b pb-2">💪 State-of-the-Art Gym</h4>
+
+                <div>
+                    <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Title</label>
+                    <input
+                        type="text"
+                        value={getValue('gym', 'title')}
+                        onChange={(e) => handleChange('gym', 'title', e.target.value)}
+                        className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none"
+                    />
+                </div>
+
+                <div>
+                    <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Caption</label>
+                    <textarea
+                        value={getValue('gym', 'caption')}
+                        onChange={(e) => handleChange('gym', 'caption', e.target.value)}
+                        rows={2}
+                        className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none resize-none"
+                    />
+                </div>
+
+                <div>
+                    <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Access Info</label>
+                    <input
+                        type="text"
+                        value={getValue('gym', 'access')}
+                        onChange={(e) => handleChange('gym', 'access', e.target.value)}
+                        className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none"
+                    />
+                </div>
+            </div>
+
+            {/* Fine Dining Section */}
+            <div className="bg-white rounded-xl border-2 border-neutral-200 p-6 space-y-4">
+                <h4 className="text-sm font-bold text-black uppercase tracking-wider border-b pb-2">🍽️ Fine Dining</h4>
+
+                <div>
+                    <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Title</label>
+                    <input
+                        type="text"
+                        value={getValue('dining', 'title')}
+                        onChange={(e) => handleChange('dining', 'title', e.target.value)}
+                        className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none"
+                    />
+                </div>
+
+                <div>
+                    <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Caption</label>
+                    <textarea
+                        value={getValue('dining', 'caption')}
+                        onChange={(e) => handleChange('dining', 'caption', e.target.value)}
+                        rows={2}
+                        className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none resize-none"
+                    />
+                </div>
+
+                <div>
+                    <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Hours & Reservations</label>
+                    <input
+                        type="text"
+                        value={getValue('dining', 'hours')}
+                        onChange={(e) => handleChange('dining', 'hours', e.target.value)}
+                        className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none"
+                    />
+                </div>
+            </div>
+
             {/* Action Buttons */}
             <div className="flex gap-4 pt-4">
                 <button

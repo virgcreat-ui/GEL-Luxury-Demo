@@ -23,6 +23,21 @@ export interface HubContent {
         title: Record<Lang, string>;
         caption: Record<Lang, string>;
     };
+    spa: {
+        title: Record<Lang, string>;
+        caption: Record<Lang, string>;
+        hours: Record<Lang, string>;
+    };
+    gym: {
+        title: Record<Lang, string>;
+        caption: Record<Lang, string>;
+        access: Record<Lang, string>;
+    };
+    dining: {
+        title: Record<Lang, string>;
+        caption: Record<Lang, string>;
+        hours: Record<Lang, string>;
+    };
 }
 
 /**
@@ -122,6 +137,84 @@ export const DEFAULT_HUB_CONTENT: HubContent = {
             es: "Gym, pool, laundry & game room.",
             it: "Gym, pool, laundry & game room.",
             pt: "Gym, pool, laundry & game room."
+        }
+    },
+    spa: {
+        title: {
+            en: "Spa & Wellness",
+            fr: "Spa & Bien-être",
+            de: "Spa & Wellness",
+            es: "Spa y Bienestar",
+            it: "Spa & Benessere",
+            pt: "Spa & Bem-estar"
+        },
+        caption: {
+            en: "Signature treatments for pure relaxation.",
+            fr: "Soins signature pour une détente absolue.",
+            de: "Signature-Behandlungen für pure Entspannung.",
+            es: "Tratamientos exclusivos para pura relajación.",
+            it: "Trattamenti signature per puro relax.",
+            pt: "Tratamentos exclusivos para puro relaxamento."
+        },
+        hours: {
+            en: "Open daily 09:00–21:00",
+            fr: "Ouvert tous les jours 09h00–21h00",
+            de: "Täglich 09:00–21:00 Uhr",
+            es: "Abierto diariamente 09:00–21:00",
+            it: "Aperto tutti i giorni 09:00–21:00",
+            pt: "Aberto diariamente 09:00–21:00"
+        }
+    },
+    gym: {
+        title: {
+            en: "State-of-the-Art Gym",
+            fr: "Salle de Sport Premium",
+            de: "Hochmodernes Fitnessstudio",
+            es: "Gimnasio de Última Generación",
+            it: "Palestra all'Avanguardia",
+            pt: "Ginásio de Última Geração"
+        },
+        caption: {
+            en: "Technogym equipment, free weights, and Peloton bikes.",
+            fr: "Équipements Technogym, poids libres et vélos Peloton.",
+            de: "Technogym-Geräte, freie Gewichte und Peloton-Bikes.",
+            es: "Equipos Technogym, pesas libres y bicicletas Peloton.",
+            it: "Attrezzature Technogym, pesi liberi e bici Peloton.",
+            pt: "Equipamentos Technogym, pesos livres e bicicletas Peloton."
+        },
+        access: {
+            en: "24/7 access with room key. Level -1.",
+            fr: "Accès 24h/24 avec clé de chambre. Niveau -1.",
+            de: "24/7 Zugang mit Zimmerschlüssel. Untergeschoss.",
+            es: "Acceso 24/7 con llave de habitación. Nivel -1.",
+            it: "Accesso 24/7 con chiave della camera. Piano -1.",
+            pt: "Acesso 24/7 com chave do quarto. Piso -1."
+        }
+    },
+    dining: {
+        title: {
+            en: "Fine Dining",
+            fr: "Gastronomie",
+            de: "Feine Küche",
+            es: "Alta Gastronomía",
+            it: "Alta Cucina",
+            pt: "Alta Gastronomia"
+        },
+        caption: {
+            en: "L'Éclipse Restaurant — seasonal French cuisine with a modern twist.",
+            fr: "Restaurant L'Éclipse — cuisine française de saison revisitée.",
+            de: "Restaurant L'Éclipse — saisonale französische Küche mit modernem Touch.",
+            es: "Restaurante L'Éclipse — cocina francesa de temporada con toque moderno.",
+            it: "Ristorante L'Éclipse — cucina francese stagionale con tocco moderno.",
+            pt: "Restaurante L'Éclipse — cozinha francesa sazonal com toque moderno."
+        },
+        hours: {
+            en: "Dinner: 19:00–22:30. Reservations recommended.",
+            fr: "Dîner : 19h00–22h30. Réservation conseillée.",
+            de: "Abendessen: 19:00–22:30. Reservierung empfohlen.",
+            es: "Cena: 19:00–22:30. Reservas recomendadas.",
+            it: "Cena: 19:00–22:30. Prenotazione consigliata.",
+            pt: "Jantar: 19:00–22:30. Reservas recomendadas."
         }
     }
 };

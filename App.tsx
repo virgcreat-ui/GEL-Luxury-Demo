@@ -394,7 +394,7 @@ const DEFAULT_PACK: HotelPack = {
       es: "Si prefieres hablar con un humano, contáctanos. Estamos aquí 24/7."
     },
     guest: {
-      primaryTopicIds: ["room", "breakfast", "facilities", "area", "shop"],
+      primaryTopicIds: ["room", "breakfast", "spa", "gym", "dining", "facilities", "area", "shop"],
       topics: {
         "room": {
           id: "room",
@@ -532,6 +532,78 @@ const DEFAULT_PACK: HotelPack = {
           },
           cards: [
             { title: { en: "Happening Now", fr: "En ce moment", de: "Aktuell", es: "Ahora" }, body: { en: "Check our local programming in the Events section on Home.", fr: "Voir le programme local dans la section Événements de l'Accueil.", de: "Siehe Programm im Events-Bereich auf der Startseite.", es: "Mira el programa local en la sección Eventos de Inicio." } }
+          ]
+        },
+        "spa": {
+          id: "spa",
+          label: { en: "Spa & Wellness", fr: "Spa & Bien-être", de: "Spa & Wellness", es: "Spa y Bienestar", it: "Spa & Benessere", pt: "Spa & Bem-estar" },
+          voice: {
+            en: "Indulge in our signature spa treatments. From aromatherapy massages to rejuvenating facials, pure relaxation awaits.",
+            fr: "Offrez-vous nos soins spa signature. Des massages aromathérapie aux soins du visage, la détente absolue vous attend.",
+            de: "Gönnen Sie sich unsere Signature-Spa-Behandlungen. Von Aromatherapie-Massagen bis hin zu verjüngenden Gesichtsbehandlungen.",
+            es: "Disfruta de nuestros tratamientos spa exclusivos. Desde masajes de aromaterapia hasta faciales rejuvenecedores.",
+            it: "Concedetevi i nostri trattamenti spa signature. Dai massaggi aromaterapici ai trattamenti viso rigeneranti.",
+            pt: "Delicie-se com os nossos tratamentos de spa exclusivos. De massagens de aromaterapia a tratamentos faciais rejuvenescedores."
+          },
+          cards: [
+            {
+              title: { en: "Signature Treatments", fr: "Soins Signature", de: "Signature-Behandlungen", es: "Tratamientos Exclusivos", it: "Trattamenti Signature", pt: "Tratamentos Exclusivos" },
+              body: { en: "Book our 90-minute Grand Éclipse Journey – a full-body massage with hot stones and essential oils. €180 per session.", fr: "Réservez notre Voyage Grand Éclipse de 90 minutes – massage corps entier aux pierres chaudes et huiles essentielles. 180€.", de: "Buchen Sie unsere 90-minütige Grand Éclipse Reise – Ganzkörpermassage mit heißen Steinen und ätherischen Ölen. 180€.", es: "Reserva nuestro Viaje Grand Éclipse de 90 minutos – masaje corporal con piedras calientes y aceites esenciales. 180€.", it: "Prenota il nostro Viaggio Grand Éclipse di 90 minuti – massaggio completo con pietre calde e oli essenziali. 180€.", pt: "Reserve a nossa Jornada Grand Éclipse de 90 minutos – massagem corporal com pedras quentes e óleos essenciais. 180€." },
+              image: { kind: "key", key: "hub_spa" }
+            },
+            {
+              title: { en: "Hours & Booking", fr: "Horaires & Réservation", de: "Öffnungszeiten & Buchung", es: "Horarios y Reservas", it: "Orari e Prenotazioni", pt: "Horários e Reservas" },
+              body: { en: "Open daily 09:00–21:00. Reserve your slot via the LGE app or at reception. Walk-ins subject to availability.", fr: "Ouvert tous les jours 09h00–21h00. Réservez via l'app LGE ou à la réception.", de: "Täglich 09:00–21:00 Uhr. Reservieren Sie über die LGE-App oder an der Rezeption.", es: "Abierto diariamente 09:00–21:00. Reserva por la app LGE o en recepción.", it: "Aperto tutti i giorni 09:00–21:00. Prenota tramite l'app LGE o alla reception.", pt: "Aberto diariamente 09:00–21:00. Reserve pela app LGE ou na receção." },
+              image: { kind: "key", key: "hub_spa" }
+            }
+          ]
+        },
+        "gym": {
+          id: "gym",
+          label: { en: "State-of-the-Art Gym", fr: "Salle de Sport Premium", de: "Hochmodernes Fitnessstudio", es: "Gimnasio de Última Generación", it: "Palestra all'Avanguardia", pt: "Ginásio de Última Geração" },
+          voice: {
+            en: "Our 24/7 fitness center features Technogym equipment, free weights, and a dedicated stretching zone. Personal trainers available on request.",
+            fr: "Notre centre fitness 24h/24 dispose d'équipements Technogym, de poids libres et d'une zone d'étirement. Coachs personnels sur demande.",
+            de: "Unser 24/7-Fitnesscenter bietet Technogym-Geräte, freie Gewichte und einen Dehnungsbereich. Personal Trainer auf Anfrage.",
+            es: "Nuestro centro fitness 24/7 cuenta con equipos Technogym, pesas libres y zona de estiramientos. Entrenadores personales disponibles.",
+            it: "Il nostro centro fitness 24/7 dispone di attrezzature Technogym, pesi liberi e zona stretching. Personal trainer su richiesta.",
+            pt: "O nosso centro de fitness 24/7 possui equipamentos Technogym, pesos livres e zona de alongamento. Personal trainers disponíveis."
+          },
+          cards: [
+            {
+              title: { en: "Equipment", fr: "Équipement", de: "Ausstattung", es: "Equipamiento", it: "Attrezzatura", pt: "Equipamento" },
+              body: { en: "Technogym cardio machines, strength training stations, Peloton bikes, and a TRX zone. Towels and water provided.", fr: "Machines cardio Technogym, stations de musculation, vélos Peloton et zone TRX. Serviettes et eau fournies.", de: "Technogym-Cardiogeräte, Kraftstationen, Peloton-Bikes und TRX-Zone. Handtücher und Wasser inklusive.", es: "Máquinas cardio Technogym, estaciones de fuerza, bicis Peloton y zona TRX. Toallas y agua incluidas.", it: "Macchine cardio Technogym, stazioni di forza, bici Peloton e zona TRX. Asciugamani e acqua inclusi.", pt: "Máquinas cardio Technogym, estações de força, bicicletas Peloton e zona TRX. Toalhas e água incluídas." },
+              image: { kind: "key", key: "hub_gym" }
+            },
+            {
+              title: { en: "Access & Hours", fr: "Accès & Horaires", de: "Zugang & Zeiten", es: "Acceso y Horarios", it: "Accesso e Orari", pt: "Acesso e Horários" },
+              body: { en: "24/7 access with your room key. Located on -1. Personal training sessions €75/hour – book at reception.", fr: "Accès 24h/24 avec votre clé de chambre. Au niveau -1. Séances de coaching 75€/h – réservez à la réception.", de: "24/7 Zugang mit Zimmerschlüssel. Im Untergeschoss. Personal Training 75€/Stunde – an der Rezeption buchen.", es: "Acceso 24/7 con tu llave de habitación. En el nivel -1. Sesiones de entrenamiento personal 75€/hora.", it: "Accesso 24/7 con la chiave della camera. Al piano -1. Sessioni di personal training 75€/ora.", pt: "Acesso 24/7 com a chave do quarto. No piso -1. Sessões de treino pessoal 75€/hora." },
+              image: { kind: "key", key: "hub_gym" }
+            }
+          ]
+        },
+        "dining": {
+          id: "dining",
+          label: { en: "Fine Dining", fr: "Gastronomie", de: "Feine Küche", es: "Alta Gastronomía", it: "Alta Cucina", pt: "Alta Gastronomia" },
+          voice: {
+            en: "Experience culinary excellence at L'Éclipse Restaurant. Our Michelin-trained chef crafts seasonal French cuisine with a modern twist.",
+            fr: "Découvrez l'excellence culinaire au Restaurant L'Éclipse. Notre chef étoilé crée une cuisine française de saison revisitée.",
+            de: "Erleben Sie kulinarische Exzellenz im L'Éclipse Restaurant. Unser Michelin-ausgebildeter Küchenchef kreiert saisonale französische Küche.",
+            es: "Experimenta la excelencia culinaria en L'Éclipse Restaurant. Nuestro chef con formación Michelin crea cocina francesa de temporada.",
+            it: "Vivi l'eccellenza culinaria al Ristorante L'Éclipse. Il nostro chef formato Michelin crea cucina francese stagionale con un tocco moderno.",
+            pt: "Experimente a excelência culinária no Restaurante L'Éclipse. O nosso chef com formação Michelin cria cozinha francesa sazonal."
+          },
+          cards: [
+            {
+              title: { en: "L'Éclipse Restaurant", fr: "Restaurant L'Éclipse", de: "Restaurant L'Éclipse", es: "Restaurante L'Éclipse", it: "Ristorante L'Éclipse", pt: "Restaurante L'Éclipse" },
+              body: { en: "Dinner: 19:00–22:30. Tasting menu €95 | À la carte available. Smart casual dress code. Reservations recommended.", fr: "Dîner : 19h00–22h30. Menu dégustation 95€ | À la carte disponible. Code vestimentaire smart casual. Réservation conseillée.", de: "Abendessen: 19:00–22:30. Degustationsmenü 95€ | À la carte verfügbar. Smart Casual Dresscode. Reservierung empfohlen.", es: "Cena: 19:00–22:30. Menú degustación 95€ | À la carta disponible. Vestimenta smart casual. Reservas recomendadas.", it: "Cena: 19:00–22:30. Menu degustazione 95€ | À la carte disponibile. Dress code smart casual. Prenotazione consigliata.", pt: "Jantar: 19:00–22:30. Menu degustação 95€ | À la carte disponível. Dress code smart casual. Reservas recomendadas." },
+              image: { kind: "key", key: "hub_dining" }
+            },
+            {
+              title: { en: "Le Bar Céleste", fr: "Le Bar Céleste", de: "Le Bar Céleste", es: "Le Bar Céleste", it: "Le Bar Céleste", pt: "Le Bar Céleste" },
+              body: { en: "Craft cocktails and small plates. Open 17:00–01:00. Signature drink: L'Éclipse Spritz €16. Live jazz Friday evenings.", fr: "Cocktails artisanaux et petites assiettes. Ouvert 17h00–01h00. Cocktail signature : L'Éclipse Spritz 16€. Jazz live le vendredi.", de: "Craft-Cocktails und kleine Gerichte. 17:00–01:00 Uhr. Signature-Drink: L'Éclipse Spritz 16€. Live-Jazz freitags.", es: "Cócteles artesanales y tapas. Abierto 17:00–01:00. Bebida signature: L'Éclipse Spritz 16€. Jazz en vivo los viernes.", it: "Cocktail artigianali e piccoli piatti. Aperto 17:00–01:00. Drink signature: L'Éclipse Spritz 16€. Jazz dal vivo il venerdì.", pt: "Cocktails artesanais e petiscos. Aberto 17:00–01:00. Bebida signature: L'Éclipse Spritz 16€. Jazz ao vivo às sextas." },
+              image: { kind: "key", key: "hub_bar" }
+            }
           ]
         }
       }
