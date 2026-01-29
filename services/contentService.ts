@@ -10,11 +10,11 @@ import { Lang, t } from '../i18n';
 export type ContentSection = 'hub' | 'room' | 'events' | 'area' | 'concierge';
 
 const STORAGE_KEYS: Record<ContentSection, string> = {
-    hub: 'tsh_hub_content_v1',
-    room: 'tsh_room_content_v1',
-    events: 'tsh_events_content_v1',
-    area: 'tsh_area_content_v1',
-    concierge: 'tsh_concierge_content_v1'
+    hub: 'lge_hub_content_v1',
+    room: 'lge_room_content_v1',
+    events: 'lge_events_content_v1',
+    area: 'lge_area_content_v1',
+    concierge: 'lge_concierge_content_v1'
 };
 
 /* ========================================================
@@ -46,7 +46,6 @@ export interface AreaContent {
 export interface ConciergeContent {
     welcome_sentence: string;
     guest_transition: string;
-    student_transition: string;
     friendly_filler_1: string;
     friendly_filler_2: string;
     friendly_filler_3: string;
@@ -61,7 +60,7 @@ export const DEFAULT_ROOM_CONTENT: Record<Lang, RoomContent> = {
     en: {
         cleaning_rules: "Cleaning every 2 nights. Hang the 'Do Not Disturb' sign if you prefer privacy. Bed sheets changed after the 4th night.",
         amenities_desc: "Towels, toiletries, hairdryer, safe, mini-fridge included. Coffee & tea complimentary for hotel guests.",
-        wifi_desc: "Free high-speed WiFi throughout. Connect to 'TSHguest'.",
+        wifi_desc: "Free high-speed WiFi throughout. Connect to 'LGEguest'.",
         ac_info: "Individual climate control available. Please keep windows closed when it's on.",
         house_rules: "No smoking inside. Quiet hours after 22:00. Please respect our community vibe."
     },
@@ -104,37 +103,37 @@ export const DEFAULT_ROOM_CONTENT: Record<Lang, RoomContent> = {
 
 export const DEFAULT_EVENTS_CONTENT: Record<Lang, EventsContent> = {
     en: {
-        today_intro: "Here's what's on today at The Social Hub.",
+        today_intro: "Here's what's on today at Le Grand Éclipse.",
         week_intro: "Check out the local programming for this week.",
         empty_state: "Nothing scheduled right now — but check back soon!",
         cta_phrase: "Join the vibe"
     },
     fr: {
-        today_intro: "Ce qui se passe aujourd'hui au Social Hub.",
+        today_intro: "Ce qui se passe aujourd'hui au Grand Éclipse.",
         week_intro: "Découvrez ce qui arrive cette semaine.",
         empty_state: "Aucun événement prévu. Revenez bientôt !",
         cta_phrase: "Rejoignez-nous"
     },
     de: {
-        today_intro: "Was heute im Social Hub los ist.",
+        today_intro: "Was heute im Grand Éclipse los ist.",
         week_intro: "Schau dir an, was diese Woche ansteht.",
         empty_state: "Keine Veranstaltungen geplant. Schau bald wieder vorbei!",
         cta_phrase: "Mach mit"
     },
     es: {
-        today_intro: "Qué pasa hoy en The Social Hub.",
+        today_intro: "Qué pasa hoy en Le Grand Éclipse.",
         week_intro: "Mira qué viene esta semana.",
         empty_state: "No hay eventos programados. ¡Vuelve pronto!",
         cta_phrase: "Únete"
     },
     it: {
-        today_intro: "Cosa succede oggi al Social Hub.",
+        today_intro: "Cosa succede oggi al Grand Éclipse.",
         week_intro: "Scopri cosa succede questa settimana.",
         empty_state: "Nessun evento in programma. Torna presto!",
         cta_phrase: "Unisciti a noi"
     },
     pt: {
-        today_intro: "O que está acontecendo hoje no Social Hub.",
+        today_intro: "O que está acontecendo hoje no Grand Éclipse.",
         week_intro: "Confira o que está chegando esta semana.",
         empty_state: "Nenhum evento agendado. Volte em breve!",
         cta_phrase: "Junte-se a nós"
@@ -184,7 +183,6 @@ export const DEFAULT_CONCIERGE_CONTENT: Record<Lang, ConciergeContent> = {
     en: {
         welcome_sentence: "Hey! I'm here to help you make the most of your stay.",
         guest_transition: "Got it, I'll keep things short-stay focused.",
-        student_transition: "Perfect, I'll help you settle in for the semester.",
         friendly_filler_1: "Good choice!",
         friendly_filler_2: "Nice one!",
         friendly_filler_3: "Great question!",
@@ -193,7 +191,6 @@ export const DEFAULT_CONCIERGE_CONTENT: Record<Lang, ConciergeContent> = {
     fr: {
         welcome_sentence: "Salut ! Je suis là pour vous aider à profiter de votre séjour.",
         guest_transition: "Compris, je vais rester concentré sur le court terme.",
-        student_transition: "Parfait, je vais vous aider à vous installer pour le semestre.",
         friendly_filler_1: "Bon choix !",
         friendly_filler_2: "Bien joué !",
         friendly_filler_3: "Excellente question !",
@@ -202,7 +199,6 @@ export const DEFAULT_CONCIERGE_CONTENT: Record<Lang, ConciergeContent> = {
     de: {
         welcome_sentence: "Hey! Ich bin hier, um dir bei deinem Aufenthalt zu helfen.",
         guest_transition: "Verstanden, ich bleibe auf Kurzaufenthalte fokussiert.",
-        student_transition: "Perfekt, ich helfe dir beim Einleben für das Semester.",
         friendly_filler_1: "Gute Wahl!",
         friendly_filler_2: "Gut gemacht!",
         friendly_filler_3: "Tolle Frage!",
@@ -211,7 +207,6 @@ export const DEFAULT_CONCIERGE_CONTENT: Record<Lang, ConciergeContent> = {
     es: {
         welcome_sentence: "¡Hola! Estoy aquí para ayudarte a aprovechar tu estadía.",
         guest_transition: "Entendido, me centraré en estadías cortas.",
-        student_transition: "Perfecto, te ayudaré a instalarte para el semestre.",
         friendly_filler_1: "¡Buena elección!",
         friendly_filler_2: "¡Bien hecho!",
         friendly_filler_3: "¡Excelente pregunta!",
@@ -220,7 +215,6 @@ export const DEFAULT_CONCIERGE_CONTENT: Record<Lang, ConciergeContent> = {
     it: {
         welcome_sentence: "Ciao! Sono qui per aiutarti a goderti il soggiorno.",
         guest_transition: "Capito, mi concentrerò su soggiorni brevi.",
-        student_transition: "Perfetto, ti aiuterò a sistemarti per il semestre.",
         friendly_filler_1: "Buona scelta!",
         friendly_filler_2: "Ben fatto!",
         friendly_filler_3: "Ottima domanda!",
@@ -229,7 +223,6 @@ export const DEFAULT_CONCIERGE_CONTENT: Record<Lang, ConciergeContent> = {
     pt: {
         welcome_sentence: "Olá! Estou aqui para te ajudar a aproveitar a estadia.",
         guest_transition: "Entendido, vou focar em estadias curtas.",
-        student_transition: "Perfeito, vou te ajudar a se instalar para o semestre.",
         friendly_filler_1: "Boa escolha!",
         friendly_filler_2: "Muito bem!",
         friendly_filler_3: "Excelente pergunta!",
@@ -372,70 +365,13 @@ export type ConciergeFlowStep = {
 
 export type ConciergeFlow = {
     id: string;
-    audience: 'student' | 'guest';
+    audience: 'guest';
     journey: 'first_time' | 'returning'; // 'returning' maps to v4 'start'
     steps: ConciergeFlowStep[];
 };
 
 export const DEFAULT_CONCIERGE_FLOWS: ConciergeFlow[] = [
-    // 1. Student First Time
-    {
-        id: "student-first",
-        audience: "student",
-        journey: "first_time",
-        steps: [
-            {
-                id: "intro",
-                voice: {
-                    en: ["Perfect. I’ll help you with the essentials to get you started. First things first — make sure you scan the room check QR code in your welcome documents within 48 hours. That helps us know everything is in good shape when you move in. Once that’s done, tell me what you need help with."],
-                    fr: ["Parfait. Commençons par l'essentiel. D'abord, scannez le QR code de l'état des lieux dans vos documents sous 48h. Ça nous permet de vérifier que tout va bien. Ensuite, dites-moi ce qu'il vous faut."],
-                    de: ["Perfekt. Fangen wir mit dem Wichtigsten an. Scannen Sie zuerst den QR-Code für den Zimmercheck innerhalb von 48 Stunden. So wissen wir, dass alles okay ist. Danach sagen Sie mir einfach, was Sie brauchen."],
-                    es: ["Perfecto. Empecemos por lo esencial. Primero, escanea el código QR de revisión de habitación en un plazo de 48 horas. Así sabemos que todo está bien. Una vez hecho, dime qué necesitas."],
-                    it: ["Perfetto. Iniziamo dall'essenziale. Prima cosa: scansiona il QR code per il controllo stanza entro 48 ore. Così sappiamo che è tutto ok. Fatto questo, dimmi di cosa hai bisogno."],
-                    pt: ["Perfeito. Comecemos pelo essencial. Primeiro, digitalize o código QR de verificação do quarto em 48 horas. Assim sabemos que está tudo bem. Depois, diga-me do que precisa."]
-                },
-                options: [
-                    { id: "opt_room", label: { en: "Your Room", fr: "Votre Chambre", de: "Ihr Zimmer", es: "Tu Habitación", it: "La Tua Camera", pt: "O Seu Quarto" }, nextStepId: "view:room" },
-                    { id: "opt_facilities", label: { en: "Facilities", fr: "Installations", de: "Einrichtungen", es: "Instalaciones", it: "Strutture", pt: "Instalações" }, nextStepId: "view:facilities" },
-                    { id: "opt_events", label: { en: "Events", fr: "Événements", de: "Events", es: "Eventos", it: "Eventi", pt: "Eventos" }, nextStepId: "view:events" },
-                    { id: "opt_area", label: { en: "Area", fr: "Quartier", de: "Umgebung", es: "Barrio", it: "Quartiere", pt: "Bairro" }, nextStepId: "view:area" },
-                    { id: "opt_shop", label: { en: "Shop", fr: "Boutique", de: "Shop", es: "Tienda", it: "Negozio", pt: "Loja" }, nextStepId: "view:shop" },
-                    { id: "opt_packages", label: { en: "Packages", fr: "Colis", de: "Pakete", es: "Paquetes", it: "Pacchi", pt: "Encomendas" }, nextStepId: "view:packages" },
-                    { id: "opt_kitchen", label: { en: "Kitchen", fr: "Cuisine", de: "Küche", es: "Cocina", it: "Cucina", pt: "Cozinha" }, nextStepId: "view:kitchen" },
-                    { id: "opt_laundry", label: { en: "Laundry", fr: "Laverie", de: "Wäscherei", es: "Lavandería", it: "Lavanderia", pt: "Lavandaria" }, nextStepId: "view:laundry" }
-                ]
-            }
-        ]
-    },
-    // 2. Student Returning
-    {
-        id: "student-returning",
-        audience: "student",
-        journey: "returning",
-        steps: [
-            {
-                id: "intro",
-                voice: {
-                    en: ["Hey! Welcome back to the hub. Ready for more? What are we looking for?", "Welcome back! What's on your mind today?", "Hey there! Let's get straight to it. What do you need?"],
-                    fr: ["Salut ! Bon retour au hub. Prêt pour la suite ? Que cherchons-nous ?", "Re-bonjour ! Allons droit au but. De quoi as-tu besoin ?"],
-                    de: ["Hey! Willkommen zurück im Hub. Bereit für mehr?", "Willkommen zurück! Wie kann ich dir heute helfen?"],
-                    es: ["¡Hola! Bienvenido de nuevo. ¿Qué buscamos hoy?", "¡Hola otra vez! Vamos al grano. ¿Qué necesitas?"],
-                    it: ["Ehilà! Bentornato all'hub. Pronto per altro?", "Bentornato! Di cosa hai bisogno oggi?"],
-                    pt: ["Olá! Bem-vindo de volta ao hub. Pronto para mais?", "Bem-vindo de volta! Como posso ajudar hoje?"]
-                },
-                options: [
-                    { id: "opt_room", label: { en: "Your Room", fr: "Votre Chambre", de: "Ihr Zimmer", es: "Tu Habitación", it: "La Camera", pt: "Quarto" }, nextStepId: "view:room" },
-                    { id: "opt_facilities", label: { en: "Facilities", fr: "Installations", de: "Einrichtungen", es: "Instalaciones", it: "Strutture", pt: "Instalações" }, nextStepId: "view:facilities" },
-                    { id: "opt_events", label: { en: "Events", fr: "Événements", de: "Events", es: "Eventos", it: "Eventi", pt: "Eventos" }, nextStepId: "view:events" },
-                    { id: "opt_area", label: { en: "Area", fr: "Quartier", de: "Umgebung", es: "Barrio", it: "Quartiere", pt: "Bairro" }, nextStepId: "view:area" },
-                    { id: "opt_shop", label: { en: "Shop", fr: "Boutique", de: "Shop", es: "Tienda", it: "Negozio", pt: "Loja" }, nextStepId: "view:shop" },
-                    { id: "opt_packages", label: { en: "Packages", fr: "Colis", de: "Pakete", es: "Paquetes", it: "Pacchi", pt: "Encomendas" }, nextStepId: "view:packages" },
-                    { id: "opt_laundry", label: { en: "Laundry", fr: "Laverie", de: "Wäscherei", es: "Lavandería", it: "Lavanderia", pt: "Lavandaria" }, nextStepId: "view:laundry" }
-                ]
-            }
-        ]
-    },
-    // 3. Guest First Time
+    // 1. Guest First Time
     {
         id: "guest-first",
         audience: "guest",
@@ -444,12 +380,12 @@ export const DEFAULT_CONCIERGE_FLOWS: ConciergeFlow[] = [
             {
                 id: "intro",
                 voice: {
-                    en: ["Great choice. The Social Hub is a bit different — part hotel, part community. I’ll show you the important things first, and you can explore more anytime."],
-                    fr: ["Excellent choix. Le Social Hub est unique : mi-hôtel, mi-communauté. Je vous montre l'essentiel, vous explorerez le reste plus tard."],
-                    de: ["Gute Wahl. The Social Hub ist anders – halb Hotel, halb Community. Ich zeige Ihnen das Wichtigste zuerst."],
-                    es: ["Buena elección. The Social Hub es diferente: parte hotel, parte comunidad. Te enseñaré lo importante primero."],
-                    it: ["Ottima scelta. The Social Hub è diverso: un po' hotel, un po' community. Ti mostro prima le cose importanti."],
-                    pt: ["Boa escolha. O The Social Hub é diferente: parte hotel, parte comunidade. Vou mostrar-lhe o mais importante primeiro."]
+                    en: ["Great choice. Le Grand Éclipse is a bit different — part hotel, part community. I’ll show you the important things first, and you can explore more anytime."],
+                    fr: ["Excellent choix. Le Grand Éclipse est unique : mi-hôtel, mi-communauté. Je vous montre l'essentiel, vous explorerez le reste plus tard."],
+                    de: ["Gute Wahl. Le Grand Éclipse ist anders – halb Hotel, halb Community. Ich zeige Ihnen das Wichtigste zuerst."],
+                    es: ["Buena elección. Le Grand Éclipse es diferente: parte hotel, parte comunidad. Te enseñaré lo importante primero."],
+                    it: ["Ottima scelta. Le Grand Éclipse è diverso: un po' hotel, un po' community. Ti mostro prima le cose importanti."],
+                    pt: ["Boa escolha. O Le Grand Éclipse é diferente: parte hotel, parte comunidade. Vou mostrar-lhe o mais importante primeiro."]
                 },
                 options: [
                     { id: "opt_breakfast", label: { en: "Breakfast", fr: "Petit-déjeuner", de: "Frühstück", es: "Desayuno", it: "Colazione", pt: "Pequeno-almoço" }, nextStepId: "view:breakfast" },
@@ -491,9 +427,9 @@ export const DEFAULT_CONCIERGE_FLOWS: ConciergeFlow[] = [
     }
 ];
 
-export const getConciergeFlow = (audience: 'student' | 'guest', journey: 'first_time' | 'returning') => {
+export const getConciergeFlow = (audience: 'guest', journey: 'first_time' | 'returning') => {
     try {
-        const stored = localStorage.getItem('tsh_concierge_flows');
+        const stored = localStorage.getItem('lge_concierge_flows');
         if (stored) {
             const flows = JSON.parse(stored) as ConciergeFlow[];
             return flows.find(f => f.audience === audience && f.journey === journey);
@@ -504,12 +440,12 @@ export const getConciergeFlow = (audience: 'student' | 'guest', journey: 'first_
 };
 
 export const saveConciergeFlows = (flows: ConciergeFlow[]) => {
-    localStorage.setItem('tsh_concierge_flows', JSON.stringify(flows));
+    localStorage.setItem('lge_concierge_flows', JSON.stringify(flows));
 };
 
 export const getAllConciergeFlows = () => {
     try {
-        const stored = localStorage.getItem('tsh_concierge_flows');
+        const stored = localStorage.getItem('lge_concierge_flows');
         if (stored) {
             return JSON.parse(stored) as ConciergeFlow[];
         }

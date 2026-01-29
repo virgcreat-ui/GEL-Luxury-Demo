@@ -229,7 +229,7 @@ export default function QRCodeGenerator() {
         if (!qrDataUrl) return;
         const link = document.createElement('a');
         link.href = qrDataUrl;
-        link.download = `tsh-qr-${qrType}-${hotelId.replace(/[^a-z0-9]/gi, '_')}.png`;
+        link.download = `lge-qr-${qrType}-${hotelId.replace(/[^a-z0-9]/gi, '_')}.png`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -261,8 +261,8 @@ export default function QRCodeGenerator() {
                             key={id}
                             onClick={() => setMode(id)}
                             className={`flex-1 px-4 py-3 rounded-lg border-2 font-bold text-sm uppercase tracking-wider transition-all ${mode === id
-                                    ? 'border-black bg-black text-white'
-                                    : 'border-neutral-200 bg-white text-neutral-600 hover:border-black'
+                                ? 'border-black bg-black text-white'
+                                : 'border-neutral-200 bg-white text-neutral-600 hover:border-black'
                                 }`}
                         >
                             {label}
@@ -281,8 +281,8 @@ export default function QRCodeGenerator() {
                                         key={type}
                                         onClick={() => setQRType(type)}
                                         className={`flex-1 px-4 py-2 rounded-lg border-2 font-bold text-xs uppercase tracking-wider transition-all ${qrType === type
-                                                ? 'border-black bg-black text-white'
-                                                : 'border-neutral-200 bg-white text-neutral-600 hover:border-black'
+                                            ? 'border-black bg-black text-white'
+                                            : 'border-neutral-200 bg-white text-neutral-600 hover:border-black'
                                             }`}
                                     >
                                         {type}

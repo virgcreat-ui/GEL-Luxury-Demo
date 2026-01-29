@@ -11,25 +11,21 @@ import {
     clearFloorOverride,
     resetFloorOverrides,
     getActiveContext,
-    StayType,
     RoomOverride,
-    FloorOverride,
-    getStayTypeLabel
+    FloorOverride
 } from '../services/contextService';
 import RoomNotesEditor from './RoomNotesEditor';
 
 export default function RoomOverridesManager() {
-    const [globalDefault, setGlobalDefault] = useState<StayType>('guest');
-    const [hotelId, setHotelId] = useState('tsh_paris_defense');
+    const [hotelId, setHotelId] = useState('lge_paris_defense');
 
     const [floorOverrides, setFloorOverridesState] = useState<FloorOverride[]>([]);
     const [roomOverrides, setRoomOverridesState] = useState<RoomOverride[]>([]);
 
     const [newFloor, setNewFloor] = useState('');
-    const [newFloorType, setNewFloorType] = useState<StayType>('guest');
+    const [newFloorNotes, setNewFloorNotes] = useState('');
 
     const [newRoom, setNewRoom] = useState('');
-    const [newRoomType, setNewRoomType] = useState<StayType>('guest');
     const [newRoomNotes, setNewRoomNotes] = useState('');
 
     const [showResetConfirm, setShowResetConfirm] = useState<'room' | 'floor' | 'global' | null>(null);
@@ -42,7 +38,6 @@ export default function RoomOverridesManager() {
 
     const loadAll = () => {
         const settings = getGlobalSettings();
-        setGlobalDefault(settings.defaultStayType);
         setHotelId(settings.hotelId);
 
         setFloorOverridesState(getFloorOverrides());
@@ -51,7 +46,7 @@ export default function RoomOverridesManager() {
     };
 
     const handleSaveGlobal = () => {
-        setGlobalSettings({ defaultStayType: globalDefault, hotelId });
+        setGlobalSettings({ hotelId });
         alert('Global settings saved');
     };
 
@@ -62,14 +57,14 @@ export default function RoomOverridesManager() {
             return;
         }
 
-        setFloorOverride(floor, newFloorType);
+        setFloorOverride(floor, newFloorNotes.trim() || undefined);
         setNewFloor('');
-        setNewFloorType('guest');
+        setNewFloorNotes('');
         loadAll();
     };
 
     const handleDeleteFloor = (floor: number) => {
-        if (confirm(`Delete floor ${floor} override?`)) {
+        if (confirm(`Delete floor ${floor} notes?`)) {
             clearFloorOverride(floor);
             loadAll();
         }
@@ -81,15 +76,14 @@ export default function RoomOverridesManager() {
             return;
         }
 
-        setRoomOverride(newRoom.trim(), newRoomType, newRoomNotes.trim() || undefined);
+        setRoomOverride(newRoom.trim(), newRoomNotes.trim() || undefined);
         setNewRoom('');
-        setNewRoomType('guest');
         setNewRoomNotes('');
         loadAll();
     };
 
     const handleDeleteRoom = (room: string) => {
-        if (confirm(`Delete room ${room} override?`)) {
+        if (confirm(`Delete room ${room} notes?`)) {
             clearRoomOverride(room);
             loadAll();
         }
@@ -101,17 +95,11 @@ export default function RoomOverridesManager() {
         } else if (type === 'floor') {
             resetFloorOverrides();
         } else {
-            setGlobalSettings({ defaultStayType: 'guest', hotelId: 'tsh_paris_defense' });
+            setGlobalSettings({ hotelId: 'lge_paris_defense' });
         }
 
         setShowResetConfirm(null);
         loadAll();
-    };
-
-    const getStayTypeColor = (stayType: StayType) => {
-        return stayType === 'guest' ? 'bg-blue-100 text-blue-700' :
-            stayType === 'student' ? 'bg-purple-100 text-purple-700' :
-                'bg-amber-100 text-amber-700';
     };
 
     return (
@@ -128,13 +116,13 @@ export default function RoomOverridesManager() {
                 </div>
             )}
 
-            {/* Global Default */}
+            {/* Global Settings */}
             <div className="bg-white rounded-2xl border-2 border-neutral-200 p-6">
                 <h3 className="text-xl font-bold text-black mb-4" style={{ fontFamily: '"Rubik", sans-serif' }}>
-                    Global Default
+                    Global Settings
                 </h3>
                 <p className="text-sm text-neutral-600 mb-4">
-                    Fallback stay type when no room or floor override is set
+                    Configure global hotel settings
                 </p>
 
                 <div className="space-y-4">
@@ -146,24 +134,6 @@ export default function RoomOverridesManager() {
                             onChange={(e) => setHotelId(e.target.value)}
                             className="w-full px-4 py-3 rounded-lg border-2 border-neutral-200 font-medium text-sm hover:border-black transition-colors"
                         />
-                    </div>
-
-                    <div>
-                        <label className="block text-xs font-bold uppercase text-neutral-500 mb-2">Default Stay Type</label>
-                        <div className="flex gap-3">
-                            {(['guest', 'student', 'mixed'] as StayType[]).map(type => (
-                                <button
-                                    key={type}
-                                    onClick={() => setGlobalDefault(type)}
-                                    className={`flex-1 px-4 py-3 rounded-lg border-2 font-bold text-sm uppercase tracking-wider transition-all ${globalDefault === type
-                                        ? 'border-black bg-black text-white'
-                                        : 'border-neutral-200 bg-white text-neutral-600 hover:border-black'
-                                        }`}
-                                >
-                                    {type}
-                                </button>
-                            ))}
-                        </div>
                     </div>
 
                     <div className="flex gap-3">
@@ -183,12 +153,12 @@ export default function RoomOverridesManager() {
                 </div>
             </div>
 
-            {/* Floor Overrides */}
+            {/* Floor Notes */}
             <div className="bg-white rounded-2xl border-2 border-neutral-200 p-6">
                 <div className="flex items-center justify-between mb-4">
                     <div>
                         <h3 className="text-xl font-bold text-black" style={{ fontFamily: '"Rubik", sans-serif' }}>
-                            Floor Overrides
+                            Floor Notes
                         </h3>
                         <p className="text-sm text-neutral-600">
                             {floorOverrides.length} floor{floorOverrides.length !== 1 ? 's' : ''} configured
@@ -212,11 +182,13 @@ export default function RoomOverridesManager() {
                                 key={override.floor}
                                 className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg border border-neutral-200"
                             >
-                                <div className="flex items-center gap-3">
+                                <div className="flex-1">
                                     <span className="text-sm font-bold text-black">Floor {override.floor}</span>
-                                    <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${getStayTypeColor(override.stayType)}`}>
-                                        {override.stayType}
-                                    </span>
+                                    {override.notes && (
+                                        <div className="text-xs text-neutral-500 italic mt-1">
+                                            {typeof override.notes === 'string' ? override.notes : '(Multi-language notes set)'}
+                                        </div>
+                                    )}
                                 </div>
                                 <button
                                     onClick={() => handleDeleteFloor(override.floor)}
@@ -230,8 +202,8 @@ export default function RoomOverridesManager() {
                 )}
 
                 {/* Add Floor */}
-                <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-200">
-                    <div className="text-xs font-bold uppercase text-neutral-500 mb-3">Add Floor Override</div>
+                <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-200 space-y-3">
+                    <div className="text-xs font-bold uppercase text-neutral-500">Add Floor Notes</div>
                     <div className="flex gap-3">
                         <input
                             type="number"
@@ -240,15 +212,13 @@ export default function RoomOverridesManager() {
                             placeholder="Floor #"
                             className="w-32 px-4 py-2 rounded-lg border-2 border-neutral-200 font-medium text-sm hover:border-black transition-colors"
                         />
-                        <select
-                            value={newFloorType}
-                            onChange={(e) => setNewFloorType(e.target.value as StayType)}
+                        <input
+                            type="text"
+                            value={newFloorNotes}
+                            onChange={(e) => setNewFloorNotes(e.target.value)}
+                            placeholder="Notes (e.g., VIP Floor, Quiet Zone)"
                             className="flex-1 px-4 py-2 rounded-lg border-2 border-neutral-200 font-medium text-sm hover:border-black transition-colors"
-                        >
-                            <option value="guest">Guest (Short-term)</option>
-                            <option value="student">Student (Long-term)</option>
-                            <option value="mixed">Mixed (Ask user)</option>
-                        </select>
+                        />
                         <button
                             onClick={handleAddFloor}
                             className="px-6 py-2 rounded-lg bg-black text-white font-bold text-sm uppercase tracking-wider hover:bg-neutral-800 active:scale-95 transition-all"
@@ -259,12 +229,12 @@ export default function RoomOverridesManager() {
                 </div>
             </div>
 
-            {/* Room Overrides */}
+            {/* Room Notes */}
             <div className="bg-white rounded-2xl border-2 border-neutral-200 p-6">
                 <div className="flex items-center justify-between mb-4">
                     <div>
                         <h3 className="text-xl font-bold text-black" style={{ fontFamily: '"Rubik", sans-serif' }}>
-                            Room Overrides
+                            Room Notes
                         </h3>
                         <p className="text-sm text-neutral-600">
                             {roomOverrides.length} room{roomOverrides.length !== 1 ? 's' : ''} configured
@@ -289,12 +259,7 @@ export default function RoomOverridesManager() {
                                 className="p-4 bg-neutral-50 rounded-lg border border-neutral-200"
                             >
                                 <div className="flex items-center justify-between mb-2">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-sm font-bold text-black">Room {override.room}</span>
-                                        <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${getStayTypeColor(override.stayType)}`}>
-                                            {override.stayType}
-                                        </span>
-                                    </div>
+                                    <span className="text-sm font-bold text-black">Room {override.room}</span>
                                     <div className="flex gap-2">
                                         <button
                                             onClick={() => setEditingRoomNotes(override.room)}
@@ -311,7 +276,9 @@ export default function RoomOverridesManager() {
                                     </div>
                                 </div>
                                 {override.notes && (
-                                    <div className="text-xs text-neutral-500 italic">Note: {typeof override.notes === 'string' ? override.notes : '(Multi-language notes set)'}</div>
+                                    <div className="text-xs text-neutral-500 italic">
+                                        {typeof override.notes === 'string' ? override.notes : '(Multi-language notes set)'}
+                                    </div>
                                 )}
                             </div>
                         ))}
@@ -320,7 +287,7 @@ export default function RoomOverridesManager() {
 
                 {/* Add Room */}
                 <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-200 space-y-3">
-                    <div className="text-xs font-bold uppercase text-neutral-500">Add Room Override</div>
+                    <div className="text-xs font-bold uppercase text-neutral-500">Add Room Notes</div>
                     <div className="flex gap-3">
                         <input
                             type="text"
@@ -329,41 +296,43 @@ export default function RoomOverridesManager() {
                             placeholder="Room # (e.g., A405)"
                             className="flex-1 px-4 py-2 rounded-lg border-2 border-neutral-200 font-medium text-sm hover:border-black transition-colors"
                         />
-                        <select
-                            value={newRoomType}
-                            onChange={(e) => setNewRoomType(e.target.value as StayType)}
-                            className="px-4 py-2 rounded-lg border-2 border-neutral-200 font-medium text-sm hover:border-black transition-colors"
-                        >
-                            <option value="guest">Guest</option>
-                            <option value="student">Student</option>
-                            <option value="mixed">Mixed</option>
-                        </select>
                     </div>
                     <input
                         type="text"
                         value={newRoomNotes}
                         onChange={(e) => setNewRoomNotes(e.target.value)}
-                        placeholder="Notes (optional, admin-only)"
+                        placeholder="Notes (e.g., VIP room, Has bathtub)"
                         className="w-full px-4 py-2 rounded-lg border-2 border-neutral-200 font-medium text-sm hover:border-black transition-colors"
                     />
                     <button
                         onClick={handleAddRoom}
                         className="w-full px-6 py-3 rounded-lg bg-black text-white font-bold text-sm uppercase tracking-wider hover:bg-neutral-800 active:scale-95 transition-all"
                     >
-                        Add Room Override
+                        Add Room Notes
                     </button>
                 </div>
             </div>
+
+            {/* Room Notes Editor Modal */}
+            {editingRoomNotes && (
+                <RoomNotesEditor
+                    room={editingRoomNotes}
+                    onClose={() => {
+                        setEditingRoomNotes(null);
+                        loadAll();
+                    }}
+                />
+            )}
 
             {/* Reset Confirmation Modal */}
             {showResetConfirm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
                     <div className="w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl">
                         <h3 className="text-2xl font-bold text-black mb-4">
-                            Reset {showResetConfirm === 'room' ? 'Room' : showResetConfirm === 'floor' ? 'Floor' : 'Global'} Overrides?
+                            Reset {showResetConfirm === 'room' ? 'Room' : showResetConfirm === 'floor' ? 'Floor' : 'Global'} Notes?
                         </h3>
                         <p className="text-sm text-neutral-600 mb-8 leading-relaxed">
-                            This will clear all {showResetConfirm} overrides and cannot be undone.
+                            This will clear all {showResetConfirm} notes and cannot be undone.
                         </p>
                         <div className="flex gap-4">
                             <button

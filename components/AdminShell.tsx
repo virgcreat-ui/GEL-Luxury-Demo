@@ -30,10 +30,10 @@ export default function AdminShell() {
             <div className="bg-white border-b border-neutral-200 px-6 lg:px-8 py-5 flex items-center justify-between sticky top-0 z-50 shadow-sm">
                 <div className="flex items-center gap-4">
                     <div className="h-10 w-10 bg-black rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-xl">H</span>
+                        <span className="text-white font-bold text-xl">E</span>
                     </div>
                     <div>
-                        <h1 className="text-xl font-bold tracking-tight leading-tight">Admin — TSH Experience Layer</h1>
+                        <h1 className="text-xl font-bold tracking-tight leading-tight">Admin — LGE Experience Layer</h1>
                         <p className="text-xs text-neutral-500 font-medium">Content Management System</p>
                     </div>
                 </div>

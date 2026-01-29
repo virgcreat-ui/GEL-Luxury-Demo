@@ -5,7 +5,6 @@ import { Lang } from "../i18n";
 
 const AdminConciergeFlows: React.FC = () => {
     const [flows, setFlows] = useState<ConciergeFlow[]>(getAllConciergeFlows());
-    const [selectedAudience, setSelectedAudience] = useState<'student' | 'guest'>('student');
     const [selectedJourney, setSelectedJourney] = useState<'first_time' | 'returning'>('first_time');
     const [activeLang, setActiveLang] = useState<Lang>('en');
 
@@ -14,7 +13,7 @@ const AdminConciergeFlows: React.FC = () => {
         setFlows(getAllConciergeFlows());
     }, []);
 
-    const activeFlow = flows.find(f => f.audience === selectedAudience && f.journey === selectedJourney);
+    const activeFlow = flows.find(f => f.audience === 'guest' && f.journey === selectedJourney);
 
     const handleSave = () => {
         saveConciergeFlows(flows);
@@ -66,18 +65,12 @@ const AdminConciergeFlows: React.FC = () => {
             <div className="max-w-5xl mx-auto">
                 <div className="mb-8">
                     <h2 className="text-2xl font-bold text-black mb-2">Concierge Flows Editor</h2>
-                    <p className="text-sm text-neutral-600">Configure conversation paths for Students and Guests</p>
+                    <p className="text-sm text-neutral-600">Configure conversation paths for Hotel Guests</p>
                 </div>
 
                 {/* Controls */}
                 <div className="flex gap-4 mb-8 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-                    <select
-                        className="p-2 border rounded"
-                        value={selectedAudience}
-                        onChange={e => setSelectedAudience(e.target.value as any)}>
-                        <option value="student">Student</option>
-                        <option value="guest">Guest</option>
-                    </select>
+                    <div className="p-2 font-semibold text-neutral-700">Hotel Guest Flow</div>
                     <select
                         className="p-2 border rounded"
                         value={selectedJourney}

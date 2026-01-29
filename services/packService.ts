@@ -10,26 +10,26 @@ import { GlobalSettings, FloorOverride, RoomOverride } from './contextService';
 
 const STORAGE_KEYS = {
     // Hub
-    hubConfig: 'tsh_hub_config_v1',
-    hubContent: 'tsh_hub_content_v1',
+    hubConfig: 'lge_hub_config_v1',
+    hubContent: 'lge_hub_content_v1',
 
     // Content sections
-    roomContent: 'tsh_room_content_v1',
-    areaContent: 'tsh_area_content_v1',
-    eventsContent: 'tsh_events_content_v1',
-    conciergeContent: 'tsh_concierge_content_v1',
+    roomContent: 'lge_room_content_v1',
+    areaContent: 'lge_area_content_v1',
+    eventsContent: 'lge_events_content_v1',
+    conciergeContent: 'lge_concierge_content_v1',
 
     // Concierge flows
-    conciergeFlows: 'tsh_concierge_flows',
+    conciergeFlows: 'lge_concierge_flows',
 
     // QR Context
-    globalSettings: 'tsh_global_settings_v1',
-    floorOverrides: 'tsh_floor_overrides_v1',
-    roomOverrides: 'tsh_room_overrides_v1',
+    globalSettings: 'lge_global_settings_v1',
+    floorOverrides: 'lge_floor_overrides_v1',
+    roomOverrides: 'lge_room_overrides_v1',
 
     // Image slots
-    imageSlots: 'tsh_image_slots_v1',
-    mediaMeta: 'tsh_media_v1',
+    imageSlots: 'lge_image_slots_v1',
+    mediaMeta: 'lge_media_v1',
 } as const;
 
 /* ===========================================================
@@ -241,7 +241,7 @@ export function exportHotelPack(hotelName?: string, location?: string): void {
         // Generate filename
         const timestamp = new Date().toISOString().split('T')[0].replace(/-/g, '');
         const locationSlug = location ? location.toLowerCase().replace(/[^a-z0-9]/g, '-') : 'default';
-        const filename = `tsh-hotel-pack-${locationSlug}-${timestamp}.json`;
+        const filename = `lge-hotel-pack-${locationSlug}-${timestamp}.json`;
 
         // Create download
         const blob = new Blob([json], { type: 'application/json' });

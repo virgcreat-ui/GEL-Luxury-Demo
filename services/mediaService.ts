@@ -3,10 +3,10 @@
  * Handles image upload, storage (IndexedDB), and management
  */
 
-const DB_NAME = 'tsh_media_db';
+const DB_NAME = 'lge_media_db';
 const DB_VERSION = 1;
 const STORE_NAME = 'media';
-const METADATA_STORAGE_KEY = 'tsh_media_v1';
+const METADATA_STORAGE_KEY = 'lge_media_v1';
 
 export interface MediaItem {
     id: string;

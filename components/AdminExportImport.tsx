@@ -132,7 +132,7 @@ export default function AdminExportImport() {
                             type="text"
                             value={hotelName}
                             onChange={(e) => setHotelName(e.target.value)}
-                            placeholder="e.g., The Social Hub Paris"
+                            placeholder="e.g., Le Grand Éclipse Paris"
                             className="w-full px-4 py-3 rounded-lg border-2 border-neutral-200 hover:border-black focus:border-black transition-colors"
                         />
                     </div>
@@ -274,7 +274,7 @@ export default function AdminExportImport() {
                             <div className="space-y-2">
                                 {[
                                     { key: 'content' as const, label: 'Content Overrides (Hub, Room, Area, Events, Concierge)' },
-                                    { key: 'conciergeFlows' as const, label: 'Concierge Flows (Student/Guest journeys)' },
+                                    { key: 'conciergeFlows' as const, label: 'Concierge Flows (Guest journeys)' },
                                     { key: 'qrContext' as const, label: 'QR Context & Room Notes (Global, Floor, Room overrides)' },
                                     { key: 'imageSlots' as const, label: 'Image Slot Assignments (metadata only)' },
                                     { key: 'hubConfig' as const, label: 'Hub Config (facility toggles)' },

@@ -42,7 +42,7 @@ export async function getConciergeDecision(intent: string, pack: any, lang: stri
     model: 'gemini-3-flash-preview',
     contents: `Hotel Knowledge Base: ${JSON.stringify(hotelContext)}\n\nUser Intent/Topic: ${intent}`,
     config: {
-      systemInstruction: `You are the Social Hub Concierge. 
+      systemInstruction: `You are the Le Grand Éclipse Concierge. 
       TONE: Friendly, modern, playful, and professional. Use "Hey!", "No stress", "Got it", "You're all set". Avoid "Dear Guest" or robotic language.
       STRICT BOUNDARY: Answer ONLY using the provided Hotel Knowledge Base. 
       If info is missing or the request is general knowledge (like "who is the president" or "where is a good bar" not in the list), say exactly: "I'm not sure about that, so it's best to reach out to the front desk. Our team's here 24/7."

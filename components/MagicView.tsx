@@ -65,7 +65,7 @@ export default function MagicView({ lang, onBack }: MagicViewProps) {
             <div className="bg-black text-white p-8 rounded-3xl shadow-xl shadow-blue-900/20">
               <h3 className="text-3xl font-black uppercase tracking-tighter leading-none mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Elite Capture</h3>
               <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest leading-relaxed">
-                Describe a scene, and our AI will render a high-quality travel photograph in the TSH signature aesthetic.
+                Describe a scene, and our AI will render a high-quality travel photograph in the LGE signature aesthetic.
               </p>
             </div>
 
@@ -88,8 +88,8 @@ export default function MagicView({ lang, onBack }: MagicViewProps) {
                       key={ratio}
                       onClick={() => setAspectRatio(ratio)}
                       className={`flex-shrink-0 px-6 py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest transition-all border ${aspectRatio === ratio
-                          ? "bg-black text-white border-black shadow-lg"
-                          : "bg-white text-neutral-400 border-neutral-200 hover:border-neutral-300"
+                        ? "bg-black text-white border-black shadow-lg"
+                        : "bg-white text-neutral-400 border-neutral-200 hover:border-neutral-300"
                         }`}
                     >
                       {ratio}
@@ -102,8 +102,8 @@ export default function MagicView({ lang, onBack }: MagicViewProps) {
                 onClick={handleGenerate}
                 disabled={!prompt.trim()}
                 className={`w-full h-20 rounded-3xl font-black uppercase text-sm tracking-[0.3em] shadow-lg transition-all active:scale-95 ${prompt.trim()
-                    ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-1"
-                    : "bg-neutral-100 text-neutral-300 cursor-not-allowed shadow-none"
+                  ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-1"
+                  : "bg-neutral-100 text-neutral-300 cursor-not-allowed shadow-none"
                   }`}
               >
                 Render Magic
@@ -142,7 +142,7 @@ export default function MagicView({ lang, onBack }: MagicViewProps) {
                 onClick={() => {
                   const link = document.createElement("a");
                   link.href = resultImage;
-                  link.download = `tsh_elite_${Date.now()}.png`;
+                  link.download = `lge_elite_${Date.now()}.png`;
                   link.click();
                 }}
                 className="flex-1 h-16 rounded-2xl bg-black text-white font-bold uppercase text-[10px] tracking-widest shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all"

@@ -72,22 +72,22 @@ export const DEFAULT_HUB_CONTENT: HubContent = {
             pt: "€19.50 same-day rate"
         },
         note: {
-            en: "At TSH Paris La Défense we serve breakfast only. For lunch/dinner, check Around the Area.",
-            fr: "Au TSH Paris La Défense nous servons uniquement le petit-déjeuner. Pour déjeuner/dîner, voir Aux alentours.",
-            de: "At TSH Paris La Défense we serve breakfast only.",
-            es: "At TSH Paris La Défense we serve breakfast only.",
-            it: "At TSH Paris La Défense we serve breakfast only.",
-            pt: "At TSH Paris La Défense we serve breakfast only."
+            en: "At Le Grand Éclipse Paris La Défense we serve breakfast only. For lunch/dinner, check Around the Area.",
+            fr: "Au Le Grand Éclipse Paris La Défense nous servons uniquement le petit-déjeuner. Pour déjeuner/dîner, voir Aux alentours.",
+            de: "At Le Grand Éclipse Paris La Défense we serve breakfast only.",
+            es: "At Le Grand Éclipse Paris La Défense we serve breakfast only.",
+            it: "At Le Grand Éclipse Paris La Défense we serve breakfast only.",
+            pt: "At Le Grand Éclipse Paris La Défense we serve breakfast only."
         }
     },
     shop: {
         title: {
-            en: "TSH Shop",
-            fr: "Boutique TSH",
-            de: "TSH Shop",
-            es: "TSH Shop",
-            it: "TSH Shop",
-            pt: "TSH Shop"
+            en: "LGE Shop",
+            fr: "Boutique LGE",
+            de: "LGE Shop",
+            es: "LGE Shop",
+            it: "LGE Shop",
+            pt: "LGE Shop"
         },
         caption: {
             en: "Fresh drops: tees, caps, totes & more.",

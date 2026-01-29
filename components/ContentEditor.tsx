@@ -101,8 +101,8 @@ export default function ContentEditor({ section, onBack }: Props) {
                                 key={l}
                                 onClick={() => setLang(l)}
                                 className={`px-4 py-2 rounded-lg border-2 font-bold text-xs uppercase tracking-wider transition-all ${lang === l
-                                        ? 'border-black bg-black text-white'
-                                        : 'border-neutral-200 bg-white text-neutral-600 hover:border-black'
+                                    ? 'border-black bg-black text-white'
+                                    : 'border-neutral-200 bg-white text-neutral-600 hover:border-black'
                                     }`}
                             >
                                 {LANG_LABELS[l]}
@@ -208,7 +208,6 @@ function getSectionFields(section: ContentSection): Field[] {
         concierge: [
             { key: 'welcome_sentence', label: 'Welcome Sentence', multiline: false },
             { key: 'guest_transition', label: 'Guest Transition Line', multiline: false },
-            { key: 'student_transition', label: 'Student Transition Line', multiline: false },
             { key: 'friendly_filler_1', label: 'Friendly Phrase #1 (e.g., "Good choice!")', multiline: false },
             { key: 'friendly_filler_2', label: 'Friendly Phrase #2 (e.g., "Nice one!")', multiline: false },
             { key: 'friendly_filler_3', label: 'Friendly Phrase #3 (e.g., "Great question!")', multiline: false },

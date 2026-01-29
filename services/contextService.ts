@@ -1,25 +1,16 @@
 /**
  * Context Service
- * Manages room/floor context and stay type resolution
+ * Manages room/floor context and guest notes
  * 
- * CRITICAL: This system NEVER infers guest type. It only uses explicit admin configuration.
- * Resolution order: Room Override → Floor Override → Global Default
+ * Simplified to hotel guest flow only (no student/stay type logic)
  */
 
 import { Lang } from '../i18n';
 
-const CONTEXT_STORAGE_KEY = 'tsh_active_context_v1';
-const ROOM_OVERRIDES_KEY = 'tsh_room_overrides_v1';
-const FLOOR_OVERRIDES_KEY = 'tsh_floor_overrides_v1';
-const GLOBAL_SETTINGS_KEY = 'tsh_global_settings_v1';
-
-/**
- * Stay type enum
- * - guest: Short-term hotel guests
- * - student: Long-term student residents
- * - mixed: Both types share this space (prompts user once)
- */
-export type StayType = 'guest' | 'student' | 'mixed';
+const CONTEXT_STORAGE_KEY = 'lge_active_context_v1';
+const ROOM_OVERRIDES_KEY = 'lge_room_overrides_v1';
+const FLOOR_OVERRIDES_KEY = 'lge_floor_overrides_v1';
+const GLOBAL_SETTINGS_KEY = 'lge_global_settings_v1';
 
 /**
  * Room context from QR code or manual entry
@@ -31,28 +22,26 @@ export interface RoomContext {
 }
 
 /**
- * Room-level stay type override (highest priority)
+ * Room-level override for guest notes
  * notes: Per-language informational notes shown to guests
  */
 export interface RoomOverride {
     room: string;
-    stayType: StayType;
-    notes?: Record<Lang, string> | string; // Per-language notes (string for backward compat)
+    notes?: Partial<Record<Lang, string>> | string; // Per-language notes (string for backward compat)
 }
 
 /**
- * Floor-level stay type override
+ * Floor-level override for notes
  */
 export interface FloorOverride {
     floor: number;
-    stayType: StayType;
+    notes?: Partial<Record<Lang, string>> | string;
 }
 
 /**
- * Global hotel settings (fallback)
+ * Global hotel settings
  */
 export interface GlobalSettings {
-    defaultStayType: StayType;
     hotelId: string;
 }
 
@@ -118,7 +107,7 @@ export function clearActiveContext(): void {
 }
 
 /* ===========================================================
-   ROOM OVERRIDES
+   ROOM OVERRIDES (Notes Only)
    ===========================================================*/
 
 /**
@@ -135,14 +124,14 @@ export function getRoomOverrides(): RoomOverride[] {
 }
 
 /**
- * Set or update a room override
+ * Set or update a room override (notes only)
  */
-export function setRoomOverride(room: string, stayType: StayType, notes?: string): void {
+export function setRoomOverride(room: string, notes?: string): void {
     try {
         const overrides = getRoomOverrides();
         const existingIndex = overrides.findIndex(r => r.room === room);
 
-        const override: RoomOverride = { room, stayType, notes };
+        const override: RoomOverride = { room, notes };
 
         if (existingIndex >= 0) {
             overrides[existingIndex] = override;
@@ -151,7 +140,7 @@ export function setRoomOverride(room: string, stayType: StayType, notes?: string
         }
 
         localStorage.setItem(ROOM_OVERRIDES_KEY, JSON.stringify(overrides));
-        console.log(`[ContextService] Room override set: ${room} → ${stayType}`);
+        console.log(`[ContextService] Room override set: ${room}`);
     } catch (error) {
         console.error('[ContextService] Error setting room override:', error);
         throw error;
@@ -193,7 +182,7 @@ export function resetRoomOverrides(): void {
 /**
  * Migrate old string notes to new format
  */
-function migrateRoomNotes(override: any): RoomOverride {
+function migrateRoomNotes(override: RoomOverride): RoomOverride {
     if (typeof override.notes === 'string') {
         // Old format: migrate to new
         return {
@@ -249,10 +238,9 @@ export function setRoomNotes(room: string, lang: Lang, text: string): void {
                 notes: { ...notes, [lang]: text }
             };
         } else {
-            // Create new override with just notes (no stayType yet)
+            // Create new override with just notes
             overrides.push({
                 room,
-                stayType: 'guest', // Default
                 notes: { [lang]: text }
             });
         }
@@ -274,7 +262,7 @@ export function clearRoomNotes(room: string): void {
         const override = overrides.find(o => o.room === room);
 
         if (override) {
-            delete override.notes;
+            override.notes = undefined;
             localStorage.setItem(ROOM_OVERRIDES_KEY, JSON.stringify(overrides));
             console.log(`[ContextService] Room notes cleared: ${room}`);
         }
@@ -285,7 +273,7 @@ export function clearRoomNotes(room: string): void {
 }
 
 /* ===========================================================
-   FLOOR OVERRIDES
+   FLOOR OVERRIDES (Notes Only)
    ===========================================================*/
 
 /**
@@ -302,14 +290,14 @@ export function getFloorOverrides(): FloorOverride[] {
 }
 
 /**
- * Set or update a floor override
+ * Set or update a floor override (notes only)
  */
-export function setFloorOverride(floor: number, stayType: StayType): void {
+export function setFloorOverride(floor: number, notes?: string): void {
     try {
         const overrides = getFloorOverrides();
         const existingIndex = overrides.findIndex(f => f.floor === floor);
 
-        const override: FloorOverride = { floor, stayType };
+        const override: FloorOverride = { floor, notes };
 
         if (existingIndex >= 0) {
             overrides[existingIndex] = override;
@@ -318,7 +306,7 @@ export function setFloorOverride(floor: number, stayType: StayType): void {
         }
 
         localStorage.setItem(FLOOR_OVERRIDES_KEY, JSON.stringify(overrides));
-        console.log(`[ContextService] Floor override set: Floor ${floor} → ${stayType}`);
+        console.log(`[ContextService] Floor override set: Floor ${floor}`);
     } catch (error) {
         console.error('[ContextService] Error setting floor override:', error);
         throw error;
@@ -364,14 +352,12 @@ export function getGlobalSettings(): GlobalSettings {
     try {
         const json = localStorage.getItem(GLOBAL_SETTINGS_KEY);
         return safeParse<GlobalSettings>(json, {
-            defaultStayType: 'guest',
-            hotelId: 'tsh_paris_defense'
+            hotelId: 'lge_paris_defense'
         });
     } catch (error) {
         console.error('[ContextService] Error getting global settings:', error);
         return {
-            defaultStayType: 'guest',
-            hotelId: 'tsh_paris_defense'
+            hotelId: 'lge_paris_defense'
         };
     }
 }
@@ -400,75 +386,4 @@ export function resetGlobalSettings(): void {
         console.error('[ContextService] Error resetting global settings:', error);
         throw error;
     }
-}
-
-/* ===========================================================
-   STAY TYPE RESOLUTION (CORE ALGORITHM)
-   ===========================================================*/
-
-/**
- * Resolve stay type from context
- * 
- * Resolution order (highest to lowest priority):
- * 1. Room override (if context.room is set)
- * 2. Floor override (if context.floor is set)
- * 3. Global default
- * 
- * Returns:
- * - StayType if context exists and resolution succeeds
- * - null if no context (app should show current selector)
- * 
- * CRITICAL: This function NEVER assumes or infers.
- * It only returns what is explicitly configured.
- */
-export function resolveStayType(context?: RoomContext | null): StayType | null {
-    // No context → no resolution
-    if (!context) {
-        return null;
-    }
-
-    try {
-        // 1. Check room override (highest priority)
-        if (context.room) {
-            const roomOverrides = getRoomOverrides();
-            const roomOverride = roomOverrides.find(r => r.room === context.room);
-
-            if (roomOverride) {
-                console.log(`[ContextService] Resolved via room override: ${context.room} → ${roomOverride.stayType}`);
-                return roomOverride.stayType;
-            }
-        }
-
-        // 2. Check floor override
-        if (context.floor !== undefined) {
-            const floorOverrides = getFloorOverrides();
-            const floorOverride = floorOverrides.find(f => f.floor === context.floor);
-
-            if (floorOverride) {
-                console.log(`[ContextService] Resolved via floor override: Floor ${context.floor} → ${floorOverride.stayType}`);
-                return floorOverride.stayType;
-            }
-        }
-
-        // 3. Use global default
-        const settings = getGlobalSettings();
-        console.log(`[ContextService] Resolved via global default: ${settings.defaultStayType}`);
-        return settings.defaultStayType;
-    } catch (error) {
-        console.error('[ContextService] Error resolving stay type:', error);
-        // Safe fallback
-        return null;
-    }
-}
-
-/**
- * Get stay type label for admin UI
- */
-export function getStayTypeLabel(stayType: StayType): string {
-    const labels: Record<StayType, string> = {
-        guest: 'Hotel Guest (Short-term)',
-        student: 'Student (Long-term)',
-        mixed: 'Mixed (Ask on first use)'
-    };
-    return labels[stayType];
 }

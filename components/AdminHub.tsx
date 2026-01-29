@@ -19,7 +19,7 @@ export default function AdminHub({ pack, setPack, lang, onExit }: AdminHubProps)
   const Section = ({ title, children }: { title: string; children?: React.ReactNode }) => (
     <div className="space-y-6 bg-white p-8 rounded-2xl border border-neutral-200 shadow-sm">
       <div className="flex items-center justify-between border-b border-neutral-100 pb-4 mb-8">
-        <h3 className="tsh-subtitle text-xl tracking-tight text-black flex items-center gap-3">
+        <h3 className="lge-subtitle text-xl tracking-tight text-black flex items-center gap-3">
           <span className="w-1.5 h-6 bg-blue-600 rounded-full" />
           {title}
         </h3>
@@ -101,8 +101,8 @@ export default function AdminHub({ pack, setPack, lang, onExit }: AdminHubProps)
       {/* Header */}
       <div className="px-10 py-10 bg-white border-b-2 border-black flex items-center justify-between sticky top-0 z-20">
         <div>
-          <h1 className="tsh-title text-4xl leading-none text-black">Control Center</h1>
-          <p className="tsh-body text-xs font-bold text-neutral-400 mt-2 uppercase tracking-[0.3em]">{t(lang, "admin.subtitle")}</p>
+          <h1 className="lge-title text-4xl leading-none text-black">Control Center</h1>
+          <p className="lge-body text-xs font-bold text-neutral-400 mt-2 uppercase tracking-[0.3em]">{t(lang, "admin.subtitle")}</p>
         </div>
         <button
           onClick={onExit}
@@ -183,7 +183,6 @@ export default function AdminHub({ pack, setPack, lang, onExit }: AdminHubProps)
           <div className="space-y-8 animate-in fade-in duration-500">
             <Section title={t(lang, "admin.section.housekeeping")}>
               <Input label={t(lang, "admin.label.cleaningGuest")} textarea value={pack.profile.cleaning.guest} onChange={(v: string) => updateProfile("cleaning.guest", v)} />
-              <Input label={t(lang, "admin.label.cleaningStudent")} textarea value={pack.profile.cleaning.student} onChange={(v: string) => updateProfile("cleaning.student", v)} />
               <Input label={t(lang, "admin.label.wifiSsid")} value={pack.profile.wifi.ssid} onChange={(v: string) => updateProfile("wifi.ssid", v)} />
               <Input label={t(lang, "admin.label.wifiInstr")} value={pack.profile.wifi.instructions} onChange={(v: string) => updateProfile("wifi.instructions", v)} />
               <Input label={t(lang, "admin.label.amenities")} textarea value={pack.profile.amenities} onChange={(v: string) => updateProfile("amenities", v)} />
@@ -233,7 +232,7 @@ export default function AdminHub({ pack, setPack, lang, onExit }: AdminHubProps)
         {activeTab === "events" && (
           <div className="space-y-8 animate-in fade-in duration-500">
             <div className="flex justify-between items-center mb-8">
-              <h2 className="tsh-title text-3xl">Active Programming</h2>
+              <h2 className="lge-title text-3xl">Active Programming</h2>
               <button
                 onClick={addEvent}
                 className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all"
@@ -245,10 +244,10 @@ export default function AdminHub({ pack, setPack, lang, onExit }: AdminHubProps)
               {pack.events.map((ev: any) => (
                 <div key={ev.id} className="bg-white border-2 border-black rounded-[2.5rem] p-10 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.05)] space-y-8">
                   <div className="flex justify-between items-center border-b-2 border-neutral-100 pb-6">
-                    <div className="tsh-tag bg-neutral-100 text-neutral-400 border-none shadow-none">ID: {ev.id}</div>
+                    <div className="lge-tag bg-neutral-100 text-neutral-400 border-none shadow-none">ID: {ev.id}</div>
                     <button
                       onClick={() => setPack({ ...pack, events: pack.events.filter((e: any) => e.id !== ev.id) })}
-                      className="tsh-tag bg-red-50 text-red-500 border-red-100 shadow-none hover:bg-red-500 hover:text-white transition-all capitalize"
+                      className="lge-tag bg-red-50 text-red-500 border-red-100 shadow-none hover:bg-red-500 hover:text-white transition-all capitalize"
                     >
                       Delete Event
                     </button>
@@ -306,13 +305,13 @@ export default function AdminHub({ pack, setPack, lang, onExit }: AdminHubProps)
           <div className="space-y-8 animate-in fade-in duration-500">
             <Section title="Localization Status">
               <div className="p-8 bg-blue-50 border border-blue-100 rounded-2xl">
-                <p className="tsh-body text-sm font-bold text-blue-900 leading-relaxed">
+                <p className="lge-body text-sm font-bold text-blue-900 leading-relaxed">
                   The Guest Guide is currently configured for 6 languages. Translations are managed via the global translation engine and provided based on the content keys below.
                 </p>
               </div>
               <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4 mt-6">
                 {languages.map(l => (
-                  <div key={l.code} className="w-20 h-20 flex items-center justify-center rounded-2xl border border-neutral-200 bg-white tsh-subtitle text-xl shadow-sm">
+                  <div key={l.code} className="w-20 h-20 flex items-center justify-center rounded-2xl border border-neutral-200 bg-white lge-subtitle text-xl shadow-sm">
                     {l.label}
                   </div>
                 ))}

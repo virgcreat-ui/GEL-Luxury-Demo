@@ -24,7 +24,7 @@ export default function WelcomeScreen({
   lang,
   setLang,
   navigate,
-  hotelName = "The Social Hub",
+  hotelName = "Le Grand Éclipse",
   hotelSubtitle = "Paris La Défense",
   heroUrl = "/hero_ladefense.png",
   onAdminRequest,
@@ -114,7 +114,7 @@ export default function WelcomeScreen({
         <div className="absolute bottom-12 left-8 right-8">
           <h1
             onClick={handleTitleTap}
-            className="tsh-title text-3xl sm:text-4xl font-medium text-white select-none cursor-default active:opacity-80 drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] mb-2"
+            className="lge-title text-3xl sm:text-4xl font-medium text-white select-none cursor-default active:opacity-80 drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] mb-2"
           >
             {t(lang, "home.welcomeTitle")}
           </h1>
@@ -130,25 +130,25 @@ export default function WelcomeScreen({
           <MenuCard
             title={t(lang, "home.menu.hub")}
             imageUrl={hubCardImage}
-            color="var(--tsh-yellow)"
+            color="var(--lge-yellow)"
             onClick={() => navigate("list", { category: "hub" })}
           />
           <MenuCard
             title={t(lang, "home.menu.room")}
             imageUrl={roomCardImage}
-            color="var(--tsh-pink)"
+            color="var(--lge-pink)"
             onClick={() => navigate("list", { category: "room" })}
           />
           <MenuCard
             title={t(lang, "home.menu.events")}
             imageUrl={eventsCardImage}
-            color="var(--tsh-green)"
+            color="var(--lge-green)"
             onClick={() => navigate("events-list")}
           />
           <MenuCard
             title={t(lang, "home.menu.around")}
             imageUrl={areaCardImage}
-            color="var(--tsh-blue)"
+            color="var(--lge-blue)"
             onClick={() => navigate("list", { category: "neighborhood" })}
           />
         </div>

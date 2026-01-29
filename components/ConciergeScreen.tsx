@@ -8,12 +8,11 @@ import { getVoiceScript } from "../services/voiceLogic";
 import { ScriptScene } from "../services/voiceScripts";
 import { getConciergeFlow, ConciergeFlow, ConciergeFlowStep } from "../services/contentService";
 import { loadConciergeFlowConfig } from "../services/conciergeFlowConfig";
-import { renderTextWithTSHAppLink } from "../utils/tshAppLinkUtils";
+import { renderTextWithLGEAppLink } from "../utils/lgeAppLinkUtils";
 
 export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: { onBack: () => void; onNavigate?: (route: string) => void; lang: Lang; t: (key: string) => string; pack: HotelPack }) {
-  // Phases: init -> stayType -> visitType -> topics -> flow
-  const [phase, setPhase] = useState<"init" | "stayType" | "visitType" | "topics" | "flow">("init");
-  const [stayType, setStayType] = useState<"student" | "guest" | null>(null);
+  // Phases: init -> visitType -> topics -> flow (removed stayType phase - always guest)
+  const [phase, setPhase] = useState<"init" | "visitType" | "topics" | "flow">("init");
   const [visitType, setVisitType] = useState<"first" | "start" | null>(null);
   const [activeTopic, setActiveTopic] = useState<string | null>(null);
   const [visibleItems, setVisibleItems] = useState<number>(0);
@@ -89,9 +88,8 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
     voiceService.speakInstant(randomLine, getSpeechLangCode(lang));
   };
 
-  // PHASE 0: Init
+  // PHASE 0: Init - go directly to visitType (always guest flow)
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
     voiceService.stopAllAudio();
     setVisibleItems(0);
 
@@ -106,9 +104,10 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
         });
       }, 200);
 
+      // Skip stayType phase, go directly to visitType
       const journeyTimer = setTimeout(() => {
-        setPhase("stayType");
-      }, 7000);
+        setPhase("visitType");
+      }, 5000);
       return journeyTimer;
     };
 
@@ -120,33 +119,7 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
     };
   }, [lang]);
 
-  // PHASE 1: Stay Type
-  useEffect(() => {
-    if (phase === "stayType") {
-      // Immediate mount - all cards visible at once, CSS handles transitions
-      setVisibleItems(2);
-    }
-  }, [phase]);
-
-  const handleStaySelect = (type: "student" | "guest") => {
-    clearVoiceTimer();
-    voiceService.stopAllAudio(); // Stop previous voice
-    setStayType(type);
-    setPhase("visitType");
-
-    voiceTimeoutRef.current = setTimeout(() => {
-      const config = loadConciergeFlowConfig();
-      const pathConfig = type === "student" ? config.student : config.guest;
-      const fallbackText = pathConfig.askFirstTimeLines[lang][0];
-      const scriptId = type === "student" ? "student_ask_first_time" : "guest_ask_first_time";
-      // Start voice after DOM paint
-      requestAnimationFrame(() => {
-        voiceService.playPreGenerated(scriptId, lang, fallbackText);
-      });
-    }, 200);
-  };
-
-  // PHASE 2: Visit Type
+  // PHASE 1: Visit Type (now the first interactive phase)
   useEffect(() => {
     if (phase === "visitType") {
       // Immediate mount - all cards visible at once, CSS handles transitions
@@ -159,10 +132,9 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
     setVisitType(vType);
     topicsShownRef.current = false;
 
-    if (!stayType) return;
-
+    // Always use guest flow
     const journeyKey = vType === 'first' ? 'first_time' : 'returning';
-    const flow = getConciergeFlow(stayType, journeyKey);
+    const flow = getConciergeFlow('guest', journeyKey);
 
     if (flow) {
       setActiveFlow(flow);
@@ -172,36 +144,24 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
       clearVoiceTimer();
       voiceTimeoutRef.current = setTimeout(() => {
         const config = loadConciergeFlowConfig();
-        const pathConfig = stayType === "student" ? config.student : config.guest;
+        const pathConfig = config.guest;
 
         // Speak confirm line with ElevenLabs - after DOM paint
         const confirmLines = vType === 'first'
           ? pathConfig.firstTimeConfirmLines
           : pathConfig.returningConfirmLines;
         const fallbackText = confirmLines[lang][0];
-        const confirmScript = stayType === "student"
-          ? (vType === 'first' ? "student_first_time_confirm" : "student_returning_confirm")
-          : (vType === 'first' ? "guest_first_time_confirm" : "guest_returning_confirm");
+        const confirmScript = vType === 'first' ? "guest_first_time_confirm" : "guest_returning_confirm";
         requestAnimationFrame(() => {
           voiceService.playPreGenerated(confirmScript, lang, fallbackText);
         });
-
-        // For student first-time, add onboarding reminder after confirm
-        if (stayType === 'student' && vType === 'first') {
-          setTimeout(() => {
-            const onboardingText = config.student.studentOnboardingLines[lang][0];
-            requestAnimationFrame(() => {
-              voiceService.playPreGenerated("student_onboarding_reminder", lang, onboardingText);
-            });
-          }, 6000); // Give time for confirm  line to finish
-        }
       }, 200);
     } else {
-      console.error("No flow found for", stayType, journeyKey);
+      console.error("No flow found for guest", journeyKey);
     }
   };
 
-  // PHASE 3: Topics (Flow)
+  // PHASE 2: Topics (Flow)
   useEffect(() => {
     if (phase === "topics" && currentStep) {
       topicsShownRef.current = true;
@@ -219,19 +179,17 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
       setPhase("flow");
 
       // Speak per-topic intro from config with ElevenLabs - after DOM paint
-      if (stayType) {
-        const config = loadConciergeFlowConfig();
-        const pathConfig = stayType === "student" ? config.student : config.guest;
-        const topicIntro = pathConfig.topicIntros[topicId]?.[lang];
-        if (topicIntro && topicIntro.length > 0) {
-          setTimeout(() => {
-            const fallbackText = topicIntro[0];
-            const scriptId = `${stayType}_topic_${topicId}`;
-            requestAnimationFrame(() => {
-              voiceService.playPreGenerated(scriptId, lang, fallbackText);
-            });
-          }, 300); // Brief delay for UI transition
-        }
+      const config = loadConciergeFlowConfig();
+      const pathConfig = config.guest;
+      const topicIntro = pathConfig.topicIntros[topicId]?.[lang];
+      if (topicIntro && topicIntro.length > 0) {
+        setTimeout(() => {
+          const fallbackText = topicIntro[0];
+          const scriptId = `guest_topic_${topicId}`;
+          requestAnimationFrame(() => {
+            voiceService.playPreGenerated(scriptId, lang, fallbackText);
+          });
+        }, 300); // Brief delay for UI transition
       }
     } else {
       if (activeFlow) {
@@ -245,13 +203,13 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
     }
   };
 
-  // PHASE 4: Content
+  // PHASE 3: Content - always use guest topics
   useEffect(() => {
-    if (phase === "flow" && activeTopic && stayType && cData[stayType].topics[activeTopic]) {
+    if (phase === "flow" && activeTopic && cData.guest?.topics[activeTopic]) {
       voiceService.stopAllAudio();
       setVisibleItems(0);
 
-      const topicData = cData[stayType].topics[activeTopic];
+      const topicData = cData.guest.topics[activeTopic];
       const topic = topicData;
 
       let ackKey: ScriptScene | null = null;
@@ -374,40 +332,33 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
       }
 
       // Voice feedback (non-blocking) - use ElevenLabs idle voices with rotation
-      if (stayType) {
-        const config = loadConciergeFlowConfig();
-        const pathConfig = stayType === "student" ? config.student : config.guest;
-        const idlePool = pathConfig.idleLines[lang];
-        if (idlePool && idlePool.length > 0) {
-          // Pick random idle voice (1-12)
-          const lastUsed = sessionStorage.getItem('tsh_last_idle_index');
-          let randomIndex = Math.floor(Math.random() * 12) + 1; // 1-12
-          if (lastUsed) {
-            const lastIndex = parseInt(lastUsed, 10);
-            while (randomIndex === lastIndex) {
-              randomIndex = Math.floor(Math.random() * 12) + 1;
-            }
+      const config = loadConciergeFlowConfig();
+      const pathConfig = config.guest;
+      const idlePool = pathConfig.idleLines[lang];
+      if (idlePool && idlePool.length > 0) {
+        // Pick random idle voice (1-12)
+        const lastUsed = sessionStorage.getItem('lge_last_idle_index');
+        let randomIndex = Math.floor(Math.random() * 12) + 1; // 1-12
+        if (lastUsed) {
+          const lastIndex = parseInt(lastUsed, 10);
+          while (randomIndex === lastIndex) {
+            randomIndex = Math.floor(Math.random() * 12) + 1;
           }
-          sessionStorage.setItem('tsh_last_idle_index', randomIndex.toString());
-
-          const scriptId = `idle_${randomIndex}`;
-          const fallbackText = idlePool[randomIndex % idlePool.length];
-          // Play idle voice after DOM paint
-          requestAnimationFrame(() => {
-            voiceService.playPreGenerated(scriptId, lang, fallbackText);
-          });
         }
+        sessionStorage.setItem('lge_last_idle_index', randomIndex.toString());
+
+        const scriptId = `idle_${randomIndex}`;
+        const fallbackText = idlePool[randomIndex % idlePool.length];
+        // Play idle voice after DOM paint
+        requestAnimationFrame(() => {
+          voiceService.playPreGenerated(scriptId, lang, fallbackText);
+        });
       }
     } else if (phase === "topics") {
       setPhase("visitType");
       setVisitType(null);
       setCurrentStep(null);
       setActiveFlow(null);
-      // Immediate mount
-      setVisibleItems(2);
-    } else if (phase === "visitType") {
-      setPhase("stayType");
-      setStayType(null);
       // Immediate mount
       setVisibleItems(2);
     } else {
@@ -419,7 +370,7 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
   return (
     <div className="relative min-h-screen w-full bg-black text-white font-sans overflow-hidden flex flex-col">
       <style>{`
-        .tsh-glow-pulse { animation: glow-pulse 3s infinite ease-in-out; }
+        .lge-glow-pulse { animation: glow-pulse 3s infinite ease-in-out; }
         @keyframes glow-pulse {
           0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.05); }
           50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.15); }
@@ -448,23 +399,12 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
           <div className="animate-pulse text-white/30 text-xs font-medium">Initializing host...</div>
         )}
 
-        {phase === "stayType" && (
-          <div className="w-full space-y-6">
-            <div className={`transition-all duration-700 ${visibleItems >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <button onClick={() => handleStaySelect("guest")} className="w-full h-24 rounded-2xl bg-gradient-to-r from-blue-900/40 to-blue-800/40 backdrop-blur-md border border-white/10 flex items-center px-6 gap-4 hover:border-blue-400/50 transition-all active:scale-95">
-                <div className="text-xl font-bold text-white">{t("concierge.guest")}</div>
-              </button>
-            </div>
-            <div className={`transition-all duration-700 ${visibleItems >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <button onClick={() => handleStaySelect("student")} className="w-full h-24 rounded-2xl bg-gradient-to-r from-pink-900/40 to-pink-800/40 backdrop-blur-md border border-white/10 flex items-center px-6 gap-4 hover:border-pink-400/50 transition-all active:scale-95">
-                <div className="text-xl font-bold text-white">{t("concierge.student")}</div>
-              </button>
-            </div>
-          </div>
-        )}
-
         {phase === "visitType" && (
           <div className="w-full space-y-6">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-white mb-2">{t("concierge.welcome_guest") || "Welcome to Le Grand Éclipse"}</h2>
+              <p className="text-sm text-white/60">{t("concierge.first_time_question") || "Is this your first time with us?"}</p>
+            </div>
             <div className={`transition-all duration-700 ${visibleItems >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <button onClick={() => handleVisitSelect("first")} className="w-full h-20 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center gap-4 hover:bg-white/20 transition-all active:scale-95">
                 <div className="text-lg font-bold text-white">{t("concierge.visitType.first") || "First time"}</div>
@@ -472,7 +412,7 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
             </div>
             <div className={`transition-all duration-700 ${visibleItems >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <button onClick={() => handleVisitSelect("start")} className="w-full h-20 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center gap-4 hover:bg-white/10 transition-all active:scale-95">
-                <div className="text-lg font-bold text-white/80">{stayType === 'student' ? t("concierge.visitType.beenAround") : t("concierge.visitType.returning")}</div>
+                <div className="text-lg font-bold text-white/80">{t("concierge.visitType.returning") || "I've been here before"}</div>
               </button>
             </div>
           </div>
@@ -497,10 +437,10 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
           </div>
         )}
 
-        {phase === "flow" && activeTopic && stayType && cData[stayType].topics[activeTopic] && (
+        {phase === "flow" && activeTopic && cData.guest?.topics[activeTopic] && (
           <div className="w-full space-y-6 pb-12">
             <div className="animate-in fade-in slide-in-from-top-2 duration-500 text-center mb-8">
-              <h2 className="text-3xl font-bold text-white tracking-tight drop-shadow-xl" style={{ fontFamily: '"Rubik", sans-serif' }}>{cData[stayType].topics[activeTopic].label[lang]}</h2>
+              <h2 className="text-3xl font-bold text-white tracking-tight drop-shadow-xl" style={{ fontFamily: '"Rubik", sans-serif' }}>{cData.guest.topics[activeTopic].label[lang]}</h2>
             </div>
             {/* Topic Cards */}
             {finalCards.map((card: any, idx: number) => (
@@ -513,7 +453,7 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
                 )}
                 <div className="p-6">
                   <h3 className="text-xs font-bold text-blue-200 mb-2 opacity-80">{card.title[lang] || card.title['en']}</h3>
-                  <p className="text-white text-lg font-medium leading-relaxed">{renderTextWithTSHAppLink(card.body[lang] || card.body['en'])}</p>
+                  <p className="text-white text-lg font-medium leading-relaxed">{renderTextWithLGEAppLink(card.body[lang] || card.body['en'])}</p>
                 </div>
               </div>
             ))}

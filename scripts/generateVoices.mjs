@@ -21,12 +21,12 @@ const OUTPUT_DIR = path.join(__dirname, '..', 'public', 'voice');
 const VOICE_SCRIPTS = {
     // === WELCOME & SELECTION ===
     'welcome': {
-        en: "Welcome to The Social Hub. I'll be your digital concierge, here to help you feel at home. Whenever you're ready, I can guide you through everything you need. To get started — are you staying with us as a hotel guest, or as a student?",
-        fr: "Bienvenue à The Social Hub. Je serai votre concierge digitale, là pour vous aider à vous sentir chez vous. Quand vous voulez, je peux vous guider à chaque étape de votre séjour. Pour commencer — séjournez-vous chez nous en tant que client hôtel, ou étudiant ?",
-        de: "Willkommen im The Social Hub. Ich bin Ihre digitale Concierge und helfe Ihnen gern, sich hier wohlzufühlen. Wenn Sie möchten, begleite ich Sie durch alles Wichtige. Zum Start — sind Sie bei uns als Hotelgast, oder als Student?",
-        es: "Bienvenido a The Social Hub. Seré tu concierge digital, aquí para ayudarte a sentirte como en casa. Cuando quieras, te guiaré en todo lo que necesites. Para empezar — ¿te alojas con nosotros como huésped del hotel, o como estudiante?",
-        it: "Benvenuto a The Social Hub. Sarò la tua concierge digitale, qui per farti sentire subito a casa. Quando vuoi, ti guiderò in tutto ciò di cui hai bisogno. Per iniziare — soggiorni con noi come ospite dell'hotel, o come studente?",
-        pt: "Bem-vindo ao The Social Hub. Serei a sua concierge digital, aqui para o ajudar a sentir-se em casa. Sempre que quiser, posso guiá-lo em tudo o que precisar. Para começar — está connosco como hóspede do hotel, ou como estudante?"
+        en: "Welcome to Le Grand Éclipse. I'll be your digital concierge, here to help you feel at home. Whenever you're ready, I can guide you through everything you need. To get started — are you staying with us as a student, or as a hotel guest?",
+        fr: "Bienvenue à Le Grand Éclipse. Je serai votre concierge digitale, là pour vous aider à vous sentir chez vous. Quand vous voulez, je peux vous guider à chaque étape de votre séjour. Pour commencer — séjournez-vous chez nous en tant que client hôtel, ou étudiant ?",
+        de: "Willkommen im Le Grand Éclipse. Ich bin Ihre digitale Concierge und helfe Ihnen gern, sich hier wohlzufühlen. Wenn Sie möchten, begleite ich Sie durch alles Wichtige. Zum Start — sind Sie bei uns als Hotelgast, oder als Student?",
+        es: "Bienvenido a Le Grand Éclipse. Seré tu concierge digital, aquí para ayudarte a sentirte como en casa. Cuando quieras, te guiaré en todo lo que necesites. Para empezar — ¿te alojas con nosotros como huésped del hotel, o como estudiante?",
+        it: "Benvenuto a Le Grand Éclipse. Sarò la tua concierge digitale, qui per farti sentire subito a casa. Quando vuoi, ti guiderò in tutto ciò di cui hai bisogno. Per iniziare — soggiorni con noi come ospite dell'hotel, o come studente?",
+        pt: "Bem-vindo ao Le Grand Éclipse. Serei a sua concierge digital, aqui para o ajudar a sentir-se em casa. Sempre que quiser, posso guiá-lo em tudo o que precisar. Para começar — está connosco como hóspede do hotel, ou como estudante?"
     },
 
     // === STUDENT PATH ===
@@ -68,21 +68,21 @@ const VOICE_SCRIPTS = {
 
     // === GUEST PATH ===
     'guest_ask_first_time': {
-        en: "Lovely. Welcome. Is this your first time staying at The Social Hub, or have you stayed with us before?",
-        fr: "Ravissant. Bienvenue. C'est votre première fois au Social Hub ?",
-        de: "Wunderbar. Willkommen. Sind Sie zum ersten Mal im Social Hub?",
-        es: "Encantado. Bienvenido. ¿Es tu primera vez en The Social Hub?",
-        it: "Piacere. Benvenuto. È la prima volta al Social Hub?",
-        pt: "Encantado. Bem-vindo. É a primeira vez no The Social Hub?"
+        en: "Lovely. Welcome. Is this your first time staying at Le Grand Éclipse, or have you stayed with us before?",
+        fr: "Ravissant. Bienvenue. C'est votre première fois au Grand Éclipse ?",
+        de: "Wunderbar. Willkommen. Sind Sie zum ersten Mal im Grand Éclipse?",
+        es: "Encantado. Bienvenido. ¿Es tu primera vez en Le Grand Éclipse?",
+        it: "Piacere. Benvenuto. È la prima volta al Grand Éclipse?",
+        pt: "Encantado. Bem-vindo. É a primeira vez no Le Grand Éclipse?"
     },
 
     'guest_first_time_confirm': {
-        en: "Great choice. The Social Hub is a bit different — part hotel, part community. I'll show you the important things first.",
-        fr: "Excellent choix. Le Social Hub est unique : mi-hôtel, mi-communauté. Je vous montre l'essentiel.",
-        de: "Gute Wahl. The Social Hub ist anders – halb Hotel, halb Community. Ich zeige Ihnen das Wichtigste zuerst.",
-        es: "Buena elección. The Social Hub es diferente: parte hotel, parte comunidad. Te enseñaré lo importante primero.",
-        it: "Ottima scelta. The Social Hub è diverso: un po' hotel, un po' community. Ti mostro prima le cose importanti.",
-        pt: "Boa escolha. O The Social Hub é diferente: parte hotel, parte comunidade. Vou mostrar-lhe o mais importante primeiro."
+        en: "Great choice. Le Grand Éclipse is a bit different — part hotel, part community. I'll show you the important things first.",
+        fr: "Excellent choix. Le Grand Éclipse est unique : mi-hôtel, mi-communauté. Je vous montre l'essentiel.",
+        de: "Gute Wahl. Le Grand Éclipse ist anders – halb Hotel, halb Community. Ich zeige Ihnen das Wichtigste zuerst.",
+        es: "Buena elección. Le Grand Éclipse es diferente: parte hotel, parte comunidad. Te enseñaré lo importante primero.",
+        it: "Ottima scelta. Le Grand Éclipse è diverso: un po' hotel, un po' community. Ti mostro prima le cose importanti.",
+        pt: "Boa escolha. O Le Grand Éclipse é diferente: parte hotel, parte comunidade. Vou mostrar-lhe o mais importante primeiro."
     },
 
     'guest_returning_confirm': {
@@ -114,12 +114,12 @@ const VOICE_SCRIPTS = {
     },
 
     'student_topic_laundry': {
-        en: "Laundry works through the TSH app. You get free tokens every month.",
-        fr: "La lessive fonctionne via l'app TSH. Jetons gratuits chaque mois.",
-        de: "Waschen geht über die TSH app. Sie bekommen monatlich Gratis-Token.",
-        es: "La lavandería va con la app TSH. Tienes fichas gratis cada mes.",
-        it: "La lavanderia funziona con l'app TSH. Hai gettoni gratuiti ogni mese.",
-        pt: "A lavandaria funciona com a app TSH. Tem fichas grátis todos os meses."
+        en: "Laundry works through the LGE app. You get free tokens every month.",
+        fr: "La lessive fonctionne via l'app LGE. Jetons gratuits chaque mois.",
+        de: "Waschen geht über die LGE app. Sie bekommen monatlich Gratis-Token.",
+        es: "La lavandería va con la app LGE. Tienes fichas gratis cada mes.",
+        it: "La lavanderia funziona con l'app LGE. Hai gettoni gratuiti ogni mese.",
+        pt: "A lavandaria funciona com a app LGE. Tem fichas grátis todos os meses."
     },
 
     'student_topic_facilities': {
@@ -141,12 +141,12 @@ const VOICE_SCRIPTS = {
     },
 
     'student_topic_packages': {
-        en: "For mail and packages, use the Social Hub address and include your room number. When it arrives, the front desk will email you with next steps.",
-        fr: "Pour le courrier et les colis, utilisez l'adresse du Social Hub et ajoutez votre numéro de chambre. Dès réception, la réception vous enverra un email avec la suite.",
-        de: "Für Post und Pakete verwenden Sie die Social Hub Adresse und fügen Sie Ihre Zimmernummer hinzu. Bei Ankunft informiert Sie die Rezeption per E-Mail über die nächsten Schritte.",
-        es: "Para correo y paquetes, usa la dirección de Social Hub e incluye tu número de habitación. Cuando llegue, recepción te enviará un email con los siguientes pasos.",
-        it: "Per posta e pacchi, usa l'indirizzo del Social Hub e aggiungi il numero della tua camera. All'arrivo, la reception ti invierà un'email con i prossimi passi.",
-        pt: "Para correio e encomendas, use o endereço do Social Hub e adicione o número do seu quarto. Quando chegar, a receção enviará um email com os próximos passos."
+        en: "For mail and packages, use the Le Grand Éclipse address and include your room number. When it arrives, the front desk will email you with next steps.",
+        fr: "Pour le courrier et les colis, utilisez l'adresse du le Grand Éclipse et ajoutez votre numéro de chambre. Dès réception, la réception vous enverra un email avec la suite.",
+        de: "Für Post und Pakete verwenden Sie die Le Grand Éclipse Adresse und fügen Sie Ihre Zimmernummer hinzu. Bei Ankunft informiert Sie die Rezeption per E-Mail über die nächsten Schritte.",
+        es: "Para correo y paquetes, usa la dirección de Le Grand Éclipse e incluye tu número de habitación. Cuando llegue, recepción te enviará un email con los siguientes pasos.",
+        it: "Per posta e pacchi, usa l'indirizzo del Le Grand Éclipse e aggiungi il numero della tua camera. All'arrivo, la reception ti invierà un'email con i prossimi passi.",
+        pt: "Para correio e encomendas, use o endereço do Le Grand Éclipse e adicione o número do seu quarto. Quando chegar, a receção enviará um email com os próximos passos."
     },
 
     'student_topic_events': {

@@ -2,8 +2,8 @@ import { HotelPack } from '../App';
 import { Lang } from '../i18n';
 import { HubContent, DEFAULT_HUB_CONTENT } from './hubContent';
 
-const CONFIG_STORAGE_KEY = 'tsh_concierge_config_v1';
-const HUB_CONTENT_STORAGE_KEY = 'tsh_hub_content_v1';
+const CONFIG_STORAGE_KEY = 'lge_concierge_config_v1';
+const HUB_CONTENT_STORAGE_KEY = 'lge_hub_content_v1';
 
 /**
  * Config Service

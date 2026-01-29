@@ -2,7 +2,7 @@ import { Lang } from "../i18n";
 
 /**
  * Voice-on-click reactions for main menu cards (ImageAccordion components)
- * Warm, TSH-style, conversational voice lines
+ * Warm, LGE-style, conversational voice lines
  * Max 6-8 seconds per line
  * 
  * Used ONLY for main menu cards (Hub, Room, Area) - NOT for concierge

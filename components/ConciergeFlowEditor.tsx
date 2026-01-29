@@ -6,20 +6,19 @@ import ListEditor from "./ListEditor";
 
 export default function ConciergeFlowEditor() {
     const [config, setConfig] = useState<ConciergeFlowConfig>(loadConciergeFlowConfig());
-    const [audience, setAudience] = useState<"student" | "guest">("guest");
     const [lang, setLang] = useState<Lang>("en");
     const [selectedTopicId, setSelectedTopicId] = useState<string | null>(null);
     const [saved, setSaved] = useState(false);
 
     useEffect(() => {
-        // Auto-select first topic when audience/lang changes
-        const topics = config[audience].topics;
+        // Auto-select first topic when lang changes
+        const topics = config.guest.topics;
         if (topics.length > 0 && !topics.find(t => t.id === selectedTopicId)) {
             setSelectedTopicId(topics[0].id);
         }
-    }, [audience, config]);
+    }, [config]);
 
-    const pathConfig = config[audience];
+    const pathConfig = config.guest;
 
     const handleSave = () => {
         saveConciergeFlowConfig(config);
@@ -38,7 +37,7 @@ export default function ConciergeFlowEditor() {
     const updateLines = (field: keyof typeof pathConfig, lines: string[]) => {
         setConfig({
             ...config,
-            [audience]: {
+            guest: {
                 ...pathConfig,
                 [field]: {
                     ...pathConfig[field as keyof typeof pathConfig],
@@ -54,7 +53,7 @@ export default function ConciergeFlowEditor() {
         );
         setConfig({
             ...config,
-            [audience]: {
+            guest: {
                 ...pathConfig,
                 topics: updatedTopics
             }
@@ -69,7 +68,7 @@ export default function ConciergeFlowEditor() {
         topics.forEach((t, i) => t.order = i + 1);
         setConfig({
             ...config,
-            [audience]: {
+            guest: {
                 ...pathConfig,
                 topics
             }
@@ -83,7 +82,7 @@ export default function ConciergeFlowEditor() {
         topics.forEach((t, i) => t.order = i + 1);
         setConfig({
             ...config,
-            [audience]: {
+            guest: {
                 ...pathConfig,
                 topics
             }
@@ -93,7 +92,7 @@ export default function ConciergeFlowEditor() {
     const updateTopicIntro = (topicId: string, lines: string[]) => {
         setConfig({
             ...config,
-            [audience]: {
+            guest: {
                 ...pathConfig,
                 topicIntros: {
                     ...pathConfig.topicIntros,
@@ -118,26 +117,9 @@ export default function ConciergeFlowEditor() {
 
             {/* Top Controls */}
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6 p-4 bg-white rounded-xl border border-neutral-200">
-                {/* Audience Selector */}
-                <div className="flex gap-2">
-                    <button
-                        onClick={() => setAudience("guest")}
-                        className={`px-4 py-2 rounded-lg font-semibold transition ${audience === "guest"
-                                ? "bg-blue-500 text-white"
-                                : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
-                            }`}
-                    >
-                        Hotel Guest
-                    </button>
-                    <button
-                        onClick={() => setAudience("student")}
-                        className={`px-4 py-2 rounded-lg font-semibold transition ${audience === "student"
-                                ? "bg-blue-500 text-white"
-                                : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
-                            }`}
-                    >
-                        Student
-                    </button>
+                {/* Guest Flow Label */}
+                <div className="text-neutral-700 font-semibold">
+                    Hotel Guest Flow
                 </div>
 
                 {/* Language Selector */}
@@ -212,14 +194,6 @@ export default function ConciergeFlowEditor() {
                         placeholder="Short prompt when navigating back..."
                     />
 
-                    {audience === "student" && "studentOnboardingLines" in pathConfig && (
-                        <ListEditor
-                            label="Student Onboarding Lines"
-                            lines={pathConfig.studentOnboardingLines?.[lang] || []}
-                            onChange={(lines) => updateLines("studentOnboardingLines", lines)}
-                            placeholder="First-time student onboarding reminder..."
-                        />
-                    )}
                 </div>
 
                 {/* RIGHT COLUMN - Topics & Intros */}
@@ -234,8 +208,8 @@ export default function ConciergeFlowEditor() {
                                 <div
                                     key={topic.id}
                                     className={`flex items-center gap-2 p-3 rounded-lg border transition cursor-pointer ${selectedTopicId === topic.id
-                                            ? "border-blue-500 bg-blue-50"
-                                            : "border-neutral-200 hover:border-neutral-300"
+                                        ? "border-blue-500 bg-blue-50"
+                                        : "border-neutral-200 hover:border-neutral-300"
                                         }`}
                                     onClick={() => setSelectedTopicId(topic.id)}
                                 >

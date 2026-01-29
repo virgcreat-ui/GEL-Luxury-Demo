@@ -30,9 +30,9 @@ export type ScriptScene =
 
 export const SCRIPT_POOLS: Record<ScriptScene, Record<Lang, string[]>> = {
     WELCOME_V4: {
-        en: ["Welcome to The Social Hub. I’ll be your concierge, and I’m happy to guide you. To get started — are you staying with us as a student, or as a hotel guest?"],
-        fr: ["Bienvenue au Social Hub. Je m'occupe de vous. Alors, vous êtes étudiant ou client de l'hôtel ?"],
-        de: ["Willkommen. Ich bin für dich da. Bist du Student oder Hotelgast?"],
+        en: ["Welcome to Le Grand Éclipse. I’ll be your concierge, and I’m happy to guide you. To get started — are you staying with us as a student, or as a hotel guest?"],
+        fr: ["Bienvenue au Grand Éclipse. Je m'occupe de vous. Alors, vous êtes étudiant ou client de l'hôtel ?"],
+        de: ["Willkommen im Grand Éclipse. Ich bin für dich da. Bist du Student oder Hotelgast?"],
         es: ["Bienvenido. Yo te ayudo. Dime, ¿eres estudiante o huésped?"],
         it: ["Benvenuto. Ci penso io. Allora, sei studente o ospite?"],
         pt: ["Bem-vindo. Eu ajudo-te. És estudante ou hóspede?"]
@@ -41,64 +41,64 @@ export const SCRIPT_POOLS: Record<ScriptScene, Record<Lang, string[]>> = {
     // New: Welcome greeting variants (8 per language) - play ONE randomly before stay-type question
     WELCOME_VARIANTS: {
         en: [
-            "Welcome to The Social Hub. I'm here to help you settle in.",
+            "Welcome to Le Grand Éclipse. I'm here to help you settle in.",
             "Hey there! Welcome to Paris. Let's get you started.",
-            "Welcome! Happy to have you with us at The Social Hub.",
+            "Welcome! Happy to have you with us at Le Grand Éclipse.",
             "Hi! Welcome to your home away from home in Paris.",
-            "Welcome to The Social Hub. I'll be your guide today.",
+            "Welcome to Le Grand Éclipse. I'll be your guide today.",
             "Hello! Great to see you. Let's make this easy.",
             "Welcome! I'm here to show you around.",
-            "Hey! Welcome to The Social Hub Paris. Ready to explore?"
+            "Hey! Welcome to Le Grand Éclipse Paris. Ready to explore?"
         ],
         fr: [
-            "Bienvenue au Social Hub. Je suis là pour vous aider.",
+            "Bienvenue au Grand Éclipse. Je suis là pour vous aider.",
             "Salut ! Bienvenue à Paris. On commence ?",
-            "Bienvenue ! Ravie de vous accueillir au Social Hub.",
+            "Bienvenue ! Ravie de vous accueillir au Grand Éclipse.",
             "Coucou ! Bienvenue chez vous à Paris.",
-            "Bienvenue au Social Hub. Je vous accompagne.",
+            "Bienvenue au Grand Éclipse. Je vous accompagne.",
             "Bonjour ! Content de vous voir. On y va ?",
             "Bienvenue ! Je suis là pour vous guider.",
-            "Hey ! Bienvenue au Social Hub Paris. Prêt à découvrir ?"
+            "Hey ! Bienvenue au Grand Éclipse Paris. Prêt à découvrir ?"
         ],
         de: [
-            "Willkommen im Social Hub. Ich helf dir gern.",
+            "Willkommen im Grand Éclipse. Ich helf dir gern.",
             "Hey! Willkommen in Paris. Legen wir los.",
             "Willkommen! Schön, dass du da bist.",
             "Hi! Willkommen in deinem Zuhause in Paris.",
-            "Willkommen im Social Hub. Ich zeig dir alles.",
+            "Willkommen im Grand Éclipse. Ich zeig dir alles.",
             "Hallo! Freut mich. Machen wir's einfach.",
             "Willkommen! Ich bin für dich da.",
-            "Hey! Willkommen im Social Hub Paris. Bereit?"
+            "Hey! Willkommen im Grand Éclipse Paris. Bereit?"
         ],
         es: [
-            "Bienvenido a The Social Hub. Estoy aquí para ayudarte.",
+            "Bienvenido a Le Grand Éclipse. Estoy aquí para ayudarte.",
             "¡Hola! Bienvenido a París. Empecemos.",
             "¡Bienvenido! Encantada de tenerte aquí.",
             "¡Hey! Bienvenido a tu hogar en París.",
-            "Bienvenido a The Social Hub. Te acompaño.",
+            "Bienvenido a Le Grand Éclipse. Te acompaño.",
             "¡Hola! Qué bien verte. Vamos allá.",
             "¡Bienvenido! Estoy aquí para guiarte.",
-            "¡Hey! Bienvenido a The Social Hub París. ¿Listo?"
+            "¡Hey! Bienvenido a Le Grand Éclipse París. ¿Listo?"
         ],
         it: [
-            "Benvenuto al Social Hub. Sono qui per aiutarti.",
+            "Benvenuto al Grand Éclipse. Sono qui per aiutarti.",
             "Ciao! Benvenuto a Parigi. Iniziamo.",
             "Benvenuto! Felice di averti qui.",
             "Hey! Benvenuto a casa tua a Parigi.",
-            "Benvenuto al Social Hub. Ti accompagno.",
+            "Benvenuto al Grand Éclipse. Ti accompagno.",
             "Ciao! Che bello vederti. Facciamolo semplice.",
             "Benvenuto! Sono qui per guidarti.",
-            "Hey! Benvenuto al Social Hub Parigi. Pronto?"
+            "Hey! Benvenuto al Grand Éclipse Parigi. Pronto?"
         ],
         pt: [
-            "Bem-vindo ao Social Hub. Estou aqui para ajudar.",
+            "Bem-vindo ao Grand Éclipse. Estou aqui para ajudar.",
             "Olá! Bem-vindo a Paris. Vamos começar.",
             "Bem-vindo! Que bom ter-te aqui.",
             "Hey! Bem-vindo à tua casa em Paris.",
-            "Bem-vindo ao Social Hub. Eu acompanho-te.",
+            "Bem-vindo ao Grand Éclipse. Eu acompanho-te.",
             "Olá! Que bom ver-te. Vamos facilitar.",
             "Bem-vindo! Estou aqui para te guiar.",
-            "Hey! Bem-vindo ao Social Hub Paris. Pronto?"
+            "Hey! Bem-vindo ao Grand Éclipse Paris. Pronto?"
         ]
     },
 
@@ -116,7 +116,7 @@ export const SCRIPT_POOLS: Record<ScriptScene, Record<Lang, string[]>> = {
         en: [
             "Awesome. Welcome to your new home. Is this your first time staying with us, or have you already been around?",
             "Nice. We’re really happy to have you with us. Is this your first time staying with us, or have you already been around?",
-            "Great. Welcome to The Social Hub community. Is this your first time staying with us, or have you already been around?"
+            "Great. Welcome to Le Grand Éclipse community. Is this your first time staying with us, or have you already been around?"
         ],
         fr: ["Super. Bienvenue chez toi. C'est ta première fois ici ou tu connais déjà ?"],
         de: ["Cool. Willkommen zuhause. Warst du schon mal hier?"],
@@ -127,13 +127,13 @@ export const SCRIPT_POOLS: Record<ScriptScene, Record<Lang, string[]>> = {
 
     GUEST_WELCOME: {
         en: [
-            "Lovely. Welcome. Is this your first time staying at The Social Hub, or have you stayed with us before?",
-            "Great. I’ll help you make the most of your stay. Is this your first time staying at The Social Hub, or have you stayed with us before?",
-            "Perfect. Let me guide you. Is this your first time staying at The Social Hub, or have you stayed with us before?"
+            "Lovely. Welcome. Is this your first time staying at Le Grand Éclipse, or have you stayed with us before?",
+            "Great. I’ll help you make the most of your stay. Is this your first time staying at Le Grand Éclipse, or have you stayed with us before?",
+            "Perfect. Let me guide you. Is this your first time staying at Le Grand Éclipse, or have you stayed with us before?"
         ],
-        fr: ["Parfait. Bienvenue. Première fois au Social Hub ?"],
+        fr: ["Parfait. Bienvenue. Première fois au Grand Éclipse ?"],
         de: ["Schön. Willkommen. Zum ersten Mal hier?"],
-        es: ["Perfecto. Bienvenido. ¿Primera vez en The Social Hub?"],
+        es: ["Perfecto. Bienvenido. ¿Primera vez en Le Grand Éclipse?"],
         it: ["Bene. Benvenuto. Prima volta qui?"],
         pt: ["Muito bem. Bem-vindo. Primeira vez aqui?"]
     },
@@ -161,7 +161,7 @@ export const SCRIPT_POOLS: Record<ScriptScene, Record<Lang, string[]>> = {
     },
 
     GUEST_FIRST_TIME_INTRO: {
-        en: ["Great choice. The Social Hub is a bit different — part hotel, part community. I’ll show you the important things first, and you can explore more anytime."],
+        en: ["Great choice. Le Grand Éclipse is a bit different — part hotel, part community. I’ll show you the important things first, and you can explore more anytime."],
         fr: ["Bon choix. Ici c'est moitié hôtel, moitié communauté. Je te montre l'essentiel, tu découvriras le reste après."],
         de: ["Gute Wahl. Hier ist halb Hotel, halb Community. Ich zeig dir erst mal das Wichtigste."],
         es: ["Buena elección. Aquí es mitad hotel, mitad comunidad. Te enseño lo importante y ya explorarás."],
@@ -188,8 +188,8 @@ export const SCRIPT_POOLS: Record<ScriptScene, Record<Lang, string[]>> = {
         pt: ["O WiFi é super fácil. Olha."]
     },
     ACK_LAUNDRY: {
-        en: ["Laundry works through the Social Hub app. You get free tokens every month."],
-        fr: ["La laverie marche avec l'app Social Hub. T'as des jetons gratuits tous les mois."],
+        en: ["Laundry works through the LGE app. You get free tokens every month."],
+        fr: ["La laverie marche avec l'app LGE. T'as des jetons gratuits tous les mois."],
         de: ["Waschmaschinen über die App. Jeden Monat kriegst du Gratis-Token."],
         es: ["La lavandería va con la app. Tienes fichas gratis cada mes."],
         it: ["Lavanderia con l'app. Hai gettoni gratis ogni mese."],

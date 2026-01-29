@@ -178,7 +178,7 @@ export default function HubContentEditor({ onSave }: HubContentEditorProps) {
 
             {/* Shop Section */}
             <div className="bg-white rounded-xl border-2 border-neutral-200 p-6 space-y-4">
-                <h4 className="text-sm font-bold text-black uppercase tracking-wider border-b pb-2">TSH Shop</h4>
+                <h4 className="text-sm font-bold text-black uppercase tracking-wider border-b pb-2">LGE Shop</h4>
 
                 <div>
                     <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Title</label>
@@ -197,16 +197,6 @@ export default function HubContentEditor({ onSave }: HubContentEditorProps) {
                         onChange={(e) => handleChange('shop', 'caption', e.target.value)}
                         rows={2}
                         className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none resize-none"
-                    />
-                </div>
-
-                <div>
-                    <label className="block text-xs font-bold text-neutral-600 mb-2 uppercase tracking-wider">Student Discount Note</label>
-                    <input
-                        type="text"
-                        value={getValue('shop', 'studentDiscount')}
-                        onChange={(e) => handleChange('shop', 'studentDiscount', e.target.value)}
-                        className="w-full px-4 py-2 rounded-lg border border-neutral-200 focus:border-black outline-none"
                     />
                 </div>
             </div>

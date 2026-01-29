@@ -10,14 +10,14 @@ import { setDefaultConfig, loadConfig } from "./services/configService";
 import { ImageSlot, clearSlotOverride } from "./services/imageSlots";
 import { voiceService } from "./services/voiceService";
 import { getImageForSlot } from "./services/imageService";
-import { getActiveContext, setActiveContext, resolveStayType, getRoomNotes, RoomContext } from "./services/contextService";
+import { getActiveContext, setActiveContext, getRoomNotes, RoomContext } from "./services/contextService";
 import { CARD_VOICE_LINES, getSpeechLangCode } from "./services/cardVoiceLines";
-import { openTSHAppLink } from "./constants/links";
+import { openLGEAppLink } from "./constants/links";
 
 /* =========================================================
    TYPES & CONSTANTS
    ========================================================= */
-type StayType = "guest" | "student" | "unknown";
+
 
 type Route =
   | { name: "welcome" }
@@ -73,7 +73,6 @@ export type HotelPack = {
     openingHours: string,
     cleaning: {
       guest: string;
-      student: string;
       extraCleaningPrice: string;
       extraSheetsPrice: string;
     },
@@ -86,16 +85,14 @@ export type HotelPack = {
     poolInfo: string,
     gameRoomInfo: string,
     laundry: {
-      studentTokens: string;
       guestPolicy: string;
       reservationApp: string;
     },
-    studentPolicies: {
+    guestPolicies: {
       kitchenRules: string;
       trashSorting: string;
       windowsRule: string;
       visitorPolicy: string;
-      printingPrices: string;
     },
     area: {
       restaurants: string,
@@ -140,22 +137,17 @@ export interface ConciergeData {
   selectionVoice: { [lang: string]: string };
   introPhrases: {
     guest: { [lang: string]: string[] };
-    student: { [lang: string]: string[] };
   };
   fallbackHumanHelp: { [lang: string]: string };
   guest: {
     primaryTopicIds: string[];
     topics: Record<string, GuideTopic>;
   };
-  student: {
-    primaryTopicIds: string[];
-    topics: Record<string, GuideTopic>;
-  };
 }
 
-const LS_PACK = "tsh_pack_v5";
-const LS_LANG = "tsh_lang";
-const LS_LAST_ROOM = "tsh_last_room";
+const LS_PACK = "lge_pack_v5";
+const LS_LANG = "lge_lang";
+const LS_LAST_ROOM = "lge_last_room";
 
 const ui = {
   yellow: "#FFE400",
@@ -189,18 +181,17 @@ function resolveImageSrc(media: MediaItem[], ref?: ImageRef) {
 const DEFAULT_PACK: HotelPack = {
   schemaVersion: 6,
   profile: {
-    hotelName: "The Social Hub",
+    hotelName: "Le Grand Éclipse",
     cityLabel: "Paris La Défense",
     phoneDial: "9",
     frontDeskAvailability: "Our front desk team is here 24/7. Just reach out from your room phone.",
     wifi: {
-      ssid: "TSHguest",
-      instructions: "Connect to ‘TSHguest’. No password, no email required."
+      ssid: "LGEguest",
+      instructions: "Connect to ‘LGEguest’. No password, no email required."
     },
     openingHours: "Reception: 24/7. Gym: 24/7. Laundry: 24/7. Game room access via reception.",
     cleaning: {
       guest: "Cleaning every 2 nights. Bed sheets changed after the 4th night.",
-      student: "Room cleaning is once per month (free). Check the schedule in the lobby.",
       extraCleaningPrice: "€22.50",
       extraSheetsPrice: "€5.00"
     },
@@ -213,20 +204,18 @@ const DEFAULT_PACK: HotelPack = {
     poolInfo: "Summer only, 09:00 – 21:00. Remember your keycard.",
     gameRoomInfo: "Professional pool table. Access via reception.",
     laundry: {
-      studentTokens: "7 tokens per month included for laundry.",
       guestPolicy: "Free use of laundry facilities during your stay.",
-      reservationApp: "Reserve your machine via the TSH app."
+      reservationApp: "Reserve your machine via the LGE app."
     },
-    studentPolicies: {
+    guestPolicies: {
       kitchenRules: "Clean as you go. Respect your neighbor's food.",
       trashSorting: "Sorting bins available in the basement. Yellow for recycling, black for rest.",
       windowsRule: "Keep windows closed after 22:00 to keep the vibe quiet.",
-      visitorPolicy: "Guests must register at reception. No overnight visitors past 23:00 without day-pass.",
-      printingPrices: "€0.20 for Black & White, €0.60 for Color per page."
+      visitorPolicy: "Guests must register at reception. No overnight visitors past 23:00 without day-pass."
     },
     area: {
       restaurants: "Le Flore (French cuisine is a must try).",
-      discounts: "15% discount on the day menu with TSH room key at Le Flore.",
+      discounts: "15% discount on the day menu with LGE room key at Le Flore.",
       transport: "Metro station nearby. Taxis can be booked via reception.",
       essentials: "Grocery store close by for late night snacks."
     },
@@ -244,24 +233,24 @@ const DEFAULT_PACK: HotelPack = {
     { kind: "key", key: "hero_room", url: "/hero_room_v2.png", label: "Room Hero" },
     { kind: "key", key: "hero_events", url: "/hero_events_v2.png", label: "Events Hero" },
     { kind: "key", key: "hero_paris", url: "/hero_paris_v2.png", label: "Paris Hero" },
-    { kind: "key", key: "hub_breakfast", url: "/tsh_breakfast_buffet_v2.png", label: "Breakfast" },
+    { kind: "key", key: "hub_breakfast", url: "/lge_breakfast_buffet_v2.png", label: "Breakfast" },
     { kind: "key", key: "hub_pool", url: "/hub_pool_v2.png", label: "Pool" },
-    { kind: "key", key: "hub_games", url: "/tsh_gym_v1.png", label: "Gym" },
-    { kind: "key", key: "room_cleaning", url: "/tsh_housekeeping_v2.png", label: "Cleaning" },
-    { kind: "key", key: "room_wifi", url: "/tsh_wifi_desk_v2.png", label: "WiFi" },
-    { kind: "key", key: "area_metro", url: "/tsh_metro_entrance_v2.png", label: "Metro" },
+    { kind: "key", key: "hub_games", url: "/lge_gym_v1.png", label: "Gym" },
+    { kind: "key", key: "room_cleaning", url: "/lge_housekeeping_v2.png", label: "Cleaning" },
+    { kind: "key", key: "room_wifi", url: "/lge_wifi_desk_v2.png", label: "WiFi" },
+    { kind: "key", key: "area_metro", url: "/lge_metro_entrance_v2.png", label: "Metro" },
     { kind: "key", key: "hub_shop", url: "/shop_streetwear_v3.png", label: "Shop" },
-    { kind: "key", key: "hub_restaurant", url: "/tsh_restaurant_v1.png", label: "Restaurant" },
-    { kind: "key", key: "area_bikes", url: "/tsh_bikes_v1.png", label: "Bikes" },
-    { kind: "key", key: "area_market", url: "/tsh_grocery_v2.png", label: "Market" },
-    { kind: "key", key: "area_dining", url: "/tsh_dining_partners_v2.png", label: "Dining" },
-    { kind: "key", key: "room_amenities", url: "/tsh_thermostat_v2.png", label: "Amenities" },
-    { kind: "key", key: "room_maintenance", url: "/tsh_maintenance_v2.png", label: "Maintenance" },
-    { kind: "key", key: "hub_packages", url: "/tsh_packages_v2.png", label: "Packages" },
-    { kind: "key", key: "hub_luggage", url: "/tsh_luggage_v2.png", label: "Luggage" },
-    { kind: "key", key: "community", url: "/tsh_community_v1.png", label: "Community" },
-    { kind: "key", key: "room_laundry", url: "/tsh_laundry_v2.png", label: "Laundry" },
-    { kind: "key", key: "room_comforty", url: "/tsh_stay_comfortably_final.png", label: "Comfort" },
+    { kind: "key", key: "hub_restaurant", url: "/lge_restaurant_v1.png", label: "Restaurant" },
+    { kind: "key", key: "area_bikes", url: "/lge_bikes_v1.png", label: "Bikes" },
+    { kind: "key", key: "area_market", url: "/lge_grocery_v2.png", label: "Market" },
+    { kind: "key", key: "area_dining", url: "/lge_dining_partners_v2.png", label: "Dining" },
+    { kind: "key", key: "room_amenities", url: "/lge_thermostat_v2.png", label: "Amenities" },
+    { kind: "key", key: "room_maintenance", url: "/lge_maintenance_v2.png", label: "Maintenance" },
+    { kind: "key", key: "hub_packages", url: "/lge_packages_v2.png", label: "Packages" },
+    { kind: "key", key: "hub_luggage", url: "/lge_luggage_v2.png", label: "Luggage" },
+    { kind: "key", key: "community", url: "/lge_community_v1.png", label: "Community" },
+    { kind: "key", key: "room_laundry", url: "/lge_laundry_v2.png", label: "Laundry" },
+    { kind: "key", key: "room_comforty", url: "/lge_stay_comfortably_final.png", label: "Comfort" },
   ],
   categories: [
     { id: "hub", titleKey: "c_the_hub", color: ui.hubGreen, icon: "", heroImage: { kind: "key", key: "hero_hub" } },
@@ -324,12 +313,12 @@ const DEFAULT_PACK: HotelPack = {
     // Extended introduction v4 - plays once when Hotel Guest / Student cards appear
     // Combines welcome + guidance offer + stay-type question in one natural flow
     welcomeVoice: {
-      en: "Welcome to The Social Hub. I'll be your digital concierge, here to help you feel at home. Whenever you're ready, I can guide you through everything you need. To get started — are you staying with us as a hotel guest, or as a student?",
-      fr: "Bienvenue à The Social Hub. Je serai votre concierge digitale, là pour vous aider à vous sentir chez vous. Quand vous voulez, je peux vous guider à chaque étape de votre séjour. Pour commencer — séjournez-vous chez nous en tant que client hôtel, ou étudiant ?",
-      de: "Willkommen im The Social Hub. Ich bin Ihre digitale Concierge und helfe Ihnen gern, sich hier wohlzufühlen. Wenn Sie möchten, begleite ich Sie durch alles Wichtige. Zum Start — sind Sie bei uns als Hotelgast, oder als Student?",
-      es: "Bienvenido a The Social Hub. Seré tu concierge digital, aquí para ayudarte a sentirte como en casa. Cuando quieras, te guiaré en todo lo que necesites. Para empezar — ¿te alojas con nosotros como huésped del hotel, o como estudiante?",
-      it: "Benvenuto a The Social Hub. Sarò la tua concierge digitale, qui per farti sentire subito a casa. Quando vuoi, ti guiderò in tutto ciò di cui hai bisogno. Per iniziare — soggiorni con noi come ospite dell'hotel, o come studente?",
-      pt: "Bem-vindo ao The Social Hub. Serei a sua concierge digital, aqui para o ajudar a sentir-se em casa. Sempre que quiser, posso guiá-lo em tudo o que precisar. Para começar — está connosco como hóspede do hotel, ou como estudante?"
+      en: "Welcome to Le Grand Éclipse. I'll be your digital concierge, here to help you feel at home. Whenever you're ready, I can guide you through everything you need. To get started — are you staying with us as a hotel guest, or as a student?",
+      fr: "Bienvenue à Le Grand Éclipse. Je serai votre concierge digitale, là pour vous aider à vous sentir chez vous. Quand vous voulez, je peux vous guider à chaque étape de votre séjour. Pour commencer — séjournez-vous chez nous en tant que client hôtel, ou étudiant ?",
+      de: "Willkommen im Le Grand Éclipse. Ich bin Ihre digitale Concierge und helfe Ihnen gern, sich hier wohlzufühlen. Wenn Sie möchten, begleite ich Sie durch alles Wichtige. Zum Start — sind Sie bei uns als Hotelgast, oder als Student?",
+      es: "Bienvenido a Le Grand Éclipse. Seré tu concierge digital, aquí para ayudarte a sentirte como en casa. Cuando quieras, te guiaré en todo lo que necesites. Para empezar — ¿te alojas con nosotros como huésped del hotel, o como estudiante?",
+      it: "Benvenuto a Le Grand Éclipse. Sarò la tua concierge digitale, qui per farti sentire subito a casa. Quando vuoi, ti guiderò in tutto ciò di cui hai bisogno. Per iniziare — soggiorni con noi come ospite dell'hotel, o come studente?",
+      pt: "Bem-vindo ao Le Grand Éclipse. Serei a sua concierge digital, aqui para o ajudar a sentir-se em casa. Sempre que quiser, posso guiá-lo em tudo o que precisar. Para começar — está connosco como hóspede do hotel, ou como estudante?"
     },
     // Legacy selectionVoice - kept for backward compatibility but welcomeVoice now includes the question
     selectionVoice: {
@@ -396,44 +385,6 @@ const DEFAULT_PACK: HotelPack = {
           "Dagli asciugamani puliti al miglior caffè, ci penso io.",
           "Il vostro comfort è la mia priorità. Iniziamo dalle basi."
         ]
-      },
-      student: {
-        en: [
-          "Good vibes only. Let's get you connected.",
-          "Ready for the best semester of your life?",
-          "Study hard, play harder. Here’s what you need.",
-          "Welcome to the community. Let's get you sorted.",
-          "New city, new adventures. I'm here to help you navigate.",
-          "Laundry, kitchen, events? I know it all. Ask away.",
-          "Let's make this semester unforgettable. Starting now."
-        ],
-        fr: [
-          "Que des bonnes ondes. Connectons-nous.",
-          "Prêt pour le meilleur semestre de ta vie ?",
-          "Bosser dur, s'amuser plus. Voici ce qu'il te faut.",
-          "Bienvenue dans la communauté. On s'organise ?",
-          "Nouvelle ville, nouvelles aventures. Je suis ton guide.",
-          "Laverie, cuisine, soirées ? Je connais tout.",
-          "Rendons ce semestre inoubliable. Ça commence maintenant."
-        ],
-        de: [
-          "Nur gute Vibes. Lassen Sie uns verbinden.",
-          "Bereit für das beste Semester Ihres Lebens?",
-          "Hart arbeiten, härter feiern. Hier ist, was Sie brauchen.",
-          "Willkommen in der Community. Lassen Sie uns sortieren.",
-          "Neue Stadt, neue Abenteuer. Ich helfe beim Navigieren.",
-          "Wäsche, Küche, Events? Ich weiß alles.",
-          "Lassen Sie uns dieses Semester unvergesslich machen."
-        ],
-        es: [
-          "Solo buena vibra. Vamos a conectarte.",
-          "¿Listo para el mejor semestre de tu vida?",
-          "Estudia mucho, diviértete más. Aquí tienes lo que necesitas.",
-          "Bienvenido a la comunidad. ¿Nos organizamos?",
-          "Nueva ciudad, nuevas aventuras. Soy tu guía.",
-          "¿Lavandería, cocina, eventos? Lo sé todo.",
-          "Hagamos este semestre inolvidable. Empezando ahora."
-        ]
       }
     },
     fallbackHumanHelp: {
@@ -462,7 +413,7 @@ const DEFAULT_PACK: HotelPack = {
             },
             {
               title: { en: "WiFi", fr: "WiFi", de: "WiFi", es: "WiFi" },
-              body: { en: "Free high-speed WiFi throughout the hub. Connect to 'TSHguest'.", fr: "WiFi haut débit gratuit partout. Connectez-vous à 'TSHguest'.", de: "Gratis Highspeed-WLAN überall. Mit 'TSHguest' verbinden.", es: "WiFi rápido gratis en todo el hub. Conéctate a 'TSHguest'." },
+              body: { en: "Free high-speed WiFi throughout the hub. Connect to 'LGEguest'.", fr: "WiFi haut débit gratuit partout. Connectez-vous à 'LGEguest'.", de: "Gratis Highspeed-WLAN überall. Mit 'LGEguest' verbinden.", es: "WiFi rápido gratis en todo el hub. Conéctate a 'LGEguest'." },
               image: { kind: "key", key: "room_wifi" }
             },
             {
@@ -474,7 +425,7 @@ const DEFAULT_PACK: HotelPack = {
         },
         "shop": {
           id: "shop",
-          label: { en: "TSH Shop", fr: "Boutique TSH", de: "TSH Shop", es: "Tienda TSH" },
+          label: { en: "LGE Shop", fr: "Boutique LGE", de: "LGE Shop", es: "Tienda LGE" },
           voice: {
             en: "Our shop is open for daily essentials and our latest limited drops.",
             fr: "Boutique ouverte pour les essentiels et nos éditions limitées.",
@@ -484,7 +435,7 @@ const DEFAULT_PACK: HotelPack = {
           cards: [
             {
               title: { en: "Essentials", fr: "Essentiels", de: "Shop", es: "Tienda" },
-              body: { en: "From snacks to limited TSH merch. Open in the lobby.", fr: "Snacks, souvenirs et éditions limitées TSH. Au lobby.", de: "Snacks bis TSH-Merch. Im Lobby-Bereich.", es: "De snacks a artículos TSH. En el lobby." },
+              body: { en: "From snacks to limited LGE merch. Open in the lobby.", fr: "Snacks, souvenirs et éditions limitées LGE. Au lobby.", de: "Snacks bis LGE-Merch. Im Lobby-Bereich.", es: "De snacks a artículos LGE. En el lobby." },
               image: { kind: "key", key: "hub_shop" }
             }
           ]
@@ -528,12 +479,12 @@ const DEFAULT_PACK: HotelPack = {
             },
             {
               title: { en: "Bikes", fr: "Vélos", de: "Fahrräder", es: "Bicis" },
-              body: { en: "Bike hire available. Ask our team for rates and TSH app setup.", fr: "Location de vélos dispo. Demandez les tarifs à l'équipe.", de: "Fahrradverleih möglich. Fragt das Team nach Preisen.", es: "Alquiler de bicis. Consulta tarifas con el equipo." },
+              body: { en: "Bike hire available. Ask our team for rates and LGE app setup.", fr: "Location de vélos dispo. Demandez les tarifs à l'équipe.", de: "Fahrradverleih möglich. Fragt das Team nach Preisen.", es: "Alquiler de bicis. Consulta tarifas con el equipo." },
               image: { kind: "key", key: "area_bikes" }
             },
             {
               title: { en: "Laundry", fr: "Laverie", de: "Wäscherei", es: "Lavandería" },
-              body: { en: "Free for guests via TSH app. Open 24/7.", fr: "Gratuit via l'app TSH. Ouvert 24h/24.", de: "Kostenlos via TSH app. 24/7 offen.", es: "Gratis por la app TSH. Abierto 24/7." },
+              body: { en: "Free for guests via LGE app. Open 24/7.", fr: "Gratuit via l'app LGE. Ouvert 24h/24.", de: "Kostenlos via LGE app. 24/7 offen.", es: "Gratis por la app LGE. Abierto 24/7." },
               image: { kind: "key", key: "room_laundry" }
             },
             {
@@ -560,7 +511,7 @@ const DEFAULT_PACK: HotelPack = {
             },
             {
               title: { en: "Local Life", fr: "Vie Locale", de: "Lokales", es: "Vivienda" },
-              body: { en: "Le Flore restaurant nearby offers a 15% discount for TSH guests.", fr: "Le resto Le Flore offre -15% aux clients TSH.", de: "Restaurant Le Flore bietet 15% Rabatt für TSH-Gäste.", es: "Restaurante Le Flore ofrece 15% dto. a clientes TSH." },
+              body: { en: "Le Flore restaurant nearby offers a 15% discount for LGE guests.", fr: "Le resto Le Flore offre -15% aux clients LGE.", de: "Restaurant Le Flore bietet 15% Rabatt für LGE-Gäste.", es: "Restaurante Le Flore ofrece 15% dto. a clientes LGE." },
               image: { kind: "key", key: "area_dining" }
             },
             {
@@ -581,242 +532,6 @@ const DEFAULT_PACK: HotelPack = {
           },
           cards: [
             { title: { en: "Happening Now", fr: "En ce moment", de: "Aktuell", es: "Ahora" }, body: { en: "Check our local programming in the Events section on Home.", fr: "Voir le programme local dans la section Événements de l'Accueil.", de: "Siehe Programm im Events-Bereich auf der Startseite.", es: "Mira el programa local en la sección Eventos de Inicio." } }
-          ]
-        }
-      }
-    }
-    ,
-    student: {
-      primaryTopicIds: ["room", "kitchen", "laundry", "facilities", "benefits", "community", "packages", "shop", "events", "area"],
-      topics: {
-        "room": {
-          id: "room",
-          label: { en: "Your Room", fr: "Votre Chambre", de: "Ihr Zimmer", es: "Tu Habitación" },
-          voice: {
-            en: "Welcome home. Here is your student cleaning schedule and room info. Don't forget to use the room check QR from your welcome documents within 48 hours!",
-            fr: "Bienvenue chez vous. Voici le planning ménage. N'oubliez pas l'état des lieux via le QR code sous 48h !",
-            de: "Willkommen zuhause. Reinigungsplan und Zimmer-Infos. Vergessen Sie den Zimmercheck via QR-Code innerhalb von 48h nicht!",
-            es: "Bienvenido a casa. Horario de limpieza. No olvides el registro de habitación vía QR en 48h."
-          },
-          cards: [
-            {
-              title: { en: "Room Check", fr: "État des lieux", de: "Zimmercheck", es: "Registro" },
-              body: { en: "Must complete room check within 48 hours of check-in using the QR code in your welcome documents.", fr: "À faire sous 48h via le QR code de vos documents de bienvenue.", de: "Innerhalb von 48h nach Check-in per QR-Code aus den Unterlagen erledigen.", es: "Completa el registro en 48h con el QR de tus documentos." },
-              image: { kind: "key", key: "hero_room" }
-            },
-            {
-              title: { en: "Cleaning", fr: "Ménage", de: "Reinigung", es: "Limpieza" },
-              body: { en: "Once per month (free). Additional deep cleans available for €22.50.", fr: "1x par mois (gratuit). Ménage profond extra : 22,50€.", de: "1x pro Monat (gratis). Zusätzliche Reinigung: 22,50€.", es: "1x al mes (gratis). Limpieza extra: 22,50€.", it: "1x al mese (gratis). Pulizia extra: 22,50€.", pt: "1x por mês (grátis). Limpeza extra: 22,50€." },
-              image: { kind: "key", key: "room_cleaning" }
-            },
-            {
-              title: { en: "Issues", fr: "Problèmes", de: "Probleme", es: "Problemas" },
-              body: { en: "Something broken? Report it via the app or scan the maintenance QR at the desk.", fr: "Un souci ? Signalez-le via l'app ou scannez le QR à la réception.", de: "Etwas kaputt? Per App melden oder QR am Empfang scannen.", es: "¿Algo roto? Infórmalo por la app o el QR en recepción." },
-              image: { kind: "key", key: "room_maintenance" }
-            }
-          ]
-        },
-        "kitchen": {
-          id: "kitchen",
-          label: { en: "Kitchens", fr: "Cuisines", de: "Küchen", es: "Cocinas" },
-          voice: {
-            en: "Kitchens are shared spaces for our community. Please clean as you go to keep the vibe friendly.",
-            fr: "Les cuisines sont partagées. Nettoyez après usage pour garder une bonne ambiance.",
-            de: "Die Küchen sind Gemeinschaftsbereiche. Bitte nach Gebrauch aufräumen.",
-            es: "Las cocinas son compartidas. Limpia al terminar para mantener el buen ambiente."
-          },
-          cards: [
-            { title: { en: "Community Kitchen", fr: "Cuisine Commune", de: "Gemeinschaftsküche", es: "Cocina Común" }, body: { en: "Shared by everyone. You have personal fridge/storage compartments. Clean regularly.", fr: "Partagée par tous. Compartiments frigo/stockage personnels. Gardez-la propre.", de: "Für alle. Eigene Kühl- und Schrankfächer. Bitte sauber halten.", es: "Compartida por todos. Tienes espacio propio en frigo y armario. Mantén el orden." } },
-            { title: { en: "Shared Kitchens", fr: "Cuisines Étages", de: "Etagenküchen", es: "Cocinas Plantas" }, body: { en: "Located on student floors. Cleaned 2x/week. Accessible with your student key.", fr: "Aux étages étudiants. Ménage 2x/semaine. Accès avec votre clé étudiant.", de: "Auf Studentenetagen. 2x/Woche gereinigt. Zugang mit Zimmerschlüssel.", es: "En plantas de estudiantes. Limpieza 2x/semanal. Acceso con tu llave." } }
-          ]
-        },
-        "laundry": {
-          id: "laundry",
-          label: { en: "Laundry", fr: "Laverie", de: "Wäscherei", es: "Lavandería" },
-          voice: {
-            en: "Laundry is available 24/7. Your free tokens refresh monthly, so check your TSH app to reserve a machine.",
-            fr: "Laverie 24h/24. Vos jetons gratuits se renouvellent chaque mois. Réservez sur l'app TSH.",
-            de: "Wäscherei 24/7. Die Gratis-Tokens werden monatlich erneuert. Reservierung per TSH App.",
-            es: "Lavandería 24/7. Tus fichas gratis se renuevan cada mes. Reserva por la app TSH."
-          },
-          cards: [
-            {
-              title: { en: "Laundry Shop", fr: "Espace Laverie", de: "Wäscherei", es: "Lavandería" },
-              body: { en: "Our TSH style laundry room includes professional washers and dryers. Look for the 'Lost Sox' sign!", fr: "Belles machines et sèche-linges dans notre buanderie. Cherchez le panneau 'Lost Sox' !", de: "Unsere TSH-Wäscherei mit Profi-Maschinen. Achten Sie auf das 'Lost Sox' Schild!", es: "Lavandería estilo TSH con lavadoras y secadoras. ¡Busca el cartel 'Lost Sox'!" },
-              image: { kind: "key", key: "room_laundry" }
-            },
-            {
-              title: { en: "Reservation", fr: "Réservation", de: "Reservierung", es: "Reserva" },
-              body: { en: "Reserve your machine via the TSH app. Laundry room is open 24/7.", fr: "Réservez votre machine sur l'app TSH. Ouvert 24h/24.", de: "Maschine in der TSH App buchen. Wäscherei ist 24/7 offen.", es: "Reserva tu máquina en la app TSH. La lavandería abre 24/7." },
-              image: { kind: "key", key: "room_laundry" }
-            }
-          ]
-        },
-        "benefits": {
-          id: "benefits",
-          label: { en: "Shop & Perks", fr: "Boutique & Cadeaux", de: "Shop & Vorteile", es: "Tienda y Ventajas" },
-          voice: {
-            en: "Being a TSH student gets you 20% off retail in our shop. Just show your key!",
-            fr: "Être étudiant TSH vous donne 20% de réduction en boutique. Présentez votre clé !",
-            de: "TSH-Studenten erhalten 20% Rabatt im Shop. Einfach Schlüssel zeigen!",
-            es: "Ser estudiante TSH te da un 20% de descuento en la tienda. ¡Enseña tu llave!"
-          },
-          cards: [
-            {
-              title: { en: "Shop Discount", fr: "Réduction Boutique", de: "Shop Rabatt", es: "Descuento Tienda" },
-              body: { en: "20% discount on TSH retail items when showing your student key.", fr: "20% de réduction sur les articles TSH sur présentation de votre clé.", de: "20% Rabatt auf TSH-Artikel bei Vorzeigen des Schlüssels.", es: "20% de descuento en artículos TSH enseñando tu llave." },
-              image: { kind: "key", key: "hub_shop" }
-            },
-            {
-              title: { en: "Essentials", fr: "Essentiels", de: "Wichtiges", es: "Esenciales" },
-              body: { en: "Shop is open for daily essentials and limited drops.", fr: "Boutique ouverte pour les essentiels et éditions limitées.", de: "Shop für täglichen Bedarf und Special Drops offen.", es: "Tienda abierta para básicos y ediciones limitadas." },
-              image: { kind: "key", key: "hub_shop" }
-            }
-          ]
-        },
-        "facilities": {
-          id: "facilities",
-          label: { en: "Facilities", fr: "Installations", de: "Einrichtungen", es: "Instalaciones" },
-          voice: {
-            en: "From the gym to the pool, you have full access to our spaces with your key.",
-            fr: "De la salle de sport à la piscine, accédez à tous nos espaces avec votre clé.",
-            de: "Vom Gym bis zum Pool – mit Ihrem Schlüssel haben Sie überall Zugang.",
-            es: "Del gimnasio a la piscina, tienes acceso total con tu llave."
-          },
-          cards: [
-            {
-              title: { en: "Bikes", fr: "Vélos", de: "Fahrräder", es: "Bicis" },
-              body: { en: "Daily use via TSH Bike app (subject to availability). Parking info provided at check-in.", fr: "Usage quotidien via l'app TSH Bike. Infos parking données à l'arrivée.", de: "Tägliche Nutzung per TSH Bike App. Infos zum Parken beim Check-in.", es: "Uso diario con la app TSH Bike. Info de parking al llegar." },
-              image: { kind: "key", key: "area_bikes" }
-            },
-            {
-              title: { en: "Gym & Play", fr: "Gym & Jeux", de: "Gym & Spiel", es: "Gym y Juegos" },
-              body: { en: "Gym 24/7 with key. Play spaces (pool, ping-pong) open to everyone.", fr: "Gym 24h/24 avec clé. Espaces de jeux ouverts à tous.", de: "Gym 24/7 mit Schlüssel. Spielbereiche für alle offen.", es: "Gym 24/7 con llave. Áreas de juegos abiertas a todos." },
-              image: { kind: "key", key: "hub_games" }
-            },
-            {
-              title: { en: "Pool & Cinema", fr: "Piscine & Ciné", de: "Pool & Kino", es: "Piscina y Cine" },
-              body: { en: "Pool seasonal (access with key). Cinema booking via QR or welcome desk (collect fob).", fr: "Piscine saisonnière. Cinéma via QR ou réception (récupérez le badge).", de: "Pool saisonal. Kino per QR oder am Empfang buchen.", es: "Piscina de temporada. Cine por QR o en recepción." },
-              image: { kind: "key", key: "hub_pool" }
-            },
-            {
-              title: { en: "Luggage", fr: "Bagagerie", de: "Gepäck", es: "Maletas" },
-              body: { en: "Free storage available. Access handled by our team (not via student key).", fr: "Stockage gratuit. Accès géré par l'équipe (pas par votre clé).", de: "Kostenlose Aufbewahrung. Zugang über das Team.", es: "Almacén gratis. El equipo gestiona el acceso." },
-              image: { kind: "key", key: "hero_paris" }
-            }
-          ]
-        },
-        "community": {
-          id: "community",
-          label: { en: "Coworking", fr: "Coworking", de: "Coworking", es: "Coworking" },
-          voice: {
-            en: "Coworking is about availability. We also have quiet zones and meeting rooms if needed.",
-            fr: "Le coworking dépend des dispos. On a aussi des zones calmes et salles de réunion.",
-            de: "Coworking nach Verfügbarkeit. Es gibt auch Ruhezonen und Meetingräume.",
-            es: "El coworking es por disponibilidad. También hay zonas tranquilas y salas de reuni."
-          },
-          cards: [
-            { title: { en: "Workspaces", fr: "Espaces Travail", de: "Arbeitsbereiche", es: "Espaces de Trabajo" }, body: { en: "Coworking open to students based on availability. Quiet zones may require your key.", fr: "Coworking selon dispos. Zones calmes : accès clé possible.", de: "Coworking nach Verfügbarkeit. Ruhezonen teils mit Schlüssel.", es: "Coworking según disponibilidad. Zonas relax con llave." } },
-            { title: { en: "Meeting Rooms", fr: "Salles Réunion", de: "Meetingräume", es: "Salas de Reunión" }, body: { en: "Bookable spaces for your focus. Pricing varies; ask the team for details.", fr: "Espaces réservables. Tarifs variés ; demandez à l'équipe.", de: "Buchbare Räume. Preise variieren; frag das Team.", es: "Espacios de reserva. Precios varios; pregunta al equipo." } }
-          ]
-        },
-        "frontdesk": {
-          id: "frontdesk",
-          label: { en: "Front Desk 24/7", fr: "Réception 24/7", de: "Empfang 24/7", es: "Recepción 24/7" },
-          voice: {
-            en: "We are always here. Dial 9 or come see us at the desk anytime.",
-            fr: "On est toujours là. Composez le 9 ou passez nous voir à tout moment.",
-            de: "Wir sind immer da. Wählen Sie die 9 oder kommen Sie vorbei.",
-            es: "Siempre estamos. Marca el 9 o ven a vernos cuando quieras."
-          },
-          cards: [
-            {
-              title: { en: "Contact", fr: "Contact", de: "Kontakt", es: "Contacto" },
-              body: { en: "Dial 9 from your room or stop by the lobby. We're here 24/7.", fr: "Composez le 9 depuis votre chambre ou passez au lobby. 24h/24.", de: "Die 9 vom Zimmer aus oder direkt am Empfang. Wir sind 24/7 da.", es: "Marca 9 desde tu habitación o ven al lobby. Estamos 24/7." },
-              image: { kind: "key", key: "hero_paris" }
-            }
-          ]
-        },
-        "events": {
-          id: "events",
-          label: { en: "Events", fr: "Événements", de: "Events", es: "Eventos" },
-          voice: {
-            en: "There’s always something happening. Join us for yoga, community dinners, or workshops!",
-            fr: "Il se passe toujours quelque chose. Rejoignez-nous pour du yoga, des dîners ou des ateliers !",
-            de: "Es ist immer etwas los. Machen Sie mit beim Yoga oder Community-Dinner.",
-            es: "Siempre pasa algo. Apúntate a yoga, cenas o talleres."
-          },
-          cards: [
-            { title: { en: "Happening Now", fr: "En ce moment", de: "Aktuell", es: "Ahora" }, body: { en: "Check our local programming in the Events section on Home.", fr: "Voir le programme local dans la section Événements de l'Accueil.", de: "Siehe Programm im Events-Bereich auf der Startseite.", es: "Mira el programa local en la sección Eventos de Inicio." } }
-          ]
-        },
-        "area": {
-          id: "area",
-          label: { en: "Around the Area", fr: "Quartier", de: "Umgebung", es: "Zona" },
-          voice: {
-            en: "Explore Paris like a local. Here's how to get around and where to find the essentials.",
-            fr: "Explorez Paris comme un local. Voici comment circuler et trouver l'essentiel.",
-            de: "Entdecken Sie Paris wie ein Local. Hier sind die besten Tipps.",
-            es: "Explora París como un local. Así puedes moverte y buscar lo básico."
-          },
-          cards: [
-            {
-              title: { en: "Transport", fr: "Transport", de: "Verkehr", es: "Transporte" },
-              body: { en: "Metro station La Défense is a 1 min walk. Direct to city center.", fr: "Métro La Défense à 1 min. Direct vers le centre.", de: "Metro La Défense 1 Min. zu Fuß. Direkt ins Zentrum.", es: "Metro La Défense a 1 min. Directo al centro." },
-              image: { kind: "key", key: "area_metro" }
-            },
-            {
-              title: { en: "Local Life", fr: "Vie Locale", de: "Lokales", es: "Vivienda" },
-              body: { en: "Le Flore restaurant nearby offers a 15% discount for TSH guests.", fr: "Le resto Le Flore offre -15% aux clients TSH.", de: "Restaurant Le Flore bietet 15% Rabatt für TSH-Gäste.", es: "Restaurante Le Flore ofrece 15% dto. a clientes TSH." },
-              image: { kind: "key", key: "area_market" }
-            }
-          ]
-        },
-        "shop": {
-          id: "shop",
-          label: { en: "TSH Shop", fr: "Boutique TSH", de: "TSH Shop", es: "Tienda TSH" },
-          voice: {
-            en: "Our shop has daily essentials and our latest limited drops. Don't forget your 20% student discount!",
-            fr: "Notre boutique a l'essentiel et nos éditions limitées. N'oubliez pas vos -20% !",
-            de: "Der Shop hat alles Wichtige. Vergessen Sie nicht Ihren 20% Studentenrabatt!",
-            es: "La tienda tiene lo básico y ediciones limitadas. ¡No olvides tu -20%!"
-          },
-          cards: [
-            { title: { en: "Student Perks", fr: "Avantages Étudiants", de: "Studenten-Vorteile", es: "Ventajas Estudiantes" }, body: { en: "20% discount on retail items when showing your student key.", fr: "20% de réduction sur présentation de votre clé étudiant.", de: "20% Rabatt bei Vorzeigen des Studentenschlüssels.", es: "20% de descuento enseñando tu llave de estudiante." } },
-            { title: { en: "Essentials", fr: "Essentiels", de: "Shop", es: "Tienda" }, body: { en: "From snacks to limited TSH merch. Open in the lobby.", fr: "Snacks, souvenirs et éditions limitées TSH. Au lobby.", de: "Snacks bis TSH-Merch. Im Lobby-Bereich.", es: "De snacks a artículos TSH. En el lobby." } }
-          ]
-        },
-        "packages": {
-          id: "packages",
-          label: { en: "Mail & Packages", fr: "Courrier & Colis", de: "Post & Pakete", es: "Correo y Paquetes", it: "Posta & Pacchi", pt: "Correio & Encomendas" },
-          voice: {
-            en: "Got a delivery? We'll handle it. Your packages are safe in our package room.",
-            fr: "Une livraison ? On s'en occupe. Vos colis sont en sécurité dans notre salle dédiée.",
-            de: "Paket angekommen? Wir kümmern uns darum. Ihre Pakete sind im Paketraum sicher.",
-            es: "¿Un paquete? Nosotros nos encargamos. Tus paquetes están seguros en nuestra sala.",
-            it: "Un pacco? Ce ne occupiamo noi. I tuoi pacchi sono al sicuro nella nostra sala.",
-            pt: "Uma encomenda? Tratamos disso. As suas encomendas estão seguras na nossa sala."
-          },
-          cards: [
-            {
-              title: {
-                en: "Mail & Packages",
-                fr: "Courrier & Colis",
-                de: "Post & Pakete",
-                es: "Correo y Paquetes",
-                it: "Posta & Pacchi",
-                pt: "Correio & Encomendas"
-              },
-              body: {
-                en: "Mail / letters address:\nThe Social Hub Paris La Défense\n56 Rue Roque de Fillol\n92800 Puteaux (Paris La Défense), France\n\nImportant: add your room number to your name.\nWhen something arrives, Front Desk will email you.\nPick-up is at the Welcome Desk during reception hours.",
-                fr: "Courrier / colis :\nThe Social Hub Paris La Défense\n56 Rue Roque de Fillol\n92800 Puteaux (Paris La Défense), France\n\nImportant : ajoutez votre numéro de chambre à votre nom.\nDès réception, la réception vous enverra un email.\nRetrait au Welcome Desk pendant les heures de réception.",
-                de: "Post / Pakete Adresse:\nThe Social Hub Paris La Défense\n56 Rue Roque de Fillol\n92800 Puteaux (Paris La Défense), Frankreich\n\nWichtig: Fügen Sie Ihre Zimmernummer zu Ihrem Namen hinzu.\nBei Ankunft wird die Rezeption Sie per E-Mail benachrichtigen.\nAbholung am Welcome Desk während der Öffnungszeiten.",
-                es: "Dirección para correo / paquetes:\nThe Social Hub Paris La Défense\n56 Rue Roque de Fillol\n92800 Puteaux (Paris La Défense), Francia\n\nImportante: añade tu número de habitación a tu nombre.\nCuando llegue algo, recepción te enviará un email.\nRecogida en el Welcome Desk en horario de recepción.",
-                it: "Indirizzo posta / pacchi:\nThe Social Hub Paris La Défense\n56 Rue Roque de Fillol\n92800 Puteaux (Paris La Défense), Francia\n\nImportante: aggiungi il numero della tua camera al tuo nome.\nAll'arrivo, la reception ti invierà un'email.\nRitiro al Welcome Desk durante gli orari di ricevimento.",
-                pt: "Endereço para correio / encomendas:\nThe Social Hub Paris La Défense\n56 Rue Roque de Fillol\n92800 Puteaux (Paris La Défense), França\n\nImportante: adicione o número do seu quarto ao seu nome.\nQuando chegar algo, a receção enviará um email.\nLevantamento no Welcome Desk durante o horário de receção."
-              },
-              image: { kind: "key", key: "hub_packages" }
-            }
           ]
         }
       }
@@ -1003,8 +718,8 @@ function HubView({ pack, lang, onBack }: any) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#F2F2F2] via-black/20 to-transparent" />
         <button onClick={onBack} className="absolute top-6 left-6 h-10 w-10 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-lg hover:bg-black/40 transition-all z-20"><span className="text-xl pb-1">‹</span></button>
         <div className="absolute bottom-6 left-6 right-6">
-          <div className="tsh-tag text-[10px] mb-2 bg-[#43D3A0] text-black border-none shadow-md">{t(lang, "hub.coverSubtitle")}</div>
-          <h2 className="tsh-title text-4xl text-black drop-shadow-sm">{t(lang, "home.menu.hub")}</h2>
+          <div className="lge-tag text-[10px] mb-2 bg-[#43D3A0] text-black border-none shadow-md">{t(lang, "hub.coverSubtitle")}</div>
+          <h2 className="lge-title text-4xl text-black drop-shadow-sm">{t(lang, "home.menu.hub")}</h2>
         </div>
       </div>
 
@@ -1125,8 +840,8 @@ function RoomView({ pack, lang, onBack }: any) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#F2F2F2] via-black/20 to-transparent" />
         <button onClick={onBack} className="absolute top-6 left-6 h-10 w-10 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-lg hover:bg-black/40 transition-all z-20"><span className="text-xl pb-1">‹</span></button>
         <div className="absolute bottom-6 left-6 right-6">
-          <div className="tsh-tag text-[10px] mb-2 bg-[#FF3B57] text-white border-none shadow-md">{t(lang, "room.coverSubtitle")}</div>
-          <h2 className="tsh-title text-4xl text-black drop-shadow-sm">{t(lang, "room.coverTitle")}</h2>
+          <div className="lge-tag text-[10px] mb-2 bg-[#FF3B57] text-white border-none shadow-md">{t(lang, "room.coverSubtitle")}</div>
+          <h2 className="lge-title text-4xl text-black drop-shadow-sm">{t(lang, "room.coverTitle")}</h2>
         </div>
       </div>
 
@@ -1252,8 +967,8 @@ function NeighborhoodView({ pack, lang, onBack }: any) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#F2F2F2] via-black/20 to-transparent" />
         <button onClick={onBack} className="absolute top-6 left-6 h-10 w-10 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-lg hover:bg-black/40 transition-all z-20"><span className="text-xl pb-1">‹</span></button>
         <div className="absolute bottom-6 left-6 right-6">
-          <div className="tsh-tag text-[10px] mb-2 bg-[#2563EB] text-white border-none shadow-md">{t(lang, "neighborhood.coverSubtitle")}</div>
-          <h2 className="tsh-title text-4xl text-black drop-shadow-sm">{t(lang, "neighborhood.coverTitle")}</h2>
+          <div className="lge-tag text-[10px] mb-2 bg-[#2563EB] text-white border-none shadow-md">{t(lang, "neighborhood.coverSubtitle")}</div>
+          <h2 className="lge-title text-4xl text-black drop-shadow-sm">{t(lang, "neighborhood.coverTitle")}</h2>
         </div>
       </div>
 
@@ -1303,8 +1018,8 @@ function ListView({ pack, lang, categoryId, onBack, onOpenDetail }: any) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
         <button onClick={onBack} className="absolute top-6 left-6 h-12 w-12 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-lg hover:bg-white/30 transition-all z-20"><span className="text-2xl mt-[-2px]">‹</span></button>
         <div className="absolute bottom-8 left-8 right-8">
-          <div className="tsh-tag mb-2 bg-[#FFE400] text-black">{t(lang, "guide_label")}</div>
-          <h2 className="tsh-title text-5xl text-white drop-shadow-lg leading-none">{cat?.id === 'neighborhood' ? 'Explore Paris' : t(lang, cat?.titleKey || "")}</h2>
+          <div className="lge-tag mb-2 bg-[#FFE400] text-black">{t(lang, "guide_label")}</div>
+          <h2 className="lge-title text-5xl text-white drop-shadow-lg leading-none">{cat?.id === 'neighborhood' ? 'Explore Paris' : t(lang, cat?.titleKey || "")}</h2>
         </div>
       </div>
       <div className="flex-1 overflow-y-auto px-6 py-10 space-y-4 pb-24">
@@ -1406,7 +1121,7 @@ function EventsListView({ pack, lang, mode, onBack, onSetMode }: any) {
       <div className="relative h-[35vh] w-full shrink-0">
         <img
           src={heroUrl}
-          alt="Events at TSH"
+          alt="Events at Le Grand Éclipse"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#F8F9FA] via-black/20 to-transparent" />
@@ -1416,7 +1131,7 @@ function EventsListView({ pack, lang, mode, onBack, onSetMode }: any) {
           <div className="inline-block px-3 py-1 rounded-full bg-[#43D3A0] text-xs font-bold text-black mb-3 shadow-md">
             {t(lang, "events.coverSubtitle")}
           </div>
-          <h2 className="tsh-title text-4xl text-black drop-shadow-sm">{t(lang, "events_title")}</h2>
+          <h2 className="lge-title text-4xl text-black drop-shadow-sm">{t(lang, "events_title")}</h2>
         </div>
       </div>
 
@@ -1491,11 +1206,11 @@ function EventsListView({ pack, lang, mode, onBack, onSetMode }: any) {
               <h3 className="text-4xl font-semibold tracking-tight leading-none mb-6" style={{ fontFamily: '"Rubik", sans-serif' }}>{selectedEvent.title[lang] || selectedEvent.title.en}</h3>
 
               <p className="text-neutral-600 font-medium leading-relaxed mb-10 text-lg">
-                {selectedEvent.description?.[lang] || selectedEvent.description?.en || "Join us for an amazing community event at The Social Hub. Meeting new people and having fun is what we do best."}
+                {selectedEvent.description?.[lang] || selectedEvent.description?.en || "Join us for an amazing community event at Le Grand Éclipse. Meeting new people and having fun is what we do best."}
               </p>
 
               <button
-                onClick={openTSHAppLink}
+                onClick={openLGEAppLink}
                 className="w-full h-16 rounded-full bg-black text-white font-bold text-sm shadow-xl active:scale-95 transition-all"
               >
                 {t(lang, "events.viewAll")}
@@ -1586,15 +1301,7 @@ export default function App() {
   useEffect(() => { localStorage.setItem(LS_LANG, lang); }, [lang]);
   useEffect(() => { localStorage.setItem(LS_LAST_ROOM, room); }, [room]);
 
-  // Stay type resolution using context service (NO assumptions)
-  const stayType: StayType = useMemo(() => {
-    const context = getActiveContext();
-    const resolved = resolveStayType(context);
-
-    // If resolution returns null (no context), fallback to "guest"
-    // This maintains current app behavior when no QR is scanned
-    return resolved || "guest";
-  }, [room]); // Re-evaluate if room changes (for future manual context setting)
+  // Always guest flow - student context has been removed
 
   const push = (r: Route) => setRouteStack(s => [...s, r]);
   const pop = () => setRouteStack(s => s.length > 1 ? s.slice(0, -1) : s);

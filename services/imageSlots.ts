@@ -56,18 +56,18 @@ export const DEFAULT_IMAGES: Record<ImageSlot, string> = {
 
     // Hub
     [ImageSlot.HUB_HERO]: '/hero_hub_v2.png',
-    [ImageSlot.HUB_CARD_FACILITIES]: '/tsh_gym_v1.png',
-    [ImageSlot.HUB_CARD_FOOD]: '/tsh_breakfast_buffet_v2.png',
-    [ImageSlot.HUB_CARD_BREAKFAST]: '/tsh_breakfast_buffet_v2.png',
-    [ImageSlot.HUB_CARD_RESTAURANT]: '/tsh_restaurant_v1.png',
+    [ImageSlot.HUB_CARD_FACILITIES]: '/lge_gym_v1.png',
+    [ImageSlot.HUB_CARD_FOOD]: '/lge_breakfast_buffet_v2.png',
+    [ImageSlot.HUB_CARD_BREAKFAST]: '/lge_breakfast_buffet_v2.png',
+    [ImageSlot.HUB_CARD_RESTAURANT]: '/lge_restaurant_v1.png',
     [ImageSlot.HUB_CARD_SHOP]: '/shop_streetwear_v3.png',
 
     // Room
     [ImageSlot.ROOM_HERO]: '/hero_room_v2.png',
-    [ImageSlot.ROOM_CARD_WIFI]: '/tsh_wifi_desk_v2.png',
-    [ImageSlot.ROOM_CARD_CLEANING]: '/tsh_housekeeping_v2.png',
-    [ImageSlot.ROOM_CARD_AMENITIES]: '/tsh_thermostat_v2.png',
-    [ImageSlot.ROOM_CARD_AC]: '/tsh_stay_comfortably_final.png',
+    [ImageSlot.ROOM_CARD_WIFI]: '/lge_wifi_desk_v2.png',
+    [ImageSlot.ROOM_CARD_CLEANING]: '/lge_housekeeping_v2.png',
+    [ImageSlot.ROOM_CARD_AMENITIES]: '/lge_thermostat_v2.png',
+    [ImageSlot.ROOM_CARD_AC]: '/lge_stay_comfortably_final.png',
 
     // Events
     [ImageSlot.EVENTS_HERO]: '/hero_events_v2.png',
@@ -75,10 +75,10 @@ export const DEFAULT_IMAGES: Record<ImageSlot, string> = {
 
     // Area
     [ImageSlot.AREA_HERO]: '/hero_ladefense.png',
-    [ImageSlot.AREA_CARD_METRO]: '/tsh_metro_entrance_v2.png',
-    [ImageSlot.AREA_CARD_GROCERY]: '/tsh_grocery_v2.png',
-    [ImageSlot.AREA_CARD_PARTNERS]: '/tsh_dining_partners_v2.png',
-    [ImageSlot.AREA_CARD_BIKES]: '/tsh_bikes_v1.png',
+    [ImageSlot.AREA_CARD_METRO]: '/lge_metro_entrance_v2.png',
+    [ImageSlot.AREA_CARD_GROCERY]: '/lge_grocery_v2.png',
+    [ImageSlot.AREA_CARD_PARTNERS]: '/lge_dining_partners_v2.png',
+    [ImageSlot.AREA_CARD_BIKES]: '/lge_bikes_v1.png',
 
     // Concierge
     [ImageSlot.CONCIERGE_BG]: '/concierge_bg.png'
@@ -171,7 +171,7 @@ export const SLOT_GROUPS = {
    SLOT ASSIGNMENT STORAGE
    ===========================================================*/
 
-const SLOTS_STORAGE_KEY = 'tsh_image_slots_v1';
+const SLOTS_STORAGE_KEY = 'lge_image_slots_v1';
 
 export interface SlotAssignment {
     slotId: ImageSlot;
