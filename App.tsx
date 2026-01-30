@@ -272,13 +272,13 @@ const DEFAULT_PACK: HotelPack = {
   ],
   events: [
     {
-      id: "morning-yoga",
-      title: { en: "Morning Yoga", fr: "Yoga du matin", nl: "Ochtend yoga" },
-      startTime: "08:00–09:00",
-      location: { en: "The Gym", fr: "La salle de sport", nl: "De gym" },
+      id: "spa-wellness",
+      title: { en: "Spa & Wellness", fr: "Spa & Bien-être", nl: "Spa & Wellness" },
+      startTime: "09:00–21:00",
+      location: { en: "Level -1", fr: "Niveau -1", nl: "Niveau -1" },
       image: { kind: "url", url: "/assets/images/spa.png" },
       dayTag: "today",
-      description: { en: "Start your day with energy and focus. Open for all levels.", fr: "Commencez votre journée avec énergie et concentration.", nl: "Begin je dag met energie en focus." }
+      description: { en: "Indulge in our luxury spa treatments. Massage, sauna, and relaxation areas available.", fr: "Profitez de nos soins spa de luxe. Massage, sauna et espaces de détente disponibles.", nl: "Geniet van onze luxe spa-behandelingen. Massage, sauna en ontspanningsruimtes beschikbaar." }
     },
     {
       id: "wine-cheese",
@@ -764,16 +764,18 @@ function HubView({ pack, lang, onBack }: any) {
         <ImageAccordion title={t(lang, "hub.facilities")} icon="" imageUrl={imgGames} voiceKey="hub_facilities" lang={lang}>
           <div className="space-y-4">
             <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-100 text-sm font-medium leading-relaxed text-neutral-600">
-              {p.openingHours}
+              {lang === 'fr'
+                ? "Réception : 24h/24. Salle de sport : 24h/24. Blanchisserie : 24h/24. Accès salon sur demande."
+                : "Reception: 24/7. Gym: 24/7. Laundry: 24/7. Lounge access upon request."}
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="p-3 bg-white rounded-xl border border-neutral-100 shadow-sm">
-                <div className="text-xs font-medium text-neutral-500 mb-1">Gym</div>
-                <div className="text-xs font-bold text-neutral-800">24/7 Access</div>
+                <div className="text-xs font-medium text-neutral-500 mb-1">{lang === 'fr' ? 'Salle de sport' : 'Gym'}</div>
+                <div className="text-xs font-bold text-neutral-800">{lang === 'fr' ? 'Accès 24h/24' : '24/7 Access'}</div>
               </div>
               <div className="p-3 bg-white rounded-xl border border-neutral-100 shadow-sm">
-                <div className="text-xs font-medium text-neutral-500 mb-1">Laundry</div>
-                <div className="text-xs font-bold text-neutral-800">24/7 Access</div>
+                <div className="text-xs font-medium text-neutral-500 mb-1">{lang === 'fr' ? 'Blanchisserie' : 'Laundry'}</div>
+                <div className="text-xs font-bold text-neutral-800">{lang === 'fr' ? 'Accès 24h/24' : '24/7 Access'}</div>
               </div>
             </div>
           </div>
@@ -788,10 +790,14 @@ function HubView({ pack, lang, onBack }: any) {
               </div>
               <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-100 space-y-3">
                 <div className="text-sm font-bold text-neutral-800">
-                  {p.breakfast.times}
+                  {lang === 'fr'
+                    ? "Semaine : 07h00–10h30 • Week-end : 07h30–11h00"
+                    : "Weekdays: 07:00–10:30 • Weekends: 07:30–11:00"}
                 </div>
                 <div className="text-sm font-bold text-neutral-800">
-                  {p.breakfast.prices}
+                  {lang === 'fr'
+                    ? "15€ par personne (19,50€ si réservé le matin même)"
+                    : "€15 per person (€19.50 if booked same morning at the desk)"}
                 </div>
               </div>
             </div>
