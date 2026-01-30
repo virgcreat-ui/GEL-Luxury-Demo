@@ -814,13 +814,15 @@ function HubView({ pack, lang, onBack }: any) {
           </div>
         </ImageAccordion>
 
-        <ImageAccordion title={t(lang, "shop_title")} icon="" imageUrl={resolveImageSrc(pack.media, { kind: "key", key: "hub_shop" })} voiceKey="hub_shop" lang={lang}>
+        <ImageAccordion title={lang === 'fr' ? "Galeries Lafayette" : "Luxury Shopping"} icon="" imageUrl={resolveImageSrc(pack.media, { kind: "key", key: "hub_shop" })} voiceKey="hub_shop" lang={lang}>
           <div className="space-y-3">
             <p className="text-sm font-medium text-neutral-700 leading-relaxed">
-              {t(lang, "shop_subtitle")}
+              {lang === 'fr'
+                ? "Découvrez les Galeries Lafayette Haussmann, à seulement 15 minutes. Notre conciergerie vous réserve un accueil VIP sur demande."
+                : "Discover Galeries Lafayette Haussmann, just 15 minutes away. Our concierge can arrange VIP reception upon request."}
             </p>
-            <div className="p-3 bg-blue-50 border border-blue-100 rounded-xl flex items-start gap-3">
-              <span className="text-xs font-bold text-blue-700">{t(lang, "shop_student_note")}</span>
+            <div className="p-3 bg-amber-50 border border-amber-100 rounded-xl flex items-start gap-3">
+              <span className="text-xs font-bold text-amber-700">{lang === 'fr' ? "Service Tax Refund disponible pour les clients internationaux." : "Tax Refund service available for international guests."}</span>
             </div>
           </div>
         </ImageAccordion>
