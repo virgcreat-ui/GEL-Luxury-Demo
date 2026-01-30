@@ -139,7 +139,7 @@ const en: Record<string, string> = {
   "hub.back_moments": "Return",
   hub_pool_info: "Seasonal access • 09:00–21:00. Suite key required.",
   hub_games_info: "PlayStation 5, Table Tennis, Foosball.",
-  neighborhood_transport_info: "Metro station nearby. Private car service available via reception.",
+  neighborhood_transport_info: "Taxi G7 luxury service available 24/7. Airport transfers and private chauffeur upon request.",
   neighborhood_directions: "Directions",
   "events.view_this_week": "This week",
   "concierge.ask_front_desk": "Contact Reception",

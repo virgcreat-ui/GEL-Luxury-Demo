@@ -216,7 +216,7 @@ const DEFAULT_PACK: HotelPack = {
     area: {
       restaurants: "Le Flore (French cuisine is a must try).",
       discounts: "15% discount on the day menu with LGE room key at Le Flore.",
-      transport: "Metro station nearby. Taxis can be booked via reception.",
+      transport: "Service de voiture privée Taxi G7 disponible 24h/24.",
       essentials: "Épicerie fine à proximité pour vos besoins immédiats."
     },
     facilitiesConfig: {
@@ -444,8 +444,8 @@ const DEFAULT_PACK: HotelPack = {
               image: { kind: "key", key: "hub_games" }
             },
             {
-              title: { en: "Bikes", fr: "Vélos", de: "Fahrräder", es: "Bicis" },
-              body: { en: "Bike hire available. Ask our team for rates and LGE app setup.", fr: "Location de vélos dispo. Demandez les tarifs à l'équipe.", de: "Fahrradverleih möglich. Fragt das Team nach Preisen.", es: "Alquiler de bicis. Consulta tarifas con el equipo." },
+              title: { en: "Private Transport", fr: "Transport Privé", de: "Privater Transport", es: "Transporte Privado" },
+              body: { en: "Taxi G7 available 24/7. Request via reception or dial 9 from your suite.", fr: "Taxi G7 disponible 24h/24. Demandez à la réception ou composez le 9 depuis votre suite.", de: "Taxi G7 rund um die Uhr verfügbar. Fragen Sie an der Rezeption oder wählen Sie 9.", es: "Taxi G7 disponible 24/7. Solicite en recepción o marque el 9." },
               image: { kind: "key", key: "area_bikes" }
             },
             {
@@ -471,8 +471,8 @@ const DEFAULT_PACK: HotelPack = {
           },
           cards: [
             {
-              title: { en: "Transport", fr: "Transport", de: "Verkehr", es: "Transporte" },
-              body: { en: "Metro station La Défense is a 1 min walk. Direct to city center.", fr: "Métro La Défense à 1 min. Direct vers le centre.", de: "Metro La Défense 1 Min. zu Fuß. Direkt ins Zentrum.", es: "Metro La Défense a 1 min. Directo al centro." },
+              title: { en: "Transport Privé", fr: "Transport Privé", de: "Privattransport", es: "Transporte Privado" },
+              body: { en: "Taxi G7 luxury service available 24/7. Airport transfers, city tours, and exclusive destinations.", fr: "Service Taxi G7 disponible 24h/24. Transferts aéroport, circuits en ville et destinations exclusives.", de: "Taxi G7 Luxusservice rund um die Uhr. Flughafentransfers, Stadtrundfahrten und exklusive Ziele.", es: "Servicio Taxi G7 24/7. Traslados al aeropuerto, tours por la ciudad y destinos exclusivos." },
               image: { kind: "key", key: "area_metro" }
             },
             {
