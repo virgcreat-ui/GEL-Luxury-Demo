@@ -8,7 +8,7 @@ interface BreakfastCardProps {
 
 export default function BreakfastCard({ lang, onBack }: BreakfastCardProps) {
   const hero =
-    "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=80"; // breakfast vibe
+    "/assets/images/breakfast.png"; // Le Grand Éclipse breakfast
 
   return (
     <div className="h-full bg-[#F7F7F7] text-[#111] overflow-y-auto">
@@ -34,15 +34,15 @@ export default function BreakfastCard({ lang, onBack }: BreakfastCardProps) {
           <div className="p-6">
             <ul className="space-y-4 text-[15px] leading-relaxed">
               <li className="rounded-2xl bg-[#F9FAFB] p-5 flex gap-4 items-start border border-black/5">
-                <span className="font-black text-lg leading-none mt-1">1.</span> 
+                <span className="font-black text-lg leading-none mt-1">1.</span>
                 <span className="font-medium">{t(lang, "breakfast_1")}</span>
               </li>
               <li className="rounded-2xl bg-[#F9FAFB] p-5 flex gap-4 items-start border border-black/5">
-                <span className="font-black text-lg leading-none mt-1">2.</span> 
+                <span className="font-black text-lg leading-none mt-1">2.</span>
                 <span className="font-medium">{t(lang, "breakfast_2")}</span>
               </li>
               <li className="rounded-2xl bg-[#F9FAFB] p-5 flex gap-4 items-start border border-black/5">
-                <span className="font-black text-lg leading-none mt-1">3.</span> 
+                <span className="font-black text-lg leading-none mt-1">3.</span>
                 <span className="font-medium">{t(lang, "breakfast_3")}</span>
               </li>
             </ul>

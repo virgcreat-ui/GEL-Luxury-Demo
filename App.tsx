@@ -277,7 +277,7 @@ const DEFAULT_PACK: HotelPack = {
       title: { en: "Morning Yoga", fr: "Yoga du matin", nl: "Ochtend yoga" },
       startTime: "08:00–09:00",
       location: { en: "The Gym", fr: "La salle de sport", nl: "De gym" },
-      image: { kind: "url", url: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" },
+      image: { kind: "url", url: "/assets/images/spa.png" },
       dayTag: "today",
       description: { en: "Start your day with energy and focus. Open for all levels.", fr: "Commencez votre journée avec énergie et concentration.", nl: "Begin je dag met energie en focus." }
     },
@@ -286,7 +286,7 @@ const DEFAULT_PACK: HotelPack = {
       title: { en: "Wine & Cheese — à la française", fr: "Vin & fromage — à la française", nl: "Wijn & kaas" },
       startTime: "19:00–20:30",
       location: { en: "Lobby Bar", fr: "Bar du lobby", nl: "Lobby bar" },
-      image: { kind: "url", url: "https://images.unsplash.com/photo-1528823872057-9c018a7a7553?auto=format&fit=crop&w=800&q=80" },
+      image: { kind: "url", url: "/assets/images/dining.png" },
       dayTag: "today",
       description: { en: "An evening of fine French wine and artisanal cheeses. Perfect for networking.", fr: "Une soirée de bons vins français et de fromages artisanaux.", nl: "Een avond vol Franse wijn en ambachtelijke kazen." }
     },
