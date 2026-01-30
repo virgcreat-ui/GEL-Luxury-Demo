@@ -61,10 +61,6 @@ const VOICE_SCRIPTS = {
         fr: "Le Grand Éclipse propose un ensemble de prestations premium pour votre confort et votre bien-être. Permettez-moi de vous les présenter."
     },
 
-    'guest_topic_shop': {
-        en: "Our boutique offers a curated selection of luxury essentials and exclusive items from the house of Le Grand Éclipse.",
-        fr: "Notre boutique propose une sélection raffinée d'articles de luxe et de pièces exclusives signées Le Grand Éclipse."
-    },
 
     'guest_topic_events': {
         en: "Discover the distinguished events and cultural experiences we have arranged for our guests this week.",
@@ -180,18 +176,6 @@ const VOICE_SCRIPTS = {
         fr: "Découvrez l'art culinaire qui vous attend au Grand Éclipse."
     },
 
-    'card_hub_shop_1': {
-        en: "Our boutique presents a curated collection of luxury items and travel essentials.",
-        fr: "Notre boutique présente une collection raffinée d'articles de luxe et d'essentiels de voyage."
-    },
-    'card_hub_shop_2': {
-        en: "Discover exclusive pieces bearing the Le Grand Éclipse signature.",
-        fr: "Découvrez des pièces exclusives portant la signature Le Grand Éclipse."
-    },
-    'card_hub_shop_3': {
-        en: "Our boutique awaits with distinguished selections.",
-        fr: "Notre boutique vous attend avec des sélections distinguées."
-    },
 
     // === ROOM CARDS ===
     'card_room_wifi_1': {
@@ -394,7 +378,7 @@ async function generateVoice(text, language, outputFileName) {
 
 async function generateAllVoices() {
     console.log('🎤 Starting ElevenLabs voice generation (EN/FR — Pure Luxury Branding)...\n');
-    console.log(`Using voice: Rachel (${VOICE_ID})`);
+    console.log(`Using voice: Jade (${VOICE_ID})`);
     console.log(`Output directory: ${OUTPUT_DIR}\n`);
 
     let totalGenerated = 0;
