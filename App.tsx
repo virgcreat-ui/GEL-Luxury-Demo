@@ -905,10 +905,12 @@ function RoomView({ pack, lang, onBack }: any) {
 
         <ImageAccordion title={t(lang, "room.wifiTitle")} icon="" imageUrl={imgWifi} voiceKey="room_wifi" lang={lang}>
           <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
-            <div className="text-xs font-bold text-yellow-700 mb-1">Network</div>
+            <div className="text-xs font-bold text-yellow-700 mb-1">{lang === 'fr' ? 'Réseau' : 'Network'}</div>
             <div className="text-xl font-black text-black mb-3">{p.wifi.ssid}</div>
             <div className="text-sm font-medium text-neutral-700 leading-relaxed">
-              {p.wifi.instructions}
+              {lang === 'fr'
+                ? "Connectez-vous à 'LGEguest'. Aucun mot de passe ni email requis."
+                : "Connect to 'LGEguest'. No password, no email required."}
             </div>
           </div>
         </ImageAccordion>
@@ -932,13 +934,17 @@ function RoomView({ pack, lang, onBack }: any) {
           <div className="space-y-4">
             <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-100">
               <p className="text-sm text-neutral-600 font-medium leading-relaxed">
-                {p.amenities}
+                {lang === 'fr'
+                  ? "Shampoing et savon. Serviettes fournies. Café et thé inclus. Eau minérale offerte. Interdiction de fumer."
+                  : "Shampoo + soap dispensers. Towels provided. Coffee & tea included. Complimentary water bottles. No smoking."}
               </p>
             </div>
             <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-100">
-              <div className="text-xs font-medium text-neutral-500 mb-1">Climate control</div>
+              <div className="text-xs font-medium text-neutral-500 mb-1">{lang === 'fr' ? 'Climatisation' : 'Climate control'}</div>
               <p className="text-sm text-neutral-800 font-bold">
-                {p.acInfo}
+                {lang === 'fr'
+                  ? "Climatisation individuelle. Veuillez fermer les fenêtres lorsqu'elle fonctionne."
+                  : "Individual AC control in room. Please keep windows closed when it's on."}
               </p>
             </div>
           </div>
@@ -1013,9 +1019,15 @@ function NeighborhoodView({ pack, lang, onBack }: any) {
         <ImageAccordion title={t(lang, "neighborhood.dining")} icon="" imageUrl={imgDining} voiceKey="area_dining" lang={lang}>
           <div className="space-y-3">
             <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-100">
-              <div className="text-sm font-bold text-neutral-800 mb-1">{p.restaurants}</div>
+              <div className="text-sm font-bold text-neutral-800 mb-1">
+                {lang === 'fr'
+                  ? "Le Flore (cuisine française raffinée à découvrir)."
+                  : "Le Flore (French cuisine is a must try)."}
+              </div>
               <div className="text-xs font-bold text-green-600">
-                {p.discounts}
+                {lang === 'fr'
+                  ? "-15% sur le menu du jour avec votre clé LGE au Flore."
+                  : "15% discount on the day menu with LGE room key at Le Flore."}
               </div>
             </div>
           </div>
@@ -1024,7 +1036,9 @@ function NeighborhoodView({ pack, lang, onBack }: any) {
         <ImageAccordion title={t(lang, "neighborhood.transport")} icon="" imageUrl={imgTransport} voiceKey="area_transport" lang={lang}>
           <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-100">
             <p className="text-sm text-neutral-600 font-medium leading-relaxed">
-              {p.transport}
+              {lang === 'fr'
+                ? "Service Taxi G7 disponible 24h/24. Transferts aéroport et chauffeur privé sur demande."
+                : "Taxi G7 luxury service available 24/7. Airport transfers and private chauffeur upon request."}
             </p>
           </div>
         </ImageAccordion>
@@ -1032,7 +1046,9 @@ function NeighborhoodView({ pack, lang, onBack }: any) {
         <ImageAccordion title={t(lang, "neighborhood.essentials")} icon="" imageUrl={imgEssentials} voiceKey="area_essentials" lang={lang}>
           <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-100">
             <p className="text-sm text-neutral-600 font-medium leading-relaxed">
-              {p.essentials}
+              {lang === 'fr'
+                ? "Épicerie fine et boutiques de luxe à proximité."
+                : "Fine grocery and luxury boutiques nearby."}
             </p>
           </div>
         </ImageAccordion>
