@@ -182,7 +182,7 @@ const DEFAULT_PACK: HotelPack = {
   schemaVersion: 6,
   profile: {
     hotelName: "Le Grand Éclipse",
-    cityLabel: "Paris La Défense",
+    cityLabel: "Paris",
     phoneDial: "9",
     frontDeskAvailability: "Our front desk team is here 24/7. Just reach out from your room phone.",
     wifi: {
@@ -239,7 +239,7 @@ const DEFAULT_PACK: HotelPack = {
     { kind: "key", key: "room_cleaning", url: "/lge_housekeeping_v2.png", label: "Cleaning" },
     { kind: "key", key: "room_wifi", url: "/lge_wifi_desk_v2.png", label: "WiFi" },
     { kind: "key", key: "area_metro", url: "/lge_metro_entrance_v2.png", label: "Metro" },
-    { kind: "key", key: "hub_shop", url: "/shop_streetwear_v3.png", label: "Shop" },
+
     { kind: "key", key: "hub_restaurant", url: "/lge_restaurant_v1.png", label: "Restaurant" },
     { kind: "key", key: "area_bikes", url: "/lge_bikes_v1.png", label: "Bikes" },
     { kind: "key", key: "area_market", url: "/lge_grocery_v2.png", label: "Market" },
@@ -263,7 +263,7 @@ const DEFAULT_PACK: HotelPack = {
     // Hub Guides
     { id: "facilities", categoryId: "hub", titleKey: "hub.facilities", subtitleKey: "hub.coverSubtitle", steps: ["hub.facilities_desc"], heroImage: { kind: "key", key: "hub_games" } },
     { id: "food", categoryId: "hub", titleKey: "hub.food_drinks", subtitleKey: "breakfast_subtitle", steps: ["breakfast_1", "breakfast_2", "breakfast_3", "paris_breakfast_subtitle"], heroImage: { kind: "key", key: "hub_breakfast" } },
-    { id: "shop", categoryId: "hub", titleKey: "shop_title", subtitleKey: "shop_subtitle", steps: ["shop_student_note"], heroImage: { kind: "key", key: "hub_shop" } },
+
 
     // Room Guides
     { id: "wifi", categoryId: "room", titleKey: "room.wifiTitle", subtitleKey: "wifi_subtitle", steps: ["wifi_1", "wifi_2", "wifi_3"], heroImage: { kind: "key", key: "room_wifi" } },
@@ -290,24 +290,7 @@ const DEFAULT_PACK: HotelPack = {
       dayTag: "today",
       description: { en: "An evening of fine French wine and artisanal cheeses. Perfect for networking.", fr: "Une soirée de bons vins français et de fromages artisanaux.", nl: "Een avond vol Franse wijn en ambachtelijke kazen." }
     },
-    {
-      id: "community-dinner",
-      title: { en: "Community Dinner", fr: "Dîner communautaire", nl: "Community dinner" },
-      startTime: "20:30–22:00",
-      location: { en: "Lobby Bar", fr: "Bar du lobby", nl: "Lobby bar" },
-      image: { kind: "url", url: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" },
-      dayTag: "week",
-      description: { en: "Connect with fellow travelers over a shared meal and great music.", fr: "Rencontrez d'autres voyageurs autour d'un repas partagé.", nl: "Maak contact met medereizigers tijdens een gezamenlijke maaltijd." }
-    },
-    {
-      id: "social-mixer",
-      title: { en: "Social Mixer Night", fr: "Soirée Mixer", nl: "Social Mixer" },
-      startTime: "18:30–20:00",
-      location: { en: "Coworking Lounge", fr: "Salon Coworking", nl: "Coworking Lounge" },
-      image: { kind: "url", url: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80" },
-      dayTag: "week",
-      description: { en: "Informal networking for digital nomads and students alike.", fr: "Réseautage informel pour les nomades numériques et les étudiants.", nl: "Een informeel netwerken voor zowel digitale nomaden als studenten." }
-    },
+
   ],
   concierge: {
     // Extended introduction v4 - plays once when Hotel Guest / Student cards appear
@@ -394,21 +377,21 @@ const DEFAULT_PACK: HotelPack = {
       es: "Si prefieres hablar con un humano, contáctanos. Estamos aquí 24/7."
     },
     guest: {
-      primaryTopicIds: ["room", "breakfast", "spa", "gym", "dining", "facilities", "area", "shop"],
+      primaryTopicIds: ["room", "breakfast", "spa", "gym", "dining", "facilities", "area"],
       topics: {
         "room": {
           id: "room",
           label: { en: "Your Room", fr: "Votre Chambre", de: "Ihr Zimmer", es: "Tu Habitación" },
           voice: {
-            en: "Here is everything you need to know about your stay, from cleaning to high-speed WiFi.",
-            fr: "Voici tout ce qu'il faut savoir, du ménage au WiFi haut débit.",
+            en: "Here is everything you need to know about your stay, from housekeeping to high-speed WiFi.",
+            fr: "Voici tout ce qu'il faut savoir, du service de chambre au WiFi haut débit.",
             de: "Hier finden Sie alles, von der Reinigung bis zum Highspeed-WLAN.",
             es: "Aquí tienes todo sobre tu estancia, de limpieza a WiFi rápido."
           },
           cards: [
             {
-              title: { en: "Cleaning", fr: "Ménage", de: "Reinigung", es: "Limpieza" },
-              body: { en: "Cleaning every 2 nights. Bed sheets changed after the 4th night.", fr: "Ménage toutes les 2 nuits. Draps changés après la 4ème nuit.", de: "Reinigung alle 2 Nächte. Bettwäschewechsel nach der 4. Nacht.", es: "Limpieza cada 2 noches. Sábanas tras la 4ª noche." },
+              title: { en: "Housekeeping", fr: "Service de Chambre", de: "Reinigung", es: "Limpieza" },
+              body: { en: "Housekeeping every 2 nights. Linens refreshed after the 4th night.", fr: "Service de chambre tous les 2 jours. Linge renouvelé après la 4ème nuit.", de: "Reinigung alle 2 Nächte. Bettwäschewechsel nach der 4. Nacht.", es: "Limpieza cada 2 noches. Sábanas tras la 4ª noche." },
               image: { kind: "key", key: "room_cleaning" }
             },
             {
@@ -423,23 +406,7 @@ const DEFAULT_PACK: HotelPack = {
             }
           ]
         },
-        "shop": {
-          id: "shop",
-          label: { en: "LGE Shop", fr: "Boutique LGE", de: "LGE Shop", es: "Tienda LGE" },
-          voice: {
-            en: "Our shop is open for daily essentials and our latest limited drops.",
-            fr: "Boutique ouverte pour les essentiels et nos éditions limitées.",
-            de: "Shop für täglichen Bedarf und unsere neuesten Drops offen.",
-            es: "Tienda abierta para básicos y nuestras últimas novedades."
-          },
-          cards: [
-            {
-              title: { en: "Essentials", fr: "Essentiels", de: "Shop", es: "Tienda" },
-              body: { en: "From snacks to limited LGE merch. Open in the lobby.", fr: "Snacks, souvenirs et éditions limitées LGE. Au lobby.", de: "Snacks bis LGE-Merch. Im Lobby-Bereich.", es: "De snacks a artículos LGE. En el lobby." },
-              image: { kind: "key", key: "hub_shop" }
-            }
-          ]
-        },
+
         "breakfast": {
           id: "breakfast",
           label: { en: "Breakfast", fr: "Petit-déjeuner", de: "Frühstück", es: "Desayuno" },
@@ -489,7 +456,7 @@ const DEFAULT_PACK: HotelPack = {
             },
             {
               title: { en: "Front Desk 24/7", fr: "Réception", de: "Empfang", es: "Recepción" },
-              body: { en: "Dial 9 from your room anytime. We're here to help.", fr: "Composez le 9 depuis votre chambre. On est là pour vous.", de: "Wählen Sie jederzeit die 9 vom Zimmer aus.", es: "Marca el 9 desde tu habitación. Estamos para ayudarte." },
+              body: { en: "Dial 9 from your room anytime. We are at your service.", fr: "Composez le 9 depuis votre chambre. Nous restons à votre entière disposition.", de: "Wählen Sie jederzeit die 9 vom Zimmer aus.", es: "Marca el 9 desde tu habitación. Estamos para ayudarte." },
               image: { kind: "key", key: "hero_paris" }
             }
           ]
@@ -525,10 +492,10 @@ const DEFAULT_PACK: HotelPack = {
           id: "events",
           label: { en: "Events", fr: "Événements", de: "Events", es: "Eventos" },
           voice: {
-            en: "Join our community for yoga, drinks, or workshops during your stay.",
-            fr: "Rejoignez la communauté pour du yoga, un verre ou des ateliers.",
-            de: "Yoga, Drinks oder Workshops – machen Sie mit.",
-            es: "Únete a la comunidad: yoga, bebidas o talleres."
+            en: "Discover our curated events: wellness sessions, tastings, and exclusive experiences during your stay.",
+            fr: "Découvrez nos événements sélectionnés : séances bien-être, dégustations et expériences exclusives durant votre séjour.",
+            de: "Entdecken Sie unsere kuratierten Events: Wellness, Verkostungen und exklusive Erlebnisse.",
+            es: "Descubre nuestros eventos: sesiones de bienestar, degustaciones y experiencias exclusivas."
           },
           cards: [
             { title: { en: "Happening Now", fr: "En ce moment", de: "Aktuell", es: "Ahora" }, body: { en: "Check our local programming in the Events section on Home.", fr: "Voir le programme local dans la section Événements de l'Accueil.", de: "Siehe Programm im Events-Bereich auf der Startseite.", es: "Mira el programa local en la sección Eventos de Inicio." } }

@@ -67,8 +67,8 @@ export const DEFAULT_HUB_CONTENT: HubContent = {
             fr: "19,50 € sans réservation"
         },
         note: {
-            en: "At Le Grand Éclipse Paris La Défense we serve breakfast only. For lunch/dinner, check Around the Area.",
-            fr: "Au Grand Éclipse Paris La Défense, nous servons exclusivement le petit-déjeuner. Pour déjeuner ou dîner, consultez 'Aux Alentours'."
+            en: "At Le Grand Éclipse we serve breakfast only. For lunch/dinner, check our Concierge Recommendations.",
+            fr: "Au Grand Éclipse, nous servons exclusivement le petit-déjeuner. Pour déjeuner ou dîner, consultez nos Recommandations."
         }
     },
     shop: {

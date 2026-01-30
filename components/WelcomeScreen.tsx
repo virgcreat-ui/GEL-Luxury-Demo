@@ -25,7 +25,7 @@ export default function WelcomeScreen({
   setLang,
   navigate,
   hotelName = "Le Grand Éclipse",
-  hotelSubtitle = "Paris La Défense",
+  hotelSubtitle = "Paris",
   heroUrl = "/hero_ladefense.png",
   onAdminRequest,
 }: Props) {

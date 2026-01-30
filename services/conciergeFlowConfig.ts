@@ -114,7 +114,7 @@ export const DEFAULT_CONCIERGE_FLOW_CONFIG: ConciergeFlowConfig = {
             { id: "gym", label: { en: "Private Fitness", fr: "Fitness Privé" }, order: 4 },
             { id: "dining", label: { en: "Fine Dining", fr: "Gastronomie" }, order: 5 },
             { id: "facilities", label: { en: "Amenities", fr: "Prestations" }, order: 6 },
-            { id: "shop", label: { en: "Boutique", fr: "Boutique" }, order: 7 },
+
             { id: "events", label: { en: "Events", fr: "Événements" }, order: 8 },
             { id: "area", label: { en: "Concierge Recommendations", fr: "Recommandations" }, order: 9 }
         ],
@@ -131,10 +131,7 @@ export const DEFAULT_CONCIERGE_FLOW_CONFIG: ConciergeFlowConfig = {
                 en: ["Le Grand Éclipse offers an array of premium amenities for your comfort and well-being. Allow me to present our facilities."],
                 fr: ["Le Grand Éclipse propose un ensemble de prestations premium pour votre confort et votre bien-être. Permettez-moi de vous les présenter."]
             },
-            shop: {
-                en: ["Our boutique offers a curated selection of luxury essentials and exclusive items from the house of Le Grand Éclipse."],
-                fr: ["Notre boutique propose une sélection raffinée d'articles de luxe et de pièces exclusives signées Le Grand Éclipse."]
-            },
+
             events: {
                 en: ["Discover the distinguished events and cultural experiences we have arranged for our guests this week."],
                 fr: ["Découvrez les événements distingués et les expériences culturelles que nous avons préparés pour nos hôtes cette semaine."]

@@ -65,7 +65,7 @@ export const DEFAULT_ROOM_CONTENT: Record<Lang, RoomContent> = {
         house_rules: "No smoking inside. Quiet hours after 22:00. Please respect our community vibe."
     },
     fr: {
-        cleaning_rules: "Ménage quotidien disponible. Accrochez le panneau 'Ne pas déranger' si vous préférez être tranquille.",
+        cleaning_rules: "Service de chambre quotidien disponible. Accrochez le panneau 'Ne pas déranger' si vous préférez être tranquille.",
         amenities_desc: "Serviettes, produits de toilette, sèche-cheveux, coffre-fort, mini-frigo inclus.",
         wifi_desc: "WiFi haut débit gratuit dans tout l'établissement.",
         ac_info: "Climatisation disponible. Ajustez la température selon vos besoins.",

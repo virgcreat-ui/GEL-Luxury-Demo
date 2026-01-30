@@ -20,13 +20,13 @@ export const LANG_STORAGE_KEY = "lge_lang";
 const en: Record<string, string> = {
   // Global / UI
   "app.title": "Le Grand Éclipse",
-  "app.subtitle": "Paris La Défense",
+  "app.subtitle": "Paris",
   "lang.select": "Language",
 
   // Home / Menu
   "home.welcomeTitle": "Welcome to Le Grand Éclipse",
-  "home.welcomeSubheading": "Paris La Défense",
-  "home.welcomeSubtitle": "Le Grand Éclipse · Paris La Défense",
+  "home.welcomeSubheading": "Paris",
+  "home.welcomeSubtitle": "Le Grand Éclipse · Paris",
   "home.menu.hub": "Amenities",
   "home.menu.room": "Your Suite",
   "home.menu.events": "Events",
@@ -112,7 +112,7 @@ const en: Record<string, string> = {
   restaurant_subtitle: "Culinary excellence within the hotel.",
   restaurant_hours: "Open daily • 12:00–23:00",
   paris_breakfast_title: "Breakfast Service",
-  paris_breakfast_subtitle: "At Le Grand Éclipse Paris La Défense, we serve breakfast exclusively. For lunch and dinner, please consult our Concierge Recommendations.",
+  paris_breakfast_subtitle: "At Le Grand Éclipse, we serve breakfast exclusively. For lunch and dinner, please consult our Concierge Recommendations.",
   amenities_guest: "Premium tea and coffee selection provided. Complimentary artesian water.",
   frontdesk_tip: "Our team is at your complete disposal.",
   concierge_title: "Concierge",
@@ -153,13 +153,13 @@ const en: Record<string, string> = {
 const fr: Record<string, string> = {
   // Global / UI
   "app.title": "Le Grand Éclipse",
-  "app.subtitle": "Paris La Défense",
+  "app.subtitle": "Paris",
   "lang.select": "Langue",
 
   // Home / Menu
   "home.welcomeTitle": "Bienvenue au Grand Éclipse",
-  "home.welcomeSubheading": "Paris La Défense",
-  "home.welcomeSubtitle": "Le Grand Éclipse · Paris La Défense",
+  "home.welcomeSubheading": "Paris",
+  "home.welcomeSubtitle": "Le Grand Éclipse · Paris",
   "home.menu.hub": "Prestations",
   "home.menu.room": "Votre Suite",
   "home.menu.events": "Événements",
@@ -298,7 +298,7 @@ const fr: Record<string, string> = {
   restaurant_subtitle: "L'excellence gastronomique au sein de l'hôtel.",
   restaurant_hours: "Ouvert tous les jours • 12h00–23h00",
   paris_breakfast_title: "Service Petit-déjeuner",
-  paris_breakfast_subtitle: "Au Grand Éclipse Paris La Défense, nous servons exclusivement le petit-déjeuner. Pour le déjeuner et le dîner, veuillez consulter nos Recommandations.",
+  paris_breakfast_subtitle: "Au Grand Éclipse, nous servons exclusivement le petit-déjeuner. Pour le déjeuner et le dîner, veuillez consulter nos Recommandations.",
   amenities_guest: "Sélection premium de thé et café à votre disposition. Eau artésienne offerte.",
   frontdesk_tip: "Notre équipe se tient à votre entière disposition.",
   concierge_title: "Conciergerie",

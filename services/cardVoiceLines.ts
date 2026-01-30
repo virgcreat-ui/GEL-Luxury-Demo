@@ -148,8 +148,8 @@ export const CARD_VOICE_LINES: Record<string, Record<Lang, string[]>> = {
         ],
         fr: [
             "Pour garder votre espace frais et confortable.",
-            "Voici comment marche le ménage.",
-            "Je t'explique le planning."
+            "Voici l'organisation du service de chambre.",
+            "Permettez-moi de vous expliquer le planning."
         ],
         de: [
             "Damit Ihr Raum frisch und gemütlich bleibt.",
