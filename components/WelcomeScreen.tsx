@@ -26,7 +26,7 @@ export default function WelcomeScreen({
   navigate,
   hotelName = "Le Grand Éclipse",
   hotelSubtitle = "Paris",
-  heroUrl = "/assets/images/exterior.png",
+  heroUrl = "/assets/images/home_hero_paris.png",
   onAdminRequest,
 }: Props) {
   const [taps, setTaps] = useState(0);

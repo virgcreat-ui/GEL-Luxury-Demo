@@ -46,8 +46,8 @@ export enum ImageSlot {
  * Using /assets/images/ for all luxury hotel images
  */
 export const DEFAULT_IMAGES: Record<ImageSlot, string> = {
-    // Home/Welcome - using available luxury images
-    [ImageSlot.HOME_HERO]: '/assets/images/exterior.png',
+    // Home/Welcome - using dedicated luxury images
+    [ImageSlot.HOME_HERO]: '/assets/images/home_hero_paris.png',
     [ImageSlot.HOME_CARD_HUB]: '/assets/images/lobby.png',
     [ImageSlot.HOME_CARD_ROOM]: '/assets/images/guest_room.png',
     [ImageSlot.HOME_CARD_EVENTS]: '/assets/images/terrace.png',
@@ -60,23 +60,23 @@ export const DEFAULT_IMAGES: Record<ImageSlot, string> = {
     [ImageSlot.HUB_CARD_BREAKFAST]: '/assets/images/breakfast.png',
     [ImageSlot.HUB_CARD_RESTAURANT]: '/assets/images/dining.png',
 
-    // Room
+    // Room - using dedicated room images
     [ImageSlot.ROOM_HERO]: '/assets/images/guest_room.png',
-    [ImageSlot.ROOM_CARD_WIFI]: '/assets/images/guest_room_2.png',
-    [ImageSlot.ROOM_CARD_CLEANING]: '/assets/images/guest_room.png',
-    [ImageSlot.ROOM_CARD_AMENITIES]: '/assets/images/guest_room_2.png',
-    [ImageSlot.ROOM_CARD_AC]: '/assets/images/guest_room.png',
+    [ImageSlot.ROOM_CARD_WIFI]: '/assets/images/room_wifi.png',
+    [ImageSlot.ROOM_CARD_CLEANING]: '/assets/images/room_housekeeping.png',
+    [ImageSlot.ROOM_CARD_AMENITIES]: '/assets/images/room_amenities.png',
+    [ImageSlot.ROOM_CARD_AC]: '/assets/images/guest_room_2.png',
 
     // Events
     [ImageSlot.EVENTS_HERO]: '/assets/images/terrace.png',
     [ImageSlot.EVENTS_DEFAULT]: '/assets/images/terrace.png',
 
-    // Area
+    // Area - using dedicated area images
     [ImageSlot.AREA_HERO]: '/assets/images/local.png',
-    [ImageSlot.AREA_CARD_METRO]: '/assets/images/local.png',
-    [ImageSlot.AREA_CARD_GROCERY]: '/assets/images/local.png',
+    [ImageSlot.AREA_CARD_METRO]: '/assets/images/area_metro.png',
+    [ImageSlot.AREA_CARD_GROCERY]: '/assets/images/area_grocery.png',
     [ImageSlot.AREA_CARD_PARTNERS]: '/assets/images/dining.png',
-    [ImageSlot.AREA_CARD_BIKES]: '/assets/images/local.png',
+    [ImageSlot.AREA_CARD_BIKES]: '/assets/images/area_bikes.png',
 
     // Concierge
     [ImageSlot.CONCIERGE_BG]: '/assets/images/lobby.png'
