@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
-const VOICE_ID = 'EXAVITQu4vr4xnSDxMaL'; // Rachel - warm female voice
+const VOICE_ID = '1l0C0QA9c9jN22EmWiB0'; // Jade - Customer Service (multilingual, Parisian quality)
 const OUTPUT_DIR = path.join(__dirname, '..', 'public', 'voice');
 
 // ═══════════════════════════════════════════════════════════════════════════
