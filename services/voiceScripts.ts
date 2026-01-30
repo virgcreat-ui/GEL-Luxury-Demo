@@ -189,7 +189,7 @@ export const SCRIPT_POOLS: Record<ScriptScene, Record<Lang, string[]>> = {
     },
     ACK_LAUNDRY: {
         en: ["Laundry works through the LGE app. You get free tokens every month."],
-        fr: ["La laverie marche avec l'app LGE. T'as des jetons gratuits tous les mois."],
+        fr: ["Le service de blanchisserie fonctionne via l'application. Vous bénéficiez de jetons gratuits chaque mois."],
         de: ["Waschmaschinen über die App. Jeden Monat kriegst du Gratis-Token."],
         es: ["La lavandería va con la app. Tienes fichas gratis cada mes."],
         it: ["Lavanderia con l'app. Hai gettoni gratis ogni mese."],

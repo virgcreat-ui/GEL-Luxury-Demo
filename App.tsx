@@ -217,7 +217,7 @@ const DEFAULT_PACK: HotelPack = {
       restaurants: "Le Flore (French cuisine is a must try).",
       discounts: "15% discount on the day menu with LGE room key at Le Flore.",
       transport: "Metro station nearby. Taxis can be booked via reception.",
-      essentials: "Grocery store close by for late night snacks."
+      essentials: "Épicerie fine à proximité pour vos besoins immédiats."
     },
     facilitiesConfig: {
       hasCinema: false,
@@ -433,7 +433,7 @@ const DEFAULT_PACK: HotelPack = {
           label: { en: "Facilities", fr: "Équipements", de: "Einrichtungen", es: "Instalaciones" },
           voice: {
             en: "Check out our 24/7 gym, laundry, and the pool (seasonal).",
-            fr: "Profitez du gym 24/7, de la laverie et de la piscine (saison).",
+            fr: "Profitez de notre salle de fitness 24h/24, du service de blanchisserie et de la piscine (saisonnière).",
             de: "Nutzen Sie Gym 24/7, Wäscherei und Pool (saisonal).",
             es: "Disfruta el gym 24/7, lavandería y piscina (temporada)."
           },
@@ -449,7 +449,7 @@ const DEFAULT_PACK: HotelPack = {
               image: { kind: "key", key: "area_bikes" }
             },
             {
-              title: { en: "Laundry", fr: "Laverie", de: "Wäscherei", es: "Lavandería" },
+              title: { en: "Laundry", fr: "Blanchisserie", de: "Wäscherei", es: "Lavandería" },
               body: { en: "Free for guests via LGE app. Open 24/7.", fr: "Gratuit via l'app LGE. Ouvert 24h/24.", de: "Kostenlos via LGE app. 24/7 offen.", es: "Gratis por la app LGE. Abierto 24/7." },
               image: { kind: "key", key: "room_laundry" }
             },
@@ -948,8 +948,8 @@ function RoomView({ pack, lang, onBack }: any) {
               {t(lang, "room.comfortText")}
             </div>
             <div className="p-4 bg-red-50 border border-red-100 rounded-xl">
-              <div className="text-xs font-medium text-red-400 mb-1">Safety & rules</div>
-              <div className="text-xs font-bold text-red-700">No smoking inside. Keep it quiet after 22:00.</div>
+              <div className="text-xs font-medium text-red-400 mb-1">{lang === 'fr' ? 'Règles et Sécurité' : 'Safety & Rules'}</div>
+              <div className="text-xs font-bold text-red-700">{lang === 'fr' ? 'Interdiction de fumer à l\'intérieur. Silence après 22h00.' : 'No smoking inside. Quiet hours after 22:00.'}</div>
             </div>
           </div>
         </ImageAccordion>
