@@ -2,7 +2,7 @@ import { Lang } from "../i18n";
 
 /**
  * Voice-on-click reactions for main menu cards (ImageAccordion components)
- * Warm, LGE-style, conversational voice lines
+ * Pure 5-Star Luxury Hotel Branding — Elegant, Refined, Discreet
  * Max 6-8 seconds per line
  * 
  * Used ONLY for main menu cards (Hub, Room, Area) - NOT for concierge
@@ -12,376 +12,191 @@ export const CARD_VOICE_LINES: Record<string, Record<Lang, string[]>> = {
     // Hub cards
     hub_facilities: {
         en: [
-            "This is where the community comes together — let's take a look.",
-            "Let me show you our favorite shared spaces.",
-            "These are the spots where everyone hangs out."
+            "Allow me to present our distinguished amenities, designed for your comfort and well-being.",
+            "Our facilities have been curated to exceed the expectations of our discerning guests.",
+            "Experience the refined amenities that define the Le Grand Éclipse standard."
         ],
         fr: [
-            "C'est ici que la communauté se rassemble — jetons un œil.",
-            "Voici nos espaces préférés pour se retrouver.",
-            "C'est là que tout le monde se retrouve."
-        ],
-        de: [
-            "Hier kommt die Community zusammen — schauen wir mal.",
-            "Das sind unsere Lieblings-Gemeinschaftsräume.",
-            "Hier trifft sich jeder."
-        ],
-        es: [
-            "Aquí se reúne la comunidad — echemos un vistazo.",
-            "Te enseño nuestros espacios favoritos.",
-            "Este es el sitio donde todos se juntan."
-        ],
-        it: [
-            "Qui si riunisce la community — diamo un'occhiata.",
-            "Ti mostro i nostri spazi preferiti.",
-            "Qui si ritrova tutti."
-        ],
-        pt: [
-            "Aqui é onde a comunidade se reúne — vamos ver.",
-            "Deixa-me mostrar os nossos espaços favoritos.",
-            "É aqui que toda a gente se junta."
+            "Permettez-moi de vous présenter nos prestations distinguées, conçues pour votre confort et votre bien-être.",
+            "Nos équipements ont été sélectionnés pour surpasser les attentes de nos hôtes les plus exigeants.",
+            "Découvrez les prestations raffinées qui définissent l'excellence du Grand Éclipse."
         ]
     },
     hub_food_drinks: {
         en: [
-            "Good food, good moments — here's what's available.",
-            "Let's explore the food and drink options.",
-            "Time to check out what's cooking."
+            "Our culinary offerings reflect our commitment to gastronomic excellence.",
+            "Allow me to present our dining options, each crafted with exceptional care.",
+            "Discover the culinary artistry that awaits you at Le Grand Éclipse."
         ],
         fr: [
-            "Bonne cuisine, bons moments — voici ce qui est disponible.",
-            "On va voir ce qu'on peut manger et boire.",
-            "Voyons ce qu'il y a de bon."
-        ],
-        de: [
-            "Gutes Essen, gute Momente — hier ist das Angebot.",
-            "Schauen wir, was es zu essen gibt.",
-            "Zeit für Essen und Trinken."
-        ],
-        es: [
-            "Buena comida, buenos momentos — esto es lo que hay.",
-            "Vamos a ver qué se puede comer y beber.",
-            "A ver qué hay de bueno."
-        ],
-        it: [
-            "Buon cibo, bei momenti — ecco cosa c'è.",
-            "Vediamo cosa c'è da mangiare e bere.",
-            "Diamo un'occhiata al menu."
-        ],
-        pt: [
-            "Boa comida, bons momentos — aqui está o que há.",
-            "Vamos ver o que há para comer e beber.",
-            "Hora de ver as opções."
+            "Notre offre gastronomique reflète notre engagement envers l'excellence culinaire.",
+            "Permettez-moi de vous présenter nos options de restauration, chacune élaborée avec un soin exceptionnel.",
+            "Découvrez l'art culinaire qui vous attend au Grand Éclipse."
         ]
     },
     hub_shop: {
         en: [
-            "From essentials to latest drops — all the good stuff.",
-            "Our shop has everything you need.",
-            "Check out what's in store today."
+            "Discover Galeries Lafayette Haussmann, just fifteen minutes away. Our concierge can arrange VIP reception upon request.",
+            "Paris's finest luxury shopping awaits. Allow me to share our exclusive partner benefits.",
+            "Experience world-class shopping with special privileges reserved for our distinguished guests."
         ],
         fr: [
-            "Des essentiels aux dernières éditions — que du bon.",
-            "Le shop a tout ce qu'il faut.",
-            "Voyons ce qui est dispo."
-        ],
-        de: [
-            "Vom Nötigsten bis zu neuesten Drops — alles Gute.",
-            "Im Shop gibt's alles, was du brauchst.",
-            "Schauen wir, was es Neues gibt."
-        ],
-        es: [
-            "De lo esencial a las últimas novedades — todo lo bueno.",
-            "La tienda tiene todo lo que necesitas.",
-            "Veamos qué hay hoy."
-        ],
-        it: [
-            "Dall'essenziale alle ultime novità — tutto il meglio.",
-            "Il negozio ha tutto quello che ti serve.",
-            "Vediamo cosa c'è oggi."
-        ],
-        pt: [
-            "Do essencial às últimas novidades — o melhor.",
-            "A loja tem tudo o que precisas.",
-            "Vamos ver o que há."
+            "Découvrez les Galeries Lafayette Haussmann, à seulement quinze minutes. Notre conciergerie peut organiser un accueil VIP sur demande.",
+            "Le meilleur du shopping parisien vous attend. Permettez-moi de partager nos avantages partenaires exclusifs.",
+            "Profitez d'un shopping de classe mondiale avec des privilèges réservés à nos hôtes distingués."
         ]
     },
 
     // Room cards
     room_wifi: {
         en: [
-            "Everything you need to stay connected, right here.",
-            "Let's get you online.",
-            "Here's how the WiFi works."
+            "Seamless connectivity awaits. Our high-speed network ensures you remain connected in comfort.",
+            "Allow me to assist you with our complimentary high-speed connection.",
+            "Connecting to our secure network is effortless. Here are the details."
         ],
         fr: [
-            "Tout ce qu'il faut pour rester connecté, juste ici.",
-            "On va te connecter.",
-            "Voici comment marche le WiFi."
-        ],
-        de: [
-            "Alles, um verbunden zu bleiben, genau hier.",
-            "Bringen wir dich online.",
-            "So funktioniert das WLAN."
-        ],
-        es: [
-            "Todo lo que necesitas para estar conectado, justo aquí.",
-            "Vamos a conectarte.",
-            "Así funciona el WiFi."
-        ],
-        it: [
-            "Tutto per rimanere connesso, proprio qui.",
-            "Ti connetto subito.",
-            "Ecco come funziona il WiFi."
-        ],
-        pt: [
-            "Tudo para ficar conectado, mesmo aqui.",
-            "Vamos conectar-te.",
-            "É assim que o WiFi funciona."
+            "Une connectivité parfaite vous attend. Notre réseau haut débit vous garantit une connexion confortable.",
+            "Permettez-moi de vous assister avec notre connexion haut débit offerte.",
+            "La connexion à notre réseau sécurisé est simplissime. Voici les détails."
         ]
     },
     room_cleaning: {
         en: [
-            "Keeping your space fresh and comfortable.",
-            "Here's how cleaning works.",
-            "Let me explain the housekeeping schedule."
+            "Our housekeeping team maintains the highest standards of elegance and cleanliness throughout your stay.",
+            "Allow me to explain our attentive housekeeping service.",
+            "Your comfort is our priority. Here is our housekeeping schedule."
         ],
         fr: [
-            "Pour garder votre espace frais et confortable.",
-            "Voici l'organisation du service de chambre.",
-            "Permettez-moi de vous expliquer le planning."
-        ],
-        de: [
-            "Damit Ihr Raum frisch und gemütlich bleibt.",
-            "So läuft die Reinigung.",
-            "Der Reinigungsplan erklärt."
-        ],
-        es: [
-            "Manteniendo tu espacio fresco y cómodo.",
-            "Así funciona la limpieza.",
-            "Te explico el horario."
-        ],
-        it: [
-            "Per mantenere il tuo spazio fresco e confortevole.",
-            "Ecco come funziona la pulizia.",
-            "Ti spiego il programma."
-        ],
-        pt: [
-            "Mantendo o seu espaço fresco e confortável.",
-            "É assim que funciona a limpeza.",
-            "Deixa-me explicar o horário."
+            "Notre équipe d'étage maintient les plus hauts standards d'élégance et de propreté durant votre séjour.",
+            "Permettez-moi de vous expliquer notre service d'étage attentif.",
+            "Votre confort est notre priorité. Voici notre programme d'entretien."
         ]
     },
     room_amenities: {
         en: [
-            "All the little things that make it feel like home.",
-            "Here's what's in your room.",
-            "Let me show you the amenities."
+            "Your suite has been appointed with thoughtful touches for an exceptional stay.",
+            "Discover the refined amenities awaiting you in your accommodations.",
+            "Allow me to present the comforts of your private retreat."
         ],
         fr: [
-            "Tous les petits détails qui font que vous vous sentez chez vous.",
-            "Voici ce qu'il y a dans ta chambre.",
-            "Je te montre les équipements."
-        ],
-        de: [
-            "All die kleinen Dinge, die es wie zuhause anfühlen lassen.",
-            "Das ist in Ihrem Zimmer.",
-            "Die Ausstattung erklärt."
-        ],
-        es: [
-            "Todos los detalles que lo hacen sentir como casa.",
-            "Esto es lo que hay en tu habitación.",
-            "Te enseño las comodidades."
-        ],
-        it: [
-            "Tutti i piccoli dettagli che lo fanno sentire come casa.",
-            "Ecco cosa c'è nella tua stanza.",
-            "Ti mostro i comfort."
-        ],
-        pt: [
-            "Todos os pequenos detalhes que fazem sentir como em casa.",
-            "Isto é o que está no teu quarto.",
-            "Deixa-me mostrar as comodidades."
+            "Votre suite a été agrémentée d'attentions délicates pour un séjour exceptionnel.",
+            "Découvrez les équipements raffinés qui vous attendent dans votre chambre.",
+            "Permettez-moi de vous présenter les agréments de votre retraite privée."
         ]
     },
     room_comfort: {
         en: [
-            "Everything to feel at home, right here.",
-            "Making your stay comfortable.",
-            "Here's what you need to know."
+            "Every detail has been considered for your absolute comfort.",
+            "Your well-being is our utmost concern.",
+            "Please allow me to ensure your complete satisfaction."
         ],
         fr: [
-            "Tout pour se sentir chez soi, juste ici.",
-            "Pour un séjour confortable.",
-            "Voici ce qu'il faut savoir."
-        ],
-        de: [
-            "Alles, um sich wie zuhause zu fühlen, genau hier.",
-            "Für einen komfortablen Aufenthalt.",
-            "Das sollten Sie wissen."
-        ],
-        es: [
-            "Todo para sentirse como en casa, justo aquí.",
-            "Para una estancia cómoda.",
-            "Esto es lo que debes saber."
-        ],
-        it: [
-            "Tutto per sentirsi a casa, proprio qui.",
-            "Per un soggiorno confortevole.",
-            "Ecco cosa devi sapere."
-        ],
-        pt: [
-            "Tudo para se sentir em casa, mesmo aqui.",
-            "Para uma estadia confortável.",
-            "Isto é o que precisa de saber."
+            "Chaque détail a été pensé pour votre confort absolu.",
+            "Votre bien-être est notre préoccupation première.",
+            "Permettez-moi de veiller à votre entière satisfaction."
         ]
     },
 
-    // Neighborhood cards
+    // Area cards
     area_dining: {
         en: [
-            "Great spots just around the corner — local favorites.",
-            "Here are the best places to eat nearby.",
-            "Let me show you where locals go."
+            "Our concierge has curated the finest dining establishments in the neighborhood for your consideration.",
+            "Allow me to share our preferred addresses for distinguished dining.",
+            "These exceptional restaurants have earned our personal recommendation."
         ],
         fr: [
-            "De bons endroits juste au coin — nos favoris locaux.",
-            "Voici les meilleurs restos du coin.",
-            "Je te montre où mangent les locaux."
-        ],
-        de: [
-            "Tolle Orte gleich um die Ecke — lokale Favoriten.",
-            "Die besten Restaurants in der Nähe.",
-            "Ich zeig dir, wo die Locals hingehen."
-        ],
-        es: [
-            "Grandes sitios a la vuelta de la esquina — favoritos locales.",
-            "Los mejores sitios para comer cerca.",
-            "Te enseño dónde van los locales."
-        ],
-        it: [
-            "Ottimi posti dietro l'angolo — i preferiti del quartiere.",
-            "I migliori ristoranti qui vicino.",
-            "Ti mostro dove vanno i locali."
-        ],
-        pt: [
-            "Ótimos sítios mesmo ao virar da esquina — favoritos locais.",
-            "Os melhores sítios para comer perto.",
-            "Deixa-me mostrar onde vão os locais."
+            "Notre concierge a sélectionné les meilleurs établissements gastronomiques du quartier pour vous.",
+            "Permettez-moi de partager nos adresses privilégiées pour une table distinguée.",
+            "Ces restaurants d'exception ont mérité notre recommandation personnelle."
         ]
     },
     area_transport: {
         en: [
-            "Getting around is easy — here's how.",
-            "Let me explain the transport options.",
-            "Here's how to move around the city."
+            "Allow me to facilitate your travel arrangements throughout Paris.",
+            "Private transfers and transport options are available at your request.",
+            "Our concierge service is pleased to arrange all your transportation needs."
         ],
         fr: [
-            "Se déplacer est facile — voici comment.",
-            "Je t'explique les transports.",
-            "Voici comment bouger en ville."
-        ],
-        de: [
-            "Unterwegs sein ist einfach — so geht's.",
-            "Die Transport-Optionen erklärt.",
-            "So kommst du durch die Stadt."
-        ],
-        es: [
-            "Moverse es fácil — así es cómo.",
-            "Te explico las opciones de transporte.",
-            "Así te mueves por la ciudad."
-        ],
-        it: [
-            "Girare è facile — ecco come.",
-            "Ti spiego le opzioni di trasporto.",
-            "Ecco come muoversi in città."
-        ],
-        pt: [
-            "Andar por aí é fácil — aqui está como.",
-            "Deixa-me explicar as opções de transporte.",
-            "É assim que te moves pela cidade."
+            "Permettez-moi de faciliter vos déplacements dans Paris.",
+            "Des transferts privés et options de transport sont disponibles sur demande.",
+            "Notre service de conciergerie se fera un plaisir d'organiser tous vos besoins en transport."
         ]
     },
     area_essentials: {
         en: [
-            "Everything you might need, close by.",
-            "Here's what's nearby.",
-            "The essentials are all around you."
+            "Should you require anything, the finest establishments are within easy reach.",
+            "Our neighborhood offers convenient access to essential services.",
+            "Everything you may need is close at hand."
         ],
         fr: [
-            "Tout ce dont vous pourriez avoir besoin, à proximité.",
-            "Voici ce qu'il y a près d'ici.",
-            "L'essentiel est juste à côté."
-        ],
-        de: [
-            "Alles, was Sie brauchen könnten, ganz nah.",
-            "Das gibt's in der Nähe.",
-            "Das Wichtigste ist gleich um die Ecke."
-        ],
-        es: [
-            "Todo lo que podrías necesitar, cerca.",
-            "Esto es lo que hay cerca.",
-            "Lo esencial está a tu alrededor."
-        ],
-        it: [
-            "Tutto ciò di cui potresti aver bisogno, vicino.",
-            "Ecco cosa c'è qui vicino.",
-            "L'essenziale è tutto intorno."
-        ],
-        pt: [
-            "Tudo o que possa precisar, por perto.",
-            "Isto é o que há perto.",
-            "O essencial está à tua volta."
+            "Si vous avez besoin de quoi que ce soit, les meilleurs établissements sont à proximité.",
+            "Notre quartier offre un accès pratique aux services essentiels.",
+            "Tout ce dont vous pourriez avoir besoin est à portée de main."
         ]
     },
 
-    // Front Desk (StickyAction card)
+    // Front desk
     front_desk: {
         en: [
-            "Please dial nine from your room phone to reach the front desk. Our team will be happy to assist you with anything you need.",
-            "Need help? Just dial nine from your room. We're here for you twenty-four seven.",
-            "Our front desk is always here. Dial nine from your room phone anytime."
+            "Our reception team is available around the clock. Simply dial nine from your room telephone.",
+            "For any request, our reception is at your service twenty-four hours a day.",
+            "Your comfort is our privilege. Our reception team awaits your call at any hour."
         ],
         fr: [
-            "Veuillez composer le 9 depuis le téléphone de votre chambre pour joindre la réception. Notre équipe sera ravie de vous aider.",
-            "Besoin d'aide ? Composez le 9. On est là 24h/24.",
-            "La réception est toujours disponible. Faites le 9 depuis votre chambre."
+            "Notre équipe de réception est disponible en permanence. Composez simplement le 9 depuis le téléphone de votre chambre.",
+            "Pour toute demande, notre réception est à votre service vingt-quatre heures sur vingt-quatre.",
+            "Votre confort est notre privilège. Notre équipe de réception attend votre appel à toute heure."
+        ]
+    },
+
+    // Spa cards
+    spa_treatments: {
+        en: [
+            "Our spa sanctuary awaits. Indulge in our signature treatments designed to restore balance and serenity.",
+            "Our master therapists craft bespoke wellness experiences tailored to your individual needs.",
+            "From restorative facials to deep tissue massage — discover the treatment that speaks to your soul."
         ],
-        de: [
-            "Bitte wählen Sie die 9 von Ihrem Zimmertelefon, um die Rezeption zu erreichen. Unser Team hilft Ihnen gerne bei allem, was Sie brauchen.",
-            "Brauchen Sie Hilfe? Wählen Sie einfach die 9. Wir sind rund um die Uhr da.",
-            "Unsere Rezeption ist immer für Sie da. Wählen Sie die 9."
+        fr: [
+            "Notre sanctuaire spa vous attend. Offrez-vous nos soins signature conçus pour restaurer équilibre et sérénité.",
+            "Nos maîtres praticiens conçoivent des expériences bien-être sur mesure adaptées à vos besoins individuels.",
+            "Des soins du visage régénérants aux massages profonds — découvrez le soin qui parle à votre âme."
+        ]
+    },
+
+    // Gym cards
+    gym_equipment: {
+        en: [
+            "Our private fitness center offers state-of-the-art equipment in an atmosphere of refined tranquility.",
+            "Personal training sessions with our certified instructors are available upon request.",
+            "Exclusive twenty-four hour access with your suite key. Reserved solely for our distinguished guests."
         ],
-        es: [
-            "Por favor, marque el 9 desde el teléfono de su habitación para comunicarse con recepción. Nuestro equipo estará encantado de ayudarle con lo que necesite.",
-            "¿Necesitas ayuda? Marca el 9. Estamos aquí las 24 horas.",
-            "Recepción siempre disponible. Marca el 9 desde tu habitación."
+        fr: [
+            "Notre centre de remise en forme privé propose des équipements de pointe dans une atmosphère de tranquillité raffinée.",
+            "Des séances d'entraînement personnel avec nos instructeurs certifiés sont disponibles sur demande.",
+            "Accès exclusif vingt-quatre heures sur vingt-quatre avec votre clé de suite. Réservé exclusivement à nos hôtes distingués."
+        ]
+    },
+
+    // Restaurant cards
+    restaurant: {
+        en: [
+            "Restaurant L'Éclipse presents our seven-course tasting menu. Reservations are kindly requested.",
+            "Our executive chef presents seasonal French cuisine elevated to art.",
+            "Le Bar Céleste invites you for artisanal cocktails and refined small plates."
         ],
-        it: [
-            "Comporre il 9 dal telefono della camera per raggiungere la reception. Il nostro team sarà felice di assistervi con qualsiasi cosa abbiate bisogno.",
-            "Serve aiuto? Chiama il 9. Ci siamo 24 ore su 24.",
-            "La reception è sempre disponibile. Chiama il 9."
-        ],
-        pt: [
-            "Por favor, marque 9 do telefone do seu quarto para contactar a receção. A nossa equipa terá todo o prazer em ajudá-lo com o que precisar.",
-            "Precisa de ajuda? Marque 9. Estamos cá sempre.",
-            "A receção está sempre disponível. Marque 9 do seu quarto."
+        fr: [
+            "Le Restaurant L'Éclipse présente notre menu dégustation en sept services. Nous vous prions de bien vouloir réserver.",
+            "Notre chef exécutif présente une cuisine française de saison élevée au rang d'art.",
+            "Le Bar Céleste vous invite pour des cocktails artisanaux et des petites assiettes raffinées."
         ]
     }
-
 };
 
 /**
- * Helper to get speech synthesis language code from Lang
+ * Returns a random voice line for the given card key and language
  */
-export const getSpeechLangCode = (lang: Lang): string => {
-    const map: Record<Lang, string> = {
-        en: "en-GB",
-        fr: "fr-FR",
-        de: "de-DE",
-        es: "es-ES",
-        it: "it-IT",
-        pt: "pt-PT"
-    };
-    return map[lang] || "en-GB";
-};
+export function getRandomCardVoiceLine(cardKey: string, lang: Lang): string | null {
+    const lines = CARD_VOICE_LINES[cardKey]?.[lang];
+    if (!lines || lines.length === 0) return null;
+    return lines[Math.floor(Math.random() * lines.length)];
+}

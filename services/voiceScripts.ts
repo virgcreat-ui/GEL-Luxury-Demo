@@ -38,78 +38,78 @@ export const SCRIPT_POOLS: Record<ScriptScene, Record<Lang, string[]>> = {
         pt: ["Bem-vindo. Eu ajudo-te. És estudante ou hóspede?"]
     },
 
-    // New: Welcome greeting variants (8 per language) - play ONE randomly before stay-type question
+    // Welcome greeting variants - refined luxury tone
     WELCOME_VARIANTS: {
         en: [
-            "Welcome to Le Grand Éclipse. I'm here to help you settle in.",
-            "Hey there! Welcome to Paris. Let's get you started.",
-            "Welcome! Happy to have you with us at Le Grand Éclipse.",
-            "Hi! Welcome to your home away from home in Paris.",
-            "Welcome to Le Grand Éclipse. I'll be your guide today.",
-            "Hello! Great to see you. Let's make this easy.",
-            "Welcome! I'm here to show you around.",
-            "Hey! Welcome to Le Grand Éclipse Paris. Ready to explore?"
+            "Welcome to Le Grand Éclipse. I am here to assist you.",
+            "Welcome to Paris. It is my pleasure to serve you.",
+            "Welcome. We are delighted to have you at Le Grand Éclipse.",
+            "Welcome. Allow me to be your guide today.",
+            "Welcome to Le Grand Éclipse. How may I be of service?",
+            "Welcome. I am at your disposal for anything you may need.",
+            "Welcome. I shall be happy to assist you throughout your stay.",
+            "Welcome to Le Grand Éclipse Paris. What may I help you discover?"
         ],
         fr: [
-            "Bienvenue au Grand Éclipse. Je suis là pour vous aider.",
-            "Salut ! Bienvenue à Paris. On commence ?",
-            "Bienvenue ! Ravie de vous accueillir au Grand Éclipse.",
-            "Coucou ! Bienvenue chez vous à Paris.",
-            "Bienvenue au Grand Éclipse. Je vous accompagne.",
-            "Bonjour ! Content de vous voir. On y va ?",
-            "Bienvenue ! Je suis là pour vous guider.",
-            "Hey ! Bienvenue au Grand Éclipse Paris. Prêt à découvrir ?"
+            "Bienvenue au Grand Éclipse. Je suis à votre service.",
+            "Bienvenue à Paris. C'est un plaisir de vous accueillir.",
+            "Bienvenue. Nous sommes ravis de vous recevoir au Grand Éclipse.",
+            "Bienvenue. Permettez-moi de vous accompagner aujourd'hui.",
+            "Bienvenue au Grand Éclipse. Comment puis-je vous être utile ?",
+            "Bienvenue. Je suis à votre entière disposition.",
+            "Bienvenue. Je serai heureuse de vous assister durant votre séjour.",
+            "Bienvenue au Grand Éclipse Paris. Que puis-je vous faire découvrir ?"
         ],
         de: [
-            "Willkommen im Grand Éclipse. Ich helf dir gern.",
-            "Hey! Willkommen in Paris. Legen wir los.",
-            "Willkommen! Schön, dass du da bist.",
-            "Hi! Willkommen in deinem Zuhause in Paris.",
-            "Willkommen im Grand Éclipse. Ich zeig dir alles.",
-            "Hallo! Freut mich. Machen wir's einfach.",
-            "Willkommen! Ich bin für dich da.",
-            "Hey! Willkommen im Grand Éclipse Paris. Bereit?"
+            "Willkommen im Grand Éclipse. Ich stehe Ihnen zur Verfügung.",
+            "Willkommen in Paris. Es ist mir eine Freude, Ihnen zu dienen.",
+            "Willkommen. Wir freuen uns, Sie im Grand Éclipse begrüßen zu dürfen.",
+            "Willkommen. Erlauben Sie mir, Sie heute zu begleiten.",
+            "Willkommen im Grand Éclipse. Wie darf ich Ihnen behilflich sein?",
+            "Willkommen. Ich stehe Ihnen für alle Ihre Wünsche zur Verfügung.",
+            "Willkommen. Ich werde Sie gerne während Ihres Aufenthalts unterstützen.",
+            "Willkommen im Grand Éclipse Paris. Was darf ich Ihnen zeigen?"
         ],
         es: [
-            "Bienvenido a Le Grand Éclipse. Estoy aquí para ayudarte.",
-            "¡Hola! Bienvenido a París. Empecemos.",
-            "¡Bienvenido! Encantada de tenerte aquí.",
-            "¡Hey! Bienvenido a tu hogar en París.",
-            "Bienvenido a Le Grand Éclipse. Te acompaño.",
-            "¡Hola! Qué bien verte. Vamos allá.",
-            "¡Bienvenido! Estoy aquí para guiarte.",
-            "¡Hey! Bienvenido a Le Grand Éclipse París. ¿Listo?"
+            "Bienvenido a Le Grand Éclipse. Estoy a su servicio.",
+            "Bienvenido a París. Es un placer recibirle.",
+            "Bienvenido. Nos complace tenerle en Le Grand Éclipse.",
+            "Bienvenido. Permítame ser su guía hoy.",
+            "Bienvenido a Le Grand Éclipse. ¿Cómo puedo servirle?",
+            "Bienvenido. Estoy a su entera disposición.",
+            "Bienvenido. Será un placer asistirle durante su estancia.",
+            "Bienvenido a Le Grand Éclipse París. ¿Qué le gustaría descubrir?"
         ],
         it: [
-            "Benvenuto al Grand Éclipse. Sono qui per aiutarti.",
-            "Ciao! Benvenuto a Parigi. Iniziamo.",
-            "Benvenuto! Felice di averti qui.",
-            "Hey! Benvenuto a casa tua a Parigi.",
-            "Benvenuto al Grand Éclipse. Ti accompagno.",
-            "Ciao! Che bello vederti. Facciamolo semplice.",
-            "Benvenuto! Sono qui per guidarti.",
-            "Hey! Benvenuto al Grand Éclipse Parigi. Pronto?"
+            "Benvenuto al Grand Éclipse. Sono al suo servizio.",
+            "Benvenuto a Parigi. È un piacere poterla assistere.",
+            "Benvenuto. Siamo lieti di averla al Grand Éclipse.",
+            "Benvenuto. Mi permetta di accompagnarla oggi.",
+            "Benvenuto al Grand Éclipse. Come posso esserle utile?",
+            "Benvenuto. Sono a sua completa disposizione.",
+            "Benvenuto. Sarò lieta di assisterla durante il suo soggiorno.",
+            "Benvenuto al Grand Éclipse Parigi. Cosa posso farle scoprire?"
         ],
         pt: [
-            "Bem-vindo ao Grand Éclipse. Estou aqui para ajudar.",
-            "Olá! Bem-vindo a Paris. Vamos começar.",
-            "Bem-vindo! Que bom ter-te aqui.",
-            "Hey! Bem-vindo à tua casa em Paris.",
-            "Bem-vindo ao Grand Éclipse. Eu acompanho-te.",
-            "Olá! Que bom ver-te. Vamos facilitar.",
-            "Bem-vindo! Estou aqui para te guiar.",
-            "Hey! Bem-vindo ao Grand Éclipse Paris. Pronto?"
+            "Bem-vindo ao Grand Éclipse. Estou ao seu serviço.",
+            "Bem-vindo a Paris. É um prazer recebê-lo.",
+            "Bem-vindo. Temos muito gosto em tê-lo no Grand Éclipse.",
+            "Bem-vindo. Permita-me ser o seu guia hoje.",
+            "Bem-vindo ao Grand Éclipse. Como posso ajudá-lo?",
+            "Bem-vindo. Estou à sua inteira disposição.",
+            "Bem-vindo. Terei todo o gosto em assisti-lo durante a sua estadia.",
+            "Bem-vindo ao Grand Éclipse Paris. O que gostaria de descobrir?"
         ]
     },
 
-    // New: Canonical stay-type question - ALWAYS spoken when stay-type buttons appear
+    // Stay-type question - formal tone for luxury hotel
     STAY_TYPE_PROMPT: {
-        en: ["To get started, are you staying with us as a hotel guest, or as a student?"],
-        fr: ["Pour commencer, vous séjournez chez nous en tant que client hôtel, ou en tant qu'étudiant ?"],
-        de: ["Bevor wir loslegen — wohnen Sie bei uns als Hotelgast, oder als Student?"],
-        es: ["Para empezar, ¿te alojas con nosotros como huésped del hotel o como estudiante?"],
-        it: ["Per cominciare, soggiorni con noi come ospite dell'hotel o come studente?"],
-        pt: ["Para começar, está a ficar connosco como hóspede do hotel ou como estudante?"]
+        en: ["How may I assist you during your stay?"],
+        fr: ["Comment puis-je vous assister durant votre séjour ?"],
+        de: ["Wie darf ich Ihnen während Ihres Aufenthalts behilflich sein?"],
+        es: ["¿Cómo puedo asistirle durante su estancia?"],
+        it: ["Come posso assisterla durante il suo soggiorno?"],
+        pt: ["Como posso ajudá-lo durante a sua estadia?"]
     },
 
     STUDENT_WELCOME: {
