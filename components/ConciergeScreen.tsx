@@ -25,7 +25,7 @@ export default function ConciergeScreen({ onBack, onNavigate, lang, t, pack }: {
   const lastSpokenKeyRef = React.useRef<string | null>(null);
   const topicsShownRef = React.useRef(false);
 
-  const cinematicBg = "/concierge_bg.png";
+  const cinematicBg = "/assets/images/lobby.png";
 
   const getSpeechLangCode = (l: Lang) => {
     const map: Record<Lang, string> = { en: "en-GB", fr: "fr-FR", de: "de-DE", es: "es-ES", it: "it-IT", pt: "pt-PT" };

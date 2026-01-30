@@ -26,7 +26,7 @@ export default function WelcomeScreen({
   navigate,
   hotelName = "Le Grand Éclipse",
   hotelSubtitle = "Paris",
-  heroUrl = "/hero_ladefense.png",
+  heroUrl = "/assets/images/exterior.png",
   onAdminRequest,
 }: Props) {
   const [taps, setTaps] = useState(0);
@@ -35,10 +35,10 @@ export default function WelcomeScreen({
 
   // Image system integration
   const [heroImage, setHeroImage] = useState(heroUrl);
-  const [hubCardImage, setHubCardImage] = useState('/hero_hub_v2.png');
-  const [roomCardImage, setRoomCardImage] = useState('/hero_room_v2.png');
-  const [eventsCardImage, setEventsCardImage] = useState('/hero_events_v2.png');
-  const [areaCardImage, setAreaCardImage] = useState('/hero_ladefense.png');
+  const [hubCardImage, setHubCardImage] = useState('/assets/images/lobby.png');
+  const [roomCardImage, setRoomCardImage] = useState('/assets/images/guest_room.png');
+  const [eventsCardImage, setEventsCardImage] = useState('/assets/images/terrace.png');
+  const [areaCardImage, setAreaCardImage] = useState('/assets/images/local.png');
 
   useEffect(() => {
     // Load custom images if assigned

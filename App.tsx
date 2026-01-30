@@ -229,28 +229,27 @@ const DEFAULT_PACK: HotelPack = {
     }
   },
   media: [
-    { kind: "key", key: "hero_hub", url: "/hero_hub_v2.png", label: "Hub Hero" },
-    { kind: "key", key: "hero_room", url: "/hero_room_v2.png", label: "Room Hero" },
-    { kind: "key", key: "hero_events", url: "/hero_events_v2.png", label: "Events Hero" },
-    { kind: "key", key: "hero_paris", url: "/hero_paris_v2.png", label: "Paris Hero" },
-    { kind: "key", key: "hub_breakfast", url: "/lge_breakfast_buffet_v2.png", label: "Breakfast" },
-    { kind: "key", key: "hub_pool", url: "/hub_pool_v2.png", label: "Pool" },
-    { kind: "key", key: "hub_games", url: "/lge_gym_v1.png", label: "Gym" },
-    { kind: "key", key: "room_cleaning", url: "/lge_housekeeping_v2.png", label: "Cleaning" },
-    { kind: "key", key: "room_wifi", url: "/lge_wifi_desk_v2.png", label: "WiFi" },
-    { kind: "key", key: "area_metro", url: "/lge_metro_entrance_v2.png", label: "Metro" },
-
-    { kind: "key", key: "hub_restaurant", url: "/lge_restaurant_v1.png", label: "Restaurant" },
-    { kind: "key", key: "area_bikes", url: "/lge_bikes_v1.png", label: "Bikes" },
-    { kind: "key", key: "area_market", url: "/lge_grocery_v2.png", label: "Market" },
-    { kind: "key", key: "area_dining", url: "/lge_dining_partners_v2.png", label: "Dining" },
-    { kind: "key", key: "room_amenities", url: "/lge_thermostat_v2.png", label: "Amenities" },
-    { kind: "key", key: "room_maintenance", url: "/lge_maintenance_v2.png", label: "Maintenance" },
-    { kind: "key", key: "hub_packages", url: "/lge_packages_v2.png", label: "Packages" },
-    { kind: "key", key: "hub_luggage", url: "/lge_luggage_v2.png", label: "Luggage" },
-    { kind: "key", key: "community", url: "/lge_community_v1.png", label: "Community" },
-    { kind: "key", key: "room_laundry", url: "/lge_laundry_v2.png", label: "Laundry" },
-    { kind: "key", key: "room_comforty", url: "/lge_stay_comfortably_final.png", label: "Comfort" },
+    { kind: "key", key: "hero_hub", url: "/assets/images/lobby.png", label: "Hub Hero" },
+    { kind: "key", key: "hero_room", url: "/assets/images/guest_room.png", label: "Room Hero" },
+    { kind: "key", key: "hero_events", url: "/assets/images/terrace.png", label: "Events Hero" },
+    { kind: "key", key: "hero_paris", url: "/assets/images/local.png", label: "Paris Hero" },
+    { kind: "key", key: "hub_breakfast", url: "/assets/images/breakfast.png", label: "Breakfast" },
+    { kind: "key", key: "hub_pool", url: "/assets/images/spa.png", label: "Spa" },
+    { kind: "key", key: "hub_games", url: "/assets/images/gym.png", label: "Gym" },
+    { kind: "key", key: "room_cleaning", url: "/assets/images/guest_room.png", label: "Cleaning" },
+    { kind: "key", key: "room_wifi", url: "/assets/images/guest_room_2.png", label: "WiFi" },
+    { kind: "key", key: "area_metro", url: "/assets/images/local.png", label: "Metro" },
+    { kind: "key", key: "hub_restaurant", url: "/assets/images/dining.png", label: "Restaurant" },
+    { kind: "key", key: "area_bikes", url: "/assets/images/local.png", label: "Bikes" },
+    { kind: "key", key: "area_market", url: "/assets/images/local.png", label: "Market" },
+    { kind: "key", key: "area_dining", url: "/assets/images/dining.png", label: "Dining" },
+    { kind: "key", key: "room_amenities", url: "/assets/images/guest_room_2.png", label: "Amenities" },
+    { kind: "key", key: "room_maintenance", url: "/assets/images/front_desk.png", label: "Maintenance" },
+    { kind: "key", key: "hub_packages", url: "/assets/images/front_desk.png", label: "Packages" },
+    { kind: "key", key: "hub_luggage", url: "/assets/images/lobby.png", label: "Luggage" },
+    { kind: "key", key: "community", url: "/assets/images/terrace.png", label: "Community" },
+    { kind: "key", key: "room_laundry", url: "/assets/images/guest_room.png", label: "Laundry" },
+    { kind: "key", key: "room_comforty", url: "/assets/images/guest_room.png", label: "Comfort" },
   ],
   categories: [
     { id: "hub", titleKey: "c_the_hub", color: ui.hubGreen, icon: "", heroImage: { kind: "key", key: "hero_hub" } },
@@ -715,12 +714,11 @@ function HubView({ pack, lang, onBack }: any) {
   const p = pack.profile;
 
   // Use image slots with fallback
-  const [heroUrl, setHeroUrl] = useState('/hero_hub_v2.png');
-  const [imgBreakfast, setImgBreakfast] = useState('/hero_hub_v2.png');
-  const [imgPool, setImgPool] = useState('/hero_hub_v2.png');
-  const [imgGames, setImgGames] = useState('/hero_hub_v2.png');
-  const [imgRestaurant, setImgRestaurant] = useState('/hero_hub_v2.png');
-  const [imgShop, setImgShop] = useState('/shop_streetwear_v3.png');
+  const [heroUrl, setHeroUrl] = useState('/assets/images/lobby.png');
+  const [imgBreakfast, setImgBreakfast] = useState('/assets/images/breakfast.png');
+  const [imgPool, setImgPool] = useState('/assets/images/spa.png');
+  const [imgGames, setImgGames] = useState('/assets/images/gym.png');
+  const [imgRestaurant, setImgRestaurant] = useState('/assets/images/dining.png');
 
   useEffect(() => {
     Promise.all([
@@ -728,15 +726,13 @@ function HubView({ pack, lang, onBack }: any) {
       getImageForSlot(ImageSlot.HUB_CARD_BREAKFAST),
       getImageForSlot(ImageSlot.HUB_CARD_FACILITIES),
       getImageForSlot(ImageSlot.HUB_CARD_FOOD),
-      getImageForSlot(ImageSlot.HUB_CARD_RESTAURANT),
-      getImageForSlot(ImageSlot.HUB_CARD_SHOP)
-    ]).then(([hero, breakfast, facilities, food, restaurant, shop]) => {
+      getImageForSlot(ImageSlot.HUB_CARD_RESTAURANT)
+    ]).then(([hero, breakfast, facilities, food, restaurant]) => {
       setHeroUrl(hero);
       setImgBreakfast(breakfast);
       setImgPool(food);  // Using food image for pool/facilities
       setImgGames(facilities);
       setImgRestaurant(restaurant);
-      setImgShop(shop);
     });
   }, []);
 

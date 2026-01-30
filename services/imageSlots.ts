@@ -18,7 +18,6 @@ export enum ImageSlot {
     HUB_CARD_FOOD = 'hub.card.food',
     HUB_CARD_BREAKFAST = 'hub.card.breakfast',
     HUB_CARD_RESTAURANT = 'hub.card.restaurantBar',
-    HUB_CARD_SHOP = 'hub.card.shop',
 
     // Room Section
     ROOM_HERO = 'room.hero',
@@ -44,44 +43,43 @@ export enum ImageSlot {
 
 /**
  * Default images for each slot
- * These are the current production images that serve as fallbacks
+ * Using /assets/images/ for all luxury hotel images
  */
 export const DEFAULT_IMAGES: Record<ImageSlot, string> = {
-    // Home/Welcome
-    [ImageSlot.HOME_HERO]: '/hero_ladefense.png',
-    [ImageSlot.HOME_CARD_HUB]: '/hero_hub_v2.png',
-    [ImageSlot.HOME_CARD_ROOM]: '/hero_room_v2.png',
-    [ImageSlot.HOME_CARD_EVENTS]: '/hero_events_v2.png',
-    [ImageSlot.HOME_CARD_AREA]: '/hero_ladefense.png',
+    // Home/Welcome - using available luxury images
+    [ImageSlot.HOME_HERO]: '/assets/images/exterior.png',
+    [ImageSlot.HOME_CARD_HUB]: '/assets/images/lobby.png',
+    [ImageSlot.HOME_CARD_ROOM]: '/assets/images/guest_room.png',
+    [ImageSlot.HOME_CARD_EVENTS]: '/assets/images/terrace.png',
+    [ImageSlot.HOME_CARD_AREA]: '/assets/images/local.png',
 
     // Hub
-    [ImageSlot.HUB_HERO]: '/hero_hub_v2.png',
-    [ImageSlot.HUB_CARD_FACILITIES]: '/lge_gym_v1.png',
-    [ImageSlot.HUB_CARD_FOOD]: '/lge_breakfast_buffet_v2.png',
-    [ImageSlot.HUB_CARD_BREAKFAST]: '/lge_breakfast_buffet_v2.png',
-    [ImageSlot.HUB_CARD_RESTAURANT]: '/lge_restaurant_v1.png',
-    [ImageSlot.HUB_CARD_SHOP]: '/shop_streetwear_v3.png',
+    [ImageSlot.HUB_HERO]: '/assets/images/lobby.png',
+    [ImageSlot.HUB_CARD_FACILITIES]: '/assets/images/gym.png',
+    [ImageSlot.HUB_CARD_FOOD]: '/assets/images/breakfast.png',
+    [ImageSlot.HUB_CARD_BREAKFAST]: '/assets/images/breakfast.png',
+    [ImageSlot.HUB_CARD_RESTAURANT]: '/assets/images/dining.png',
 
     // Room
-    [ImageSlot.ROOM_HERO]: '/hero_room_v2.png',
-    [ImageSlot.ROOM_CARD_WIFI]: '/lge_wifi_desk_v2.png',
-    [ImageSlot.ROOM_CARD_CLEANING]: '/lge_housekeeping_v2.png',
-    [ImageSlot.ROOM_CARD_AMENITIES]: '/lge_thermostat_v2.png',
-    [ImageSlot.ROOM_CARD_AC]: '/lge_stay_comfortably_final.png',
+    [ImageSlot.ROOM_HERO]: '/assets/images/guest_room.png',
+    [ImageSlot.ROOM_CARD_WIFI]: '/assets/images/guest_room_2.png',
+    [ImageSlot.ROOM_CARD_CLEANING]: '/assets/images/guest_room.png',
+    [ImageSlot.ROOM_CARD_AMENITIES]: '/assets/images/guest_room_2.png',
+    [ImageSlot.ROOM_CARD_AC]: '/assets/images/guest_room.png',
 
     // Events
-    [ImageSlot.EVENTS_HERO]: '/hero_events_v2.png',
-    [ImageSlot.EVENTS_DEFAULT]: '/hero_events_v2.png',
+    [ImageSlot.EVENTS_HERO]: '/assets/images/terrace.png',
+    [ImageSlot.EVENTS_DEFAULT]: '/assets/images/terrace.png',
 
     // Area
-    [ImageSlot.AREA_HERO]: '/hero_ladefense.png',
-    [ImageSlot.AREA_CARD_METRO]: '/lge_metro_entrance_v2.png',
-    [ImageSlot.AREA_CARD_GROCERY]: '/lge_grocery_v2.png',
-    [ImageSlot.AREA_CARD_PARTNERS]: '/lge_dining_partners_v2.png',
-    [ImageSlot.AREA_CARD_BIKES]: '/lge_bikes_v1.png',
+    [ImageSlot.AREA_HERO]: '/assets/images/local.png',
+    [ImageSlot.AREA_CARD_METRO]: '/assets/images/local.png',
+    [ImageSlot.AREA_CARD_GROCERY]: '/assets/images/local.png',
+    [ImageSlot.AREA_CARD_PARTNERS]: '/assets/images/dining.png',
+    [ImageSlot.AREA_CARD_BIKES]: '/assets/images/local.png',
 
     // Concierge
-    [ImageSlot.CONCIERGE_BG]: '/concierge_bg.png'
+    [ImageSlot.CONCIERGE_BG]: '/assets/images/lobby.png'
 };
 
 /**
@@ -101,7 +99,6 @@ export const SLOT_LABELS: Record<ImageSlot, string> = {
     [ImageSlot.HUB_CARD_FOOD]: 'Hub - Food Card',
     [ImageSlot.HUB_CARD_BREAKFAST]: 'Hub - Breakfast Card',
     [ImageSlot.HUB_CARD_RESTAURANT]: 'Hub - Restaurant Card',
-    [ImageSlot.HUB_CARD_SHOP]: 'Hub - Shop Card',
 
     // Room
     [ImageSlot.ROOM_HERO]: 'Room - Hero Image',
@@ -141,8 +138,7 @@ export const SLOT_GROUPS = {
         ImageSlot.HUB_CARD_FACILITIES,
         ImageSlot.HUB_CARD_FOOD,
         ImageSlot.HUB_CARD_BREAKFAST,
-        ImageSlot.HUB_CARD_RESTAURANT,
-        ImageSlot.HUB_CARD_SHOP
+        ImageSlot.HUB_CARD_RESTAURANT
     ],
     room: [
         ImageSlot.ROOM_HERO,
