@@ -4,7 +4,7 @@ import { Lang } from '../i18n';
 /**
  * Concierge Flow Configuration
  * Admin-editable config for guided concierge experience
- * Guest-only flow — EN/FR only, polished French for Parisian luxury standards
+ * Guest-only flow — EN/FR only, Pure 5-Star Luxury Hotel Branding
  */
 
 export interface TopicConfig {
@@ -28,139 +28,139 @@ export interface ConciergeFlowConfig {
     guest: ConciergePathConfig;
 }
 
-// Default configuration — EN/FR only
+// Default configuration — EN/FR only — Pure 5-Star Luxury Branding
 export const DEFAULT_CONCIERGE_FLOW_CONFIG: ConciergeFlowConfig = {
     guest: {
         welcomeLines: {
-            en: ["Welcome to Le Grand Éclipse. I'll be your digital concierge, here to help you feel at home. Whenever you're ready, I can guide you through everything you need."],
-            fr: ["Bienvenue au Grand Éclipse. Je serai votre concierge digitale, à votre disposition pour vous accompagner tout au long de votre séjour. Je suis là dès que vous êtes prêt."]
+            en: ["Welcome to Le Grand Éclipse. I am your personal digital concierge, here to ensure every moment of your stay is exceptional. Please allow me to guide you through our services and amenities at your convenience."],
+            fr: ["Bienvenue au Grand Éclipse. Je suis votre concierge digitale personnelle, à votre entière disposition pour rendre chaque instant de votre séjour exceptionnel. Permettez-moi de vous présenter nos services et nos prestations."]
         },
         askFirstTimeLines: {
             en: [
-                "Lovely. Welcome. Is this your first time staying at Le Grand Éclipse, or have you stayed with us before?",
-                "Great. I'll help you make the most of your stay. Is this your first time staying at Le Grand Éclipse, or have you stayed with us before?"
+                "It is my pleasure to welcome you. Is this your first stay with us at Le Grand Éclipse, or do we have the honor of hosting you again?",
+                "We are delighted to have you with us. Is this your first visit to Le Grand Éclipse?"
             ],
             fr: [
-                "Enchanté. Est-ce votre première visite au Grand Éclipse, ou nous connaissez-vous déjà ?",
-                "Parfait. Je suis là pour vous permettre de profiter pleinement de votre séjour. Est-ce votre première visite ?"
+                "C'est un plaisir de vous accueillir. Est-ce votre premier séjour au Grand Éclipse, ou avons-nous l'honneur de vous recevoir à nouveau ?",
+                "Nous sommes ravis de vous accueillir. Est-ce votre première visite au Grand Éclipse ?"
             ]
         },
         firstTimeConfirmLines: {
-            en: ["Great choice. Le Grand Éclipse is a bit different — part hotel, part community. I'll show you the important things first."],
-            fr: ["Excellent choix. Le Grand Éclipse est un établissement singulier — à la fois hôtel et lieu de vie. Permettez-moi de vous présenter l'essentiel."]
+            en: ["We are delighted to have you as our guest. Allow me to introduce you to the refined elegance of Le Grand Éclipse. Our staff is at your service around the clock."],
+            fr: ["Nous sommes ravis de vous compter parmi nos hôtes. Permettez-moi de vous présenter l'élégance raffinée du Grand Éclipse. Notre personnel est à votre service jour et nuit."]
         },
         returningConfirmLines: {
-            en: ["Welcome back. Let's find what you need."],
-            fr: ["Heureux de vous revoir. Voyons comment je puis vous être utile."]
+            en: ["Welcome back. It is always a pleasure to see you again. How may I be of service?"],
+            fr: ["Bon retour parmi nous. C'est toujours un plaisir de vous revoir. Comment puis-je vous être utile ?"]
         },
         backLines: {
             en: [
-                "What would you like to check next?",
-                "No rush — where to?",
-                "Anything else I can help with?",
-                "Let me know what you need.",
-                "What's next?"
+                "What else may I assist you with?",
+                "How may I be of further service?",
+                "Is there anything else you would like to explore?",
+                "I am at your disposal.",
+                "What would you like to discover next?"
             ],
             fr: [
-                "Que souhaitez-vous découvrir à présent ?",
-                "Prenez votre temps. Où puis-je vous guider ?",
-                "Puis-je vous être utile pour autre chose ?",
+                "Que puis-je faire d'autre pour vous ?",
+                "Comment puis-je vous être utile ?",
+                "Y a-t-il autre chose que vous souhaiteriez découvrir ?",
                 "Je reste à votre disposition.",
-                "Que puis-je faire pour vous ?"
+                "Que souhaitez-vous découvrir à présent ?"
             ]
         },
         idleLines: {
             en: [
-                "Take your time — I'm right here.",
-                "This is the Le Grand Éclipse vibe.",
-                "It's all part of what makes us different.",
-                "There's always something happening here.",
-                "Hope you're enjoying your stay.",
-                "I've got you.",
-                "No rush.",
-                "Good choice.",
-                "Let's see what's next.",
-                "You're exactly where you need to be.",
-                "This is what we stand for.",
-                "Part hotel, part community.",
-                "You'll feel right at home.",
-                "We like to keep things simple.",
-                "Welcome to the hub.",
-                "Happy to help."
+                "Please take all the time you need.",
+                "I remain at your disposal.",
+                "I am here whenever you wish to continue.",
+                "There is much to discover during your stay.",
+                "Please let me know how I may assist you further.",
+                "You may return to this information at any time.",
+                "All our services are at your fingertips.",
+                "Please explore at your leisure.",
+                "What would you like to discover next?",
+                "Very well. Shall we continue?",
+                "Please take your time. I am at your service.",
+                "I remain here for you.",
+                "Your comfort is our priority.",
+                "Our team is at your service.",
+                "The finest experiences await you.",
+                "It is our pleasure to serve you."
             ],
             fr: [
-                "Prenez tout votre temps — je reste à votre disposition.",
-                "C'est cela, l'esprit Grand Éclipse.",
-                "C'est ce qui fait notre singularité.",
-                "Il se passe toujours quelque chose ici.",
-                "J'espère que votre séjour vous plaît.",
-                "Je suis là pour vous.",
-                "Sans précipitation.",
-                "Excellent choix.",
-                "Voyons la suite.",
-                "Vous êtes au bon endroit.",
-                "C'est notre philosophie.",
-                "Mi-hôtel, mi-lieu de vie.",
-                "Vous vous sentirez comme chez vous.",
-                "Nous aimons la simplicité.",
-                "Bienvenue dans notre espace.",
-                "Avec plaisir."
+                "Prenez tout le temps qu'il vous faut.",
+                "Je reste à votre entière disposition.",
+                "Je suis là dès que vous le souhaitez.",
+                "Il y a tant à découvrir durant votre séjour.",
+                "N'hésitez pas à me faire part de vos souhaits.",
+                "Vous pourrez consulter ces informations à tout moment.",
+                "Tous nos services sont à votre portée.",
+                "Explorez à votre rythme.",
+                "Que souhaitez-vous découvrir à présent ?",
+                "Très bien. Souhaitez-vous poursuivre ?",
+                "Prenez votre temps. Je suis à votre service.",
+                "Je reste à votre disposition.",
+                "Votre confort est notre priorité.",
+                "Notre équipe est à votre service.",
+                "Les plus belles expériences vous attendent.",
+                "C'est un plaisir de vous servir."
             ]
         },
         topics: [
-            { id: "room", label: { en: "Your Room", fr: "Votre Chambre" }, order: 1 },
+            { id: "room", label: { en: "Your Suite", fr: "Votre Suite" }, order: 1 },
             { id: "breakfast", label: { en: "Breakfast", fr: "Petit-déjeuner" }, order: 2 },
             { id: "spa", label: { en: "Spa & Wellness", fr: "Spa & Bien-être" }, order: 3 },
-            { id: "gym", label: { en: "Fitness Center", fr: "Centre Fitness" }, order: 4 },
+            { id: "gym", label: { en: "Private Fitness", fr: "Fitness Privé" }, order: 4 },
             { id: "dining", label: { en: "Fine Dining", fr: "Gastronomie" }, order: 5 },
-            { id: "facilities", label: { en: "Facilities", fr: "Équipements" }, order: 6 },
+            { id: "facilities", label: { en: "Amenities", fr: "Prestations" }, order: 6 },
             { id: "shop", label: { en: "Boutique", fr: "Boutique" }, order: 7 },
             { id: "events", label: { en: "Events", fr: "Événements" }, order: 8 },
-            { id: "area", label: { en: "Neighborhood", fr: "Aux Alentours" }, order: 9 }
+            { id: "area", label: { en: "Concierge Recommendations", fr: "Recommandations" }, order: 9 }
         ],
         topicIntros: {
             room: {
-                en: ["Here's what to know about your stay, from cleaning to WiFi."],
-                fr: ["Voici les informations essentielles concernant votre chambre : entretien, connexion Wi-Fi et équipements."]
+                en: ["Allow me to present the essential details of your accommodations, from our attentive housekeeping service to our high-speed connectivity."],
+                fr: ["Permettez-moi de vous présenter les informations essentielles concernant votre chambre : notre service d'étage attentif et notre connexion haut débit."]
             },
             breakfast: {
-                en: ["Breakfast is vital. Here's how it works."],
-                fr: ["Le petit-déjeuner est un moment privilégié. Voici comment en profiter."]
+                en: ["Breakfast at Le Grand Éclipse is a refined experience. Allow me to share our culinary offerings and service hours."],
+                fr: ["Le petit-déjeuner au Grand Éclipse est une expérience raffinée. Permettez-moi de vous présenter nos offres gastronomiques et nos horaires de service."]
             },
             facilities: {
-                en: ["Check out our 24/7 gym, laundry, and the pool when it's open."],
-                fr: ["Découvrez notre centre fitness accessible 24h/24, notre buanderie et notre piscine."]
+                en: ["Le Grand Éclipse offers an array of premium amenities for your comfort and well-being. Allow me to present our facilities."],
+                fr: ["Le Grand Éclipse propose un ensemble de prestations premium pour votre confort et votre bien-être. Permettez-moi de vous les présenter."]
             },
             shop: {
-                en: ["Our boutique is open for daily essentials and exclusive items."],
-                fr: ["Notre boutique vous propose l'essentiel du quotidien et des articles exclusifs."]
+                en: ["Our boutique offers a curated selection of luxury essentials and exclusive items from the house of Le Grand Éclipse."],
+                fr: ["Notre boutique propose une sélection raffinée d'articles de luxe et de pièces exclusives signées Le Grand Éclipse."]
             },
             events: {
-                en: ["Here's what's happening around the hub."],
-                fr: ["Voici les événements de la semaine."]
+                en: ["Discover the distinguished events and cultural experiences we have arranged for our guests this week."],
+                fr: ["Découvrez les événements distingués et les expériences culturelles que nous avons préparés pour nos hôtes cette semaine."]
             },
             area: {
-                en: ["Here's what's nearby in the neighborhood."],
-                fr: ["Découvrez nos recommandations dans le quartier."]
+                en: ["Allow me to share our concierge recommendations for discovering the finest establishments in the neighborhood."],
+                fr: ["Permettez-moi de partager nos recommandations de concierge pour découvrir les meilleures adresses du quartier."]
             },
             spa: {
-                en: ["Indulge in our signature spa treatments. Pure relaxation awaits."],
-                fr: ["Offrez-vous un moment de bien-être avec nos soins signature. La sérénité vous attend."]
+                en: ["Our spa sanctuary awaits. Indulge in our signature treatments designed to restore balance and serenity."],
+                fr: ["Notre sanctuaire spa vous attend. Offrez-vous nos soins signature conçus pour restaurer équilibre et sérénité."]
             },
             gym: {
-                en: ["Our 24/7 fitness center has everything you need. Let me show you."],
-                fr: ["Notre centre de remise en forme, accessible 24h/24, dispose de tous les équipements nécessaires. Permettez-moi de vous le présenter."]
+                en: ["Our private fitness center offers state-of-the-art equipment in an atmosphere of refined tranquility. Available exclusively for our guests, around the clock."],
+                fr: ["Notre centre de remise en forme privé propose des équipements de pointe dans une atmosphère de tranquillité raffinée. Réservé exclusivement à nos hôtes, 24 heures sur 24."]
             },
             dining: {
-                en: ["Experience culinary excellence at L'Éclipse Restaurant. Seasonal French cuisine awaits."],
-                fr: ["Découvrez l'excellence gastronomique du Restaurant L'Éclipse. Une cuisine française de saison aux accents contemporains."]
+                en: ["Experience the art of French gastronomy at Restaurant L'Éclipse. Our executive chef presents seasonal cuisine with distinctive elegance."],
+                fr: ["Découvrez l'art de la gastronomie française au Restaurant L'Éclipse. Notre chef exécutif présente une cuisine de saison d'une élégance distinctive."]
             }
         }
     }
 };
 
 // LocalStorage functions
-const STORAGE_KEY = 'lge_concierge_flow_config_v2';
+const STORAGE_KEY = 'lge_concierge_flow_config_v3';
 
 export const loadConciergeFlowConfig = (): ConciergeFlowConfig => {
     try {

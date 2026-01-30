@@ -1,5 +1,5 @@
 // Voice Generation Script for ElevenLabs — EN/FR Only
-// Run this once to pre-generate all concierge voice files
+// Pure 5-Star Luxury Hotel Branding
 // Usage: node scripts/generateVoices.mjs
 
 import fs from 'fs';
@@ -18,323 +18,328 @@ const VOICE_ID = 'EXAVITQu4vr4xnSDxMaL'; // Rachel - warm female voice
 const OUTPUT_DIR = path.join(__dirname, '..', 'public', 'voice');
 
 // ═══════════════════════════════════════════════════════════════════════════
-// VOICE SCRIPTS — EN/FR Only, Parisian Luxury Hotel Standards
-// French: Sophisticated, professional, warm but refined
+// VOICE SCRIPTS — Pure 5-Star Luxury Hotel Branding
+// Tone: Elegant, refined, discreet, sophisticated service
 // ═══════════════════════════════════════════════════════════════════════════
 
 const VOICE_SCRIPTS = {
     // === WELCOME & SELECTION ===
     'welcome': {
-        en: "Welcome to Le Grand Éclipse. I'll be your digital concierge, here to help you feel at home. Whenever you're ready, I can guide you through everything you need.",
-        fr: "Bienvenue au Grand Éclipse. Je serai votre concierge digitale, à votre disposition pour vous accompagner tout au long de votre séjour. Je suis là dès que vous êtes prêt."
+        en: "Welcome to Le Grand Éclipse. I am your personal digital concierge, here to ensure every moment of your stay is exceptional. Please allow me to guide you through our services and amenities at your convenience.",
+        fr: "Bienvenue au Grand Éclipse. Je suis votre concierge digitale personnelle, à votre entière disposition pour rendre chaque instant de votre séjour exceptionnel. Permettez-moi de vous présenter nos services et nos prestations."
     },
 
     // === GUEST PATH ===
     'guest_ask_first_time': {
-        en: "Lovely. Welcome. Is this your first time staying at Le Grand Éclipse, or have you stayed with us before?",
-        fr: "Enchanté. Est-ce votre première visite au Grand Éclipse, ou nous connaissez-vous déjà ?"
+        en: "It is my pleasure to welcome you. Is this your first stay with us at Le Grand Éclipse, or do we have the honor of hosting you again?",
+        fr: "C'est un plaisir de vous accueillir. Est-ce votre premier séjour au Grand Éclipse, ou avons-nous l'honneur de vous recevoir à nouveau ?"
     },
 
     'guest_first_time_confirm': {
-        en: "Great choice. Le Grand Éclipse is a bit different — part hotel, part community. I'll show you the important things first.",
-        fr: "Excellent choix. Le Grand Éclipse est un établissement singulier — à la fois hôtel et lieu de vie. Permettez-moi de vous présenter l'essentiel."
+        en: "We are delighted to have you as our guest. Allow me to introduce you to the refined elegance of Le Grand Éclipse. Our staff is at your service around the clock.",
+        fr: "Nous sommes ravis de vous compter parmi nos hôtes. Permettez-moi de vous présenter l'élégance raffinée du Grand Éclipse. Notre personnel est à votre service jour et nuit."
     },
 
     'guest_returning_confirm': {
-        en: "Welcome back. Let's find what you need.",
-        fr: "Heureux de vous revoir. Voyons comment je puis vous être utile."
+        en: "Welcome back. It is always a pleasure to see you again. How may I be of service?",
+        fr: "Bon retour parmi nous. C'est toujours un plaisir de vous revoir. Comment puis-je vous être utile ?"
     },
 
     // === GUEST TOPIC INTROS ===
     'guest_topic_room': {
-        en: "Here's what to know about your stay, from cleaning to WiFi.",
-        fr: "Voici les informations essentielles concernant votre chambre : entretien, connexion Wi-Fi et équipements."
+        en: "Allow me to present the essential details of your accommodations, from our attentive housekeeping service to our high-speed connectivity.",
+        fr: "Permettez-moi de vous présenter les informations essentielles concernant votre chambre : notre service d'étage attentif et notre connexion haut débit."
     },
 
     'guest_topic_breakfast': {
-        en: "Breakfast is vital. Here's how it works.",
-        fr: "Le petit-déjeuner est un moment privilégié. Voici comment en profiter."
+        en: "Breakfast at Le Grand Éclipse is a refined experience. Allow me to share our culinary offerings and service hours.",
+        fr: "Le petit-déjeuner au Grand Éclipse est une expérience raffinée. Permettez-moi de vous présenter nos offres gastronomiques et nos horaires de service."
     },
 
     'guest_topic_facilities': {
-        en: "Check out our 24/7 gym, laundry, and the pool when it's open.",
-        fr: "Découvrez notre centre fitness accessible 24h/24, notre buanderie et notre piscine."
+        en: "Le Grand Éclipse offers an array of premium amenities for your comfort and well-being. Allow me to present our facilities.",
+        fr: "Le Grand Éclipse propose un ensemble de prestations premium pour votre confort et votre bien-être. Permettez-moi de vous les présenter."
     },
 
     'guest_topic_shop': {
-        en: "Our boutique is open for daily essentials and exclusive items.",
-        fr: "Notre boutique vous propose l'essentiel du quotidien et des articles exclusifs."
+        en: "Our boutique offers a curated selection of luxury essentials and exclusive items from the house of Le Grand Éclipse.",
+        fr: "Notre boutique propose une sélection raffinée d'articles de luxe et de pièces exclusives signées Le Grand Éclipse."
     },
 
     'guest_topic_events': {
-        en: "Here's what's happening around the hub.",
-        fr: "Voici les événements de la semaine."
+        en: "Discover the distinguished events and cultural experiences we have arranged for our guests this week.",
+        fr: "Découvrez les événements distingués et les expériences culturelles que nous avons préparés pour nos hôtes cette semaine."
     },
 
     'guest_topic_area': {
-        en: "Here's what's nearby in the neighborhood.",
-        fr: "Découvrez nos recommandations dans le quartier."
+        en: "Allow me to share our concierge recommendations for discovering the finest establishments in the neighborhood.",
+        fr: "Permettez-moi de partager nos recommandations de concierge pour découvrir les meilleures adresses du quartier."
     },
 
-    // === NEW LUXURY TOPIC INTROS ===
+    // === LUXURY FEATURE TOPIC INTROS ===
     'guest_topic_spa': {
-        en: "Indulge in our signature spa treatments. Pure relaxation awaits.",
-        fr: "Offrez-vous un moment de bien-être avec nos soins signature. La sérénité vous attend."
+        en: "Our spa sanctuary awaits. Indulge in our signature treatments designed to restore balance and serenity.",
+        fr: "Notre sanctuaire spa vous attend. Offrez-vous nos soins signature conçus pour restaurer équilibre et sérénité."
     },
 
     'guest_topic_gym': {
-        en: "Our 24/7 fitness center has everything you need. Let me show you.",
-        fr: "Notre centre de remise en forme, accessible 24h/24, dispose de tous les équipements nécessaires. Permettez-moi de vous le présenter."
+        en: "Our private fitness center offers state-of-the-art equipment in an atmosphere of refined tranquility. Available exclusively for our guests, around the clock.",
+        fr: "Notre centre de remise en forme privé propose des équipements de pointe dans une atmosphère de tranquillité raffinée. Réservé exclusivement à nos hôtes, 24 heures sur 24."
     },
 
     'guest_topic_dining': {
-        en: "Experience culinary excellence at L'Éclipse Restaurant. Seasonal French cuisine awaits.",
-        fr: "Découvrez l'excellence gastronomique du Restaurant L'Éclipse. Une cuisine française de saison aux accents contemporains."
+        en: "Experience the art of French gastronomy at Restaurant L'Éclipse. Our executive chef presents seasonal cuisine with distinctive elegance.",
+        fr: "Découvrez l'art de la gastronomie française au Restaurant L'Éclipse. Notre chef exécutif présente une cuisine de saison d'une élégance distinctive."
     },
 
-    // === IDLE/BACK NAVIGATION (12 variations for natural feel) ===
+    // === IDLE/NAVIGATION (12 variations — refined, discreet) ===
     'idle_1': {
-        en: "No worries — take your time.",
-        fr: "Prenez tout votre temps."
+        en: "Please take all the time you need.",
+        fr: "Prenez tout le temps qu'il vous faut."
     },
 
     'idle_2': {
-        en: "I'm right here if you need me.",
-        fr: "Je reste à votre disposition."
+        en: "I remain at your disposal.",
+        fr: "Je reste à votre entière disposition."
     },
 
     'idle_3': {
-        en: "Happy to help whenever you're ready.",
-        fr: "Je suis là dès que vous êtes prêt."
+        en: "I am here whenever you wish to continue.",
+        fr: "Je suis là dès que vous le souhaitez."
     },
 
     'idle_4': {
-        en: "There's plenty to explore.",
-        fr: "Il y a tant à découvrir."
+        en: "There is much to discover during your stay.",
+        fr: "Il y a tant à découvrir durant votre séjour."
     },
 
     'idle_5': {
-        en: "Let me know what you'd like to look at next.",
-        fr: "N'hésitez pas à me solliciter."
+        en: "Please let me know how I may assist you further.",
+        fr: "N'hésitez pas à me faire part de vos souhaits."
     },
 
     'idle_6': {
-        en: "You can always come back to this later.",
-        fr: "Vous pourrez y revenir quand vous le souhaiterez."
+        en: "You may return to this information at any time.",
+        fr: "Vous pourrez consulter ces informations à tout moment."
     },
 
     'idle_7': {
-        en: "Everything you need is just a tap away.",
-        fr: "Tout est à portée de main."
+        en: "All our services are at your fingertips.",
+        fr: "Tous nos services sont à votre portée."
     },
 
     'idle_8': {
-        en: "Feel free to take a look around.",
+        en: "Please explore at your leisure.",
         fr: "Explorez à votre rythme."
     },
 
     'idle_9': {
-        en: "I've got you — where to next?",
-        fr: "Où souhaitez-vous vous rendre à présent ?"
+        en: "What would you like to discover next?",
+        fr: "Que souhaitez-vous découvrir à présent ?"
     },
 
     'idle_10': {
-        en: "All good. Let's keep going.",
-        fr: "Très bien, poursuivons."
+        en: "Very well. Shall we continue?",
+        fr: "Très bien. Souhaitez-vous poursuivre ?"
     },
 
     'idle_11': {
-        en: "You're doing great, take it easy.",
-        fr: "Prenez votre temps, vraiment."
+        en: "Please take your time. I am at your service.",
+        fr: "Prenez votre temps. Je suis à votre service."
     },
 
     'idle_12': {
-        en: "Whenever you're ready, I'm here.",
-        fr: "Je reste avec vous."
+        en: "I remain here for you.",
+        fr: "Je reste à votre disposition."
     },
 
-    // === MAIN MENU CARD VOICES (3 variants each) ===
+    // === FACILITIES CARDS (3 variants each) ===
     'card_hub_facilities_1': {
-        en: "This is where the community comes together — let's take a look.",
-        fr: "C'est ici que tout se passe — permettez-moi de vous faire visiter."
+        en: "Allow me to present our distinguished amenities, designed for your comfort and well-being.",
+        fr: "Permettez-moi de vous présenter nos prestations distinguées, conçues pour votre confort et votre bien-être."
     },
     'card_hub_facilities_2': {
-        en: "Let me show you our favorite shared spaces.",
-        fr: "Découvrez nos espaces communs les plus appréciés."
+        en: "Our facilities have been curated to exceed the expectations of our discerning guests.",
+        fr: "Nos équipements ont été sélectionnés pour surpasser les attentes de nos hôtes les plus exigeants."
     },
     'card_hub_facilities_3': {
-        en: "These are the spots where everyone hangs out.",
-        fr: "Ce sont les lieux de rendez-vous de nos clients."
+        en: "Experience the refined amenities that define the Le Grand Éclipse standard.",
+        fr: "Découvrez les prestations raffinées qui définissent l'excellence du Grand Éclipse."
     },
 
     'card_hub_food_drinks_1': {
-        en: "Good food, good moments — here's what's available.",
-        fr: "Gastronomie et convivialité — voici notre offre."
+        en: "Our culinary offerings reflect our commitment to gastronomic excellence.",
+        fr: "Notre offre gastronomique reflète notre engagement envers l'excellence culinaire."
     },
     'card_hub_food_drinks_2': {
-        en: "Let's explore the food and drink options.",
-        fr: "Permettez-moi de vous présenter nos options de restauration."
+        en: "Allow me to present our dining options, each crafted with exceptional care.",
+        fr: "Permettez-moi de vous présenter nos options de restauration, chacune élaborée avec un soin exceptionnel."
     },
     'card_hub_food_drinks_3': {
-        en: "Time to check out what's cooking.",
-        fr: "Découvrez ce que nous vous avons préparé."
+        en: "Discover the culinary artistry that awaits you at Le Grand Éclipse.",
+        fr: "Découvrez l'art culinaire qui vous attend au Grand Éclipse."
     },
 
     'card_hub_shop_1': {
-        en: "From essentials to exclusive items — all the good stuff.",
-        fr: "De l'essentiel aux pièces exclusives — le meilleur vous attend."
+        en: "Our boutique presents a curated collection of luxury items and travel essentials.",
+        fr: "Notre boutique présente une collection raffinée d'articles de luxe et d'essentiels de voyage."
     },
     'card_hub_shop_2': {
-        en: "Our boutique has everything you need.",
-        fr: "Notre boutique a tout ce qu'il vous faut."
+        en: "Discover exclusive pieces bearing the Le Grand Éclipse signature.",
+        fr: "Découvrez des pièces exclusives portant la signature Le Grand Éclipse."
     },
     'card_hub_shop_3': {
-        en: "Check out what's in store today.",
-        fr: "Découvrez notre sélection du jour."
+        en: "Our boutique awaits with distinguished selections.",
+        fr: "Notre boutique vous attend avec des sélections distinguées."
     },
 
+    // === ROOM CARDS ===
     'card_room_wifi_1': {
-        en: "Everything you need to stay connected, right here.",
-        fr: "Tout ce qu'il vous faut pour rester connecté."
+        en: "Seamless connectivity awaits. Our high-speed network ensures you remain connected in comfort.",
+        fr: "Une connectivité parfaite vous attend. Notre réseau haut débit vous garantit une connexion confortable."
     },
     'card_room_wifi_2': {
-        en: "Let's get you online.",
-        fr: "Permettez-moi de vous connecter."
+        en: "Allow me to assist you with our complimentary high-speed connection.",
+        fr: "Permettez-moi de vous assister avec notre connexion haut débit offerte."
     },
     'card_room_wifi_3': {
-        en: "Here's how the WiFi works.",
-        fr: "Voici comment fonctionne notre connexion Wi-Fi."
+        en: "Connecting to our secure network is effortless. Here are the details.",
+        fr: "La connexion à notre réseau sécurisé est simplissime. Voici les détails."
     },
 
     'card_room_cleaning_1': {
-        en: "Keeping your space fresh and comfortable.",
-        fr: "Pour un espace toujours impeccable."
+        en: "Our housekeeping team maintains the highest standards of elegance and cleanliness throughout your stay.",
+        fr: "Notre équipe d'étage maintient les plus hauts standards d'élégance et de propreté durant votre séjour."
     },
     'card_room_cleaning_2': {
-        en: "Here's how cleaning works.",
-        fr: "Voici l'organisation de notre service d'entretien."
+        en: "Allow me to explain our attentive housekeeping service.",
+        fr: "Permettez-moi de vous expliquer notre service d'étage attentif."
     },
     'card_room_cleaning_3': {
-        en: "Let me explain the housekeeping schedule.",
-        fr: "Permettez-moi de vous expliquer notre programme d'entretien."
+        en: "Your comfort is our priority. Here is our housekeeping schedule.",
+        fr: "Votre confort est notre priorité. Voici notre programme d'entretien."
     },
 
     'card_room_amenities_1': {
-        en: "All the little things that make it feel like home.",
-        fr: "Tous ces petits détails qui font la différence."
+        en: "Your suite has been appointed with thoughtful touches for an exceptional stay.",
+        fr: "Votre suite a été agrémentée d'attentions délicates pour un séjour exceptionnel."
     },
     'card_room_amenities_2': {
-        en: "Here's what's in your room.",
-        fr: "Voici les équipements de votre chambre."
+        en: "Discover the refined amenities awaiting you in your accommodations.",
+        fr: "Découvrez les équipements raffinés qui vous attendent dans votre chambre."
     },
     'card_room_amenities_3': {
-        en: "Let me show you the amenities.",
-        fr: "Découvrez nos équipements."
+        en: "Allow me to present the comforts of your private retreat.",
+        fr: "Permettez-moi de vous présenter les agréments de votre retraite privée."
     },
 
     'card_room_comfort_1': {
-        en: "Everything to feel at home, right here.",
-        fr: "Tout pour vous sentir comme chez vous."
+        en: "Every detail has been considered for your absolute comfort.",
+        fr: "Chaque détail a été pensé pour votre confort absolu."
     },
     'card_room_comfort_2': {
-        en: "Making your stay comfortable.",
-        fr: "Pour un séjour des plus agréables."
+        en: "Your well-being is our utmost concern.",
+        fr: "Votre bien-être est notre préoccupation première."
     },
     'card_room_comfort_3': {
-        en: "Here's what you need to know.",
-        fr: "Voici les informations essentielles."
+        en: "Please allow me to ensure your complete satisfaction.",
+        fr: "Permettez-moi de veiller à votre entière satisfaction."
     },
 
+    // === AREA CARDS ===
     'card_area_dining_1': {
-        en: "Great spots just around the corner — local favorites.",
-        fr: "Nos meilleures adresses du quartier."
+        en: "Our concierge has curated the finest dining establishments in the neighborhood for your consideration.",
+        fr: "Notre concierge a sélectionné les meilleurs établissements gastronomiques du quartier pour vous."
     },
     'card_area_dining_2': {
-        en: "Here are the best places to eat nearby.",
-        fr: "Voici nos recommandations gastronomiques."
+        en: "Allow me to share our preferred addresses for distinguished dining.",
+        fr: "Permettez-moi de partager nos adresses privilégiées pour une table distinguée."
     },
     'card_area_dining_3': {
-        en: "Let me show you where locals go.",
-        fr: "Découvrez les adresses privilégiées des Parisiens."
+        en: "These exceptional restaurants have earned our personal recommendation.",
+        fr: "Ces restaurants d'exception ont mérité notre recommandation personnelle."
     },
 
     'card_area_transport_1': {
-        en: "Getting around is easy — here's how.",
-        fr: "Se déplacer est un jeu d'enfant — voici comment."
+        en: "Allow me to facilitate your travel arrangements throughout Paris.",
+        fr: "Permettez-moi de faciliter vos déplacements dans Paris."
     },
     'card_area_transport_2': {
-        en: "Let me explain the transport options.",
-        fr: "Permettez-moi de vous présenter les options de transport."
+        en: "Private transfers and transport options are available at your request.",
+        fr: "Des transferts privés et options de transport sont disponibles sur demande."
     },
     'card_area_transport_3': {
-        en: "Here's how to move around the city.",
-        fr: "Voici comment circuler dans Paris."
+        en: "Our concierge service is pleased to arrange all your transportation needs.",
+        fr: "Notre service de conciergerie se fera un plaisir d'organiser tous vos besoins en transport."
     },
 
     'card_area_essentials_1': {
-        en: "Everything you might need, close by.",
-        fr: "Tout ce dont vous pourriez avoir besoin, à proximité."
+        en: "Should you require anything, the finest establishments are within easy reach.",
+        fr: "Si vous avez besoin de quoi que ce soit, les meilleurs établissements sont à proximité."
     },
     'card_area_essentials_2': {
-        en: "Here's what's nearby.",
-        fr: "Voici les commerces à proximité."
+        en: "Our neighborhood offers convenient access to essential services.",
+        fr: "Notre quartier offre un accès pratique aux services essentiels."
     },
     'card_area_essentials_3': {
-        en: "The essentials are all around you.",
-        fr: "L'essentiel est à deux pas."
+        en: "Everything you may need is close at hand.",
+        fr: "Tout ce dont vous pourriez avoir besoin est à portée de main."
     },
 
+    // === FRONT DESK ===
     'card_front_desk_1': {
-        en: "Please dial nine from your room phone to reach the front desk. Our team will be happy to assist you with anything you need.",
-        fr: "Veuillez composer le 9 depuis le téléphone de votre chambre pour joindre la Réception. Notre équipe se fera un plaisir de vous assister."
+        en: "Our reception team is available around the clock. Simply dial nine from your room telephone, and we shall attend to you immediately.",
+        fr: "Notre équipe de réception est disponible en permanence. Composez simplement le 9 depuis le téléphone de votre chambre, et nous nous occuperons de vous immédiatement."
     },
     'card_front_desk_2': {
-        en: "Need help? Just dial nine from your room. We're here for you twenty-four seven.",
-        fr: "Besoin d'assistance ? Composez le 9. Nous sommes à votre disposition 24h/24."
+        en: "For any request, our reception is at your service twenty-four hours a day. Dial nine from your suite.",
+        fr: "Pour toute demande, notre réception est à votre service vingt-quatre heures sur vingt-quatre. Composez le 9 depuis votre suite."
     },
     'card_front_desk_3': {
-        en: "Our front desk is always here. Dial nine from your room phone anytime.",
-        fr: "Notre Réception est toujours à votre écoute. Composez le 9 à tout moment."
+        en: "Your comfort is our privilege. Our reception team awaits your call at any hour.",
+        fr: "Votre confort est notre privilège. Notre équipe de réception attend votre appel à toute heure."
     },
 
-    // === NEW LUXURY FEATURE CARDS ===
+    // === SPA CARDS ===
     'card_spa_treatments_1': {
-        en: "Book our 90-minute Grand Éclipse Journey — a full-body massage with hot stones and essential oils. Pure indulgence.",
-        fr: "Réservez notre Voyage Grand Éclipse de 90 minutes — un massage corps entier aux pierres chaudes et huiles essentielles. Un moment de pure indulgence."
+        en: "Experience our signature Grand Éclipse Journey — a ninety-minute ritual combining hot stone therapy and precious essential oils for complete restoration.",
+        fr: "Découvrez notre rituel signature Le Voyage Grand Éclipse — un moment de quatre-vingt-dix minutes alliant lithothérapie aux pierres chaudes et huiles essentielles précieuses pour une restauration complète."
     },
     'card_spa_treatments_2': {
-        en: "Our spa team creates personalized wellness experiences. Let them take care of you.",
-        fr: "Notre équipe spa conçoit des expériences bien-être sur mesure. Laissez-vous choyer."
+        en: "Our master therapists craft bespoke wellness experiences tailored to your individual needs. Surrender to their expert care.",
+        fr: "Nos maîtres praticiens conçoivent des expériences bien-être sur mesure adaptées à vos besoins individuels. Abandonnez-vous à leurs soins experts."
     },
     'card_spa_treatments_3': {
-        en: "From aromatherapy to deep tissue massage — find your perfect treatment.",
-        fr: "De l'aromathérapie au massage profond — trouvez le soin qui vous convient."
+        en: "From restorative facials to deep tissue massage — discover the treatment that speaks to your soul.",
+        fr: "Des soins du visage régénérants aux massages profonds — découvrez le soin qui parle à votre âme."
     },
 
+    // === GYM CARDS ===
     'card_gym_equipment_1': {
-        en: "Technogym cardio machines, strength training stations, Peloton bikes, and a TRX zone. Towels and water provided.",
-        fr: "Équipements Technogym, stations de musculation, vélos Peloton et zone TRX. Serviettes et eau à disposition."
+        en: "Our fitness sanctuary features Technogym excellence, Peloton cycling, and a dedicated stretching atelier. Fresh towels and artesian water are provided with our compliments.",
+        fr: "Notre sanctuaire fitness propose l'excellence Technogym, le cycling Peloton et un atelier d'étirement dédié. Serviettes fraîches et eau artésienne vous sont offertes avec nos compliments."
     },
     'card_gym_equipment_2': {
-        en: "Our fitness center has everything for your workout. Personal trainers available on request.",
-        fr: "Notre centre fitness dispose de tout le nécessaire. Coachs personnels sur demande."
+        en: "Personal training sessions with our certified instructors are available upon request. Simply contact our concierge to arrange.",
+        fr: "Des séances d'entraînement personnel avec nos instructeurs certifiés sont disponibles sur demande. Contactez simplement notre conciergerie pour organiser."
     },
     'card_gym_equipment_3': {
-        en: "State-of-the-art equipment awaits. Access with your room key, 24/7.",
-        fr: "Des équipements de pointe vous attendent. Accès 24h/24 avec votre clé de chambre."
+        en: "Exclusive twenty-four hour access with your suite key. The fitness center is reserved solely for our distinguished guests.",
+        fr: "Accès exclusif vingt-quatre heures sur vingt-quatre avec votre clé de suite. Le centre de remise en forme est réservé exclusivement à nos hôtes distingués."
     },
 
+    // === RESTAURANT CARDS ===
     'card_restaurant_1': {
-        en: "Dinner at L'Éclipse Restaurant. Tasting menu 95 euros, à la carte available. Reservations recommended.",
-        fr: "Dîner au Restaurant L'Éclipse. Menu dégustation 95 euros, à la carte disponible. Réservation conseillée."
+        en: "Restaurant L'Éclipse presents our seven-course tasting menu at ninety-five euros, or dine à la carte. Reservations are kindly requested for this distinguished experience.",
+        fr: "Le Restaurant L'Éclipse présente notre menu dégustation en sept services à quatre-vingt-quinze euros, ou dînez à la carte. Nous vous prions de bien vouloir réserver pour cette expérience distinguée."
     },
     'card_restaurant_2': {
-        en: "Seasonal French cuisine with a modern twist. Our Michelin-trained chef creates magic every evening.",
-        fr: "Cuisine française de saison revisitée. Notre chef étoilé crée la magie chaque soir."
+        en: "Our executive chef presents seasonal French cuisine elevated to art. Each evening brings new inspiration from the finest local purveyors.",
+        fr: "Notre chef exécutif présente une cuisine française de saison élevée au rang d'art. Chaque soir apporte une nouvelle inspiration des meilleurs producteurs locaux."
     },
     'card_restaurant_3': {
-        en: "Le Bar Céleste offers craft cocktails and small plates. Open from 5 PM. Live jazz on Fridays.",
-        fr: "Le Bar Céleste propose cocktails artisanaux et petites assiettes. Ouvert dès 17h. Jazz live le vendredi."
+        en: "Le Bar Céleste invites you for artisanal cocktails and refined small plates from five in the evening. Friday evenings feature live jazz in an atmosphere of intimate sophistication.",
+        fr: "Le Bar Céleste vous invite pour des cocktails artisanaux et des petites assiettes raffinées dès dix-sept heures. Les vendredis soir présentent du jazz live dans une atmosphère de sophistication intime."
     }
 };
 
@@ -388,7 +393,7 @@ async function generateVoice(text, language, outputFileName) {
 }
 
 async function generateAllVoices() {
-    console.log('🎤 Starting ElevenLabs voice generation (EN/FR only)...\n');
+    console.log('🎤 Starting ElevenLabs voice generation (EN/FR — Pure Luxury Branding)...\n');
     console.log(`Using voice: Rachel (${VOICE_ID})`);
     console.log(`Output directory: ${OUTPUT_DIR}\n`);
 
